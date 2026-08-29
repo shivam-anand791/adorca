@@ -1,3 +1,6 @@
+"use client";
+
+import { useIntersection } from "./utils";
 import styles from "./Services.module.css";
 
 interface ServiceItem {
@@ -9,8 +12,9 @@ interface ServiceItem {
 }
 
 export default function Services() {
+  const [revealRef, isVisible] = useIntersection({ threshold: 0.05 });
+
   const servicesList: ServiceItem[] = [
-    // Row 1 items
     {
       id: "growth",
       anchorId: "service-growth",
@@ -61,7 +65,6 @@ export default function Services() {
         </svg>
       )
     },
-    // Row 2 items
     {
       id: "social",
       anchorId: "service-social",
@@ -92,7 +95,7 @@ export default function Services() {
     {
       id: "leadgen",
       anchorId: "service-leadgen",
-      title: "Lead generation service",
+      title: "Lead Generation Service",
       desc: "Acquire high-quality marketing and sales leads using conversion-focused landing pages, optimized funnels, and programmatic matching.",
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -105,7 +108,7 @@ export default function Services() {
     {
       id: "programmatic",
       anchorId: "service-programmatic",
-      title: "Programmatic advertising Growth",
+      title: "Programmatic Advertising Growth",
       desc: "Target the exact audience segments at scale. Implement automated, real-time bid optimization across premier advertising inventory networks.",
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -118,29 +121,34 @@ export default function Services() {
   ];
 
   return (
-    <section id="service" className={`section section-dark ${styles.servicesSection}`}>
-      <div className="container">
-        {/* Section Header */}
-        <div className="section-header">
-          <span className="section-subtitle">Our Exclusive Services</span>
-          <h2 className="section-title">With our global network of digital specialists</h2>
-          <p className="section-desc">
-            We’re able to provide local knowledge in more than 50 international markets. Our team has knowledge for new market.
-          </p>
-        </div>
+    <section id="service" className="floatingCardSection" ref={revealRef}>
+      {/* Section Header */}
+      <div className="section-header">
+        <span className="section-subtitle">Our Exclusive Services</span>
+        <h2 className="section-title">Engineered for Performance. Built for Growth.</h2>
+        <p className="section-desc">
+          We deploy localized organic campaigns, programmatic search pipelines, and conversion-optimized web platforms built to expand your market share.
+        </p>
+      </div>
 
-        {/* Services Grid */}
-        <div className={styles.grid}>
-          {servicesList.map((service) => (
-            <div key={service.id} id={service.anchorId} className={styles.card}>
-              <div className={styles.iconWrapper}>
-                {service.icon}
-              </div>
-              <h3 className={styles.cardTitle}>{service.title}</h3>
-              <p className={styles.cardDesc}>{service.desc}</p>
+      {/* Services Grid */}
+      <div className={`${styles.grid} ${isVisible ? styles.visible : ""}`}>
+        {servicesList.map((service, idx) => (
+          <div 
+            key={service.id} 
+            id={service.anchorId} 
+            className={styles.card}
+            style={{ 
+              transitionDelay: `${idx * 80}ms` 
+            }}
+          >
+            <div className={styles.iconWrapper}>
+              {service.icon}
             </div>
-          ))}
-        </div>
+            <h3 className={styles.cardTitle}>{service.title}</h3>
+            <p className={styles.cardDesc}>{service.desc}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

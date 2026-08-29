@@ -1,0 +1,222 @@
+.carouselContainer {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardsTrack {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .cardsTrack {
+    height: 440px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cardsTrack {
+    height: 480px;
+  }
+}
+
+/* Card Base Styling */
+.card {
+  position: absolute;
+  width: 100%;
+  max-width: 580px;
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.6s ease,
+              filter 0.6s ease,
+              border-color 0.4s ease,
+              box-shadow 0.4s ease;
+  z-index: 1;
+}
+
+[data-theme="dark"] .card {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: calc(100% - 40px);
+    padding: 30px 24px;
+  }
+}
+
+/* Active State */
+.activeCard {
+  opacity: 1;
+  transform: translateX(0) scale(1) rotate(0deg);
+  z-index: 5;
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-lg);
+  background-color: var(--bg-card);
+}
+
+/* Left Faded Peeker */
+.leftCard {
+  opacity: 0.3;
+  transform: translateX(-180px) scale(0.88) rotate(-7deg);
+  filter: blur(2px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Right Faded Peeker */
+.rightCard {
+  opacity: 0.3;
+  transform: translateX(180px) scale(0.88) rotate(7deg);
+  filter: blur(2px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Hidden elements */
+.hiddenCard {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Responsive Peeker Tweaks */
+@media (max-width: 992px) {
+  .leftCard {
+    transform: translateX(-120px) scale(0.88) rotate(-5deg);
+  }
+  .rightCard {
+    transform: translateX(120px) scale(0.88) rotate(5deg);
+  }
+}
+
+@media (max-width: 576px) {
+  .leftCard {
+    opacity: 0.1;
+    transform: translateX(-70px) scale(0.85) rotate(-3deg);
+  }
+  .rightCard {
+    opacity: 0.1;
+    transform: translateX(70px) scale(0.85) rotate(3deg);
+  }
+}
+
+/* Internal Details Styling */
+.starsRow {
+  display: flex;
+  gap: 4px;
+  color: #FFB800; /* gold star color */
+}
+
+.star {
+  fill: currentColor;
+}
+
+.quote {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+@media (max-width: 576px) {
+  .quote {
+    font-size: 0.95rem;
+  }
+}
+
+.clientBlock {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  font-family: var(--font-display);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.clientName {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.clientRole {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.company {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+/* Controls buttons */
+.controls {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+  z-index: 10;
+}
+
+.controlBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+}
+
+.controlBtn:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  transform: scale(1.06);
+  box-shadow: var(--shadow-md);
+}
+
+.controlBtn:active {
+  transform: scale(0.96);
+}

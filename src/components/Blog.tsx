@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Blog.module.css";
 
 interface BlogPost {
@@ -53,46 +54,44 @@ export default function Blog() {
   ];
 
   return (
-    <section id="blog" className={`section ${styles.section}`}>
-      <div className="container">
-        {/* Section Header */}
-        <div className="section-header">
-          <span className="section-subtitle">Our Blog</span>
-          <h2 className="section-title">News &amp; Blogs</h2>
-          <p className="section-desc">
-            Stay updated with the latest digital advertising, organic growth insights, and programmatic search trends from our international network.
-          </p>
-        </div>
+    <section id="blog" className="floatingCardSection">
+      {/* Section Header */}
+      <div className="section-header">
+        <span className="section-subtitle">Our Blog</span>
+        <h2 className="section-title">News &amp; Blogs</h2>
+        <p className="section-desc">
+          Stay updated with the latest digital advertising, organic growth insights, and programmatic search trends from our international network.
+        </p>
+      </div>
 
-        {/* Blog Grid */}
-        <div className={styles.grid}>
-          {posts.map((post) => (
-            <article key={post.id} className={styles.card}>
-              {/* Thumbnail Mockup */}
-              <div className={styles.thumbnailMockup}>
-                {post.icon}
-              </div>
+      {/* Blog Grid */}
+      <div className={styles.grid}>
+        {posts.map((post) => (
+          <article key={post.id} className={styles.card}>
+            {/* Thumbnail Mockup */}
+            <div className={styles.thumbnailMockup}>
+              {post.icon}
+            </div>
 
-              {/* Card Body */}
-              <div className={styles.cardBody}>
-                <div className={styles.metaRow}>
-                  <span className={styles.tag}>{post.tag}</span>
-                  <span className={styles.date}>{post.date}</span>
-                </div>
-                <h3 className={styles.cardTitle}>
-                  <a href="#contact">{post.title}</a>
-                </h3>
-                <p className={styles.cardDesc}>{post.desc}</p>
-                <a href="#contact" className={styles.readMoreLink}>
-                  Read Article
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </a>
+            {/* Card Body */}
+            <div className={styles.cardBody}>
+              <div className={styles.metaRow}>
+                <span className={styles.tag}>{post.tag}</span>
+                <span className={styles.date}>{post.date}</span>
               </div>
-            </article>
-          ))}
-        </div>
+              <h3 className={styles.cardTitle}>
+                <Link href={`/blog/${post.id}`}>{post.title}</Link>
+              </h3>
+              <p className={styles.cardDesc}>{post.desc}</p>
+              <Link href={`/blog/${post.id}`} className={styles.readMoreLink}>
+                Read Article
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );

@@ -12,7 +12,9 @@ export default function Navbar() {
   useEffect(() => {
     // Read theme setting on mount
     const activeTheme = document.documentElement.getAttribute("data-theme") as "light" | "dark" || "light";
-    setTheme(activeTheme);
+    requestAnimationFrame(() => {
+      setTheme(activeTheme);
+    });
 
     const handleScroll = () => {
       if (window.scrollY > 20) {

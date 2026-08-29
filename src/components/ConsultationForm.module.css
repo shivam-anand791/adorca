@@ -1,13 +1,8 @@
-.section {
-  background-color: var(--bg-secondary);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
-}
-
 .container {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.05fr 0.95fr;
   gap: 80px;
+  align-items: start;
 }
 
 @media (max-width: 992px) {
@@ -20,28 +15,28 @@
 .formCol {
   display: flex;
   flex-direction: column;
+  gap: 30px;
 }
 
 .formHeader {
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .formSubtitle {
-  color: var(--accent-green);
+  color: var(--accent-primary);
   font-family: var(--font-display);
   font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-bottom: 10px;
-  display: block;
 }
 
 .formTitle {
   font-size: 2.2rem;
-  font-weight: 800;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .formDesc {
@@ -52,173 +47,238 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
 
+/* Floating Label CSS Patterns */
 .formGroup {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-}
-
-.label {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-}
-
-.input, .textarea {
   width: 100%;
-  padding: 12px 16px;
-  background-color: var(--bg-primary);
+}
+
+.input {
+  width: 100%;
+  padding: 16px;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-sm);
+  background-color: var(--bg-page);
   color: var(--text-primary);
-  font-size: 0.95rem;
+  font-size: 1rem;
   transition: var(--transition-smooth);
 }
 
-.input:focus, .textarea:focus {
-  border-color: var(--accent-green);
-  background-color: var(--bg-secondary);
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.08);
+[data-theme="dark"] .input {
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
+.input:focus {
+  border-color: var(--accent-primary);
+  background-color: var(--bg-card);
+  box-shadow: 0 0 0 4px rgba(108, 76, 241, 0.1);
+}
+
+.inputError {
+  border-color: var(--accent-secondary) !important;
+  box-shadow: 0 0 0 4px rgba(255, 107, 87, 0.1) !important;
+}
+
+.label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  pointer-events: none;
+  background-color: transparent;
+  padding: 0 6px;
+  transition: var(--transition-smooth);
+}
+
+/* Float logic for inputs */
+.input:focus ~ .label,
+.input:not(:placeholder-shown) ~ .label {
+  top: 0;
+  transform: translateY(-50%) scale(0.85);
+  color: var(--accent-primary);
+  background-color: var(--bg-card);
+}
+
+[data-theme="dark"] .input:focus ~ .label,
+[data-theme="dark"] .input:not(:placeholder-shown) ~ .label {
+  background-color: var(--bg-card);
+}
+
+/* Textarea Pattern */
 .textarea {
-  min-height: 120px;
+  width: 100%;
+  height: 120px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-size: 1rem;
   resize: vertical;
+  transition: var(--transition-smooth);
+}
+
+[data-theme="dark"] .textarea {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.textarea:focus {
+  border-color: var(--accent-primary);
+  background-color: var(--bg-card);
+  box-shadow: 0 0 0 4px rgba(108, 76, 241, 0.1);
+}
+
+.textareaLabel {
+  position: absolute;
+  left: 16px;
+  top: 20px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  pointer-events: none;
+  padding: 0 6px;
+  transition: var(--transition-smooth);
+}
+
+.textarea:focus ~ .textareaLabel,
+.textarea:not(:placeholder-shown) ~ .textareaLabel {
+  top: 0;
+  transform: translateY(-50%) scale(0.85);
+  color: var(--accent-primary);
+  background-color: var(--bg-card);
 }
 
 .error {
-  font-size: 0.775rem;
-  color: #ef4444;
+  font-size: 0.75rem;
+  color: var(--accent-secondary);
+  font-weight: 600;
   margin-top: 4px;
+  padding-left: 4px;
 }
 
-.submitBtn {
-  width: fit-content;
-  margin-top: 8px;
-}
-
-@media (max-width: 576px) {
-  .submitBtn {
-    width: 100%;
-  }
-}
-
-/* Right Column Contact Details */
+/* Right Column details styling */
 .infoCol {
   display: flex;
   flex-direction: column;
+  gap: 24px;
 }
 
 .infoTitle {
   font-size: 2.2rem;
-  font-weight: 800;
-  margin-bottom: 16px;
+  font-weight: 700;
+  line-height: 1.25;
   letter-spacing: -0.02em;
 }
 
 .infoDesc {
   color: var(--text-secondary);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  margin-bottom: 36px;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .contactList {
   display: flex;
   flex-direction: column;
-  gap: 28px;
-  margin-bottom: 30px;
+  gap: 20px;
+  margin: 10px 0;
 }
 
 .contactItem {
   display: flex;
-  gap: 16px;
+  align-items: center;
+  gap: 20px;
 }
 
 .iconWrapper {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--border-radius-sm);
-  background-color: rgba(16, 185, 129, 0.05);
-  border: 1px solid rgba(16, 185, 129, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent-green);
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background-color: rgba(108, 76, 241, 0.08);
+  color: var(--accent-primary);
   flex-shrink: 0;
 }
 
 .itemContent {
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 .itemLabel {
-  font-size: 0.8rem;
-  color: var(--text-muted);
+  font-size: 0.75rem;
   font-weight: 700;
+  color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 4px;
+  letter-spacing: 0.08em;
 }
 
 .itemValue {
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.4;
 }
 
 .itemValue a:hover {
-  color: var(--accent-green);
+  color: var(--accent-primary);
 }
 
 .infoFooterText {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  border-top: 1px solid var(--border-color);
-  padding-top: 24px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
-/* Success panel styles */
+/* Success Card */
 .successContainer {
+  background-color: rgba(34, 197, 94, 0.06);
+  border: 1px solid rgba(34, 197, 94, 0.15);
+  border-radius: var(--border-radius-md);
+  padding: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 50px 24px;
-  border: 1px dashed rgba(16, 185, 129, 0.3);
-  border-radius: var(--border-radius-lg);
-  background-color: rgba(16, 185, 129, 0.01);
+  gap: 20px;
+  animation: scaleReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .successIcon {
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background-color: rgba(16, 185, 129, 0.1);
-  border: 2px solid rgba(16, 185, 129, 0.2);
-  color: var(--accent-green);
+  background-color: var(--accent-green);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.25);
 }
 
 .successTitle {
-  font-size: 1.6rem;
-  font-weight: 800;
-  margin-bottom: 12px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-green);
 }
 
 .successDesc {
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.6;
-  max-width: 340px;
-  margin-bottom: 24px;
+}
+
+@keyframes scaleReveal {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
