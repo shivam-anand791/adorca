@@ -1,0 +1,170 @@
+.section {
+  background-color: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 80px;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+}
+
+/* Left Column Mock SERP Dashboard */
+.dashboard {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.window {
+  width: 100%;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+}
+
+[data-theme="dark"] .window {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.windowHeader {
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.01);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 6px;
+}
+
+[data-theme="dark"] .windowHeader {
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--border-color);
+}
+
+.dotActive {
+  background-color: var(--accent-green);
+}
+
+.searchBarMock {
+  flex-grow: 1;
+  max-width: 280px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  margin-left: 16px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .searchBarMock {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+.windowBody {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.serpItem {
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  border-radius: var(--border-radius-sm);
+  padding: 16px;
+  position: relative;
+}
+
+.serpActive {
+  border-color: rgba(16, 185, 129, 0.3);
+  background-color: rgba(16, 185, 129, 0.02);
+}
+
+.serpUrl {
+  font-size: 0.7rem;
+  color: var(--accent-green);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.serpTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 6px;
+}
+
+.serpActive .serpTitle {
+  color: var(--accent-green);
+}
+
+[data-theme="dark"] .serpTitle {
+  color: #3b82f6;
+}
+
+[data-theme="dark"] .serpActive .serpTitle {
+  color: var(--accent-green);
+}
+
+.serpSnippet {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.serpBadge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--accent-green);
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-weight: 600;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+/* Right Column Content */
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin-bottom: 24px;
+}
+
+.desc {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.getStartedBtn {
+  border-radius: 30px;
+}

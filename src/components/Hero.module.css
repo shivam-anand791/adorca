@@ -1,0 +1,226 @@
+.hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--nav-height) + 40px);
+  padding-bottom: 60px;
+  background-color: var(--bg-primary);
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.03) 0%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+[data-theme="dark"] .hero::before {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%);
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 60px;
+  align-items: center;
+}
+
+@media (max-width: 992px) {
+  .heroContainer {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media (max-width: 992px) {
+  .content {
+    align-items: center;
+  }
+}
+
+.welcomeTag {
+  color: var(--accent-green);
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+
+.serifItalic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent-blue);
+}
+
+[data-theme="dark"] .serifItalic {
+  color: var(--accent-green);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+}
+
+.description {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 36px;
+  max-width: 580px;
+}
+
+.getStartedBtn {
+  border-radius: 30px;
+  padding: 14px 36px;
+  font-size: 1rem;
+}
+
+/* Right Side Circular Graphic */
+.visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.graphicBox {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Simulated orbital lines */
+.orbit1 {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orbit2 {
+  position: absolute;
+  width: 65%;
+  height: 65%;
+  border: 1px dashed var(--border-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orbit3 {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: 50%;
+}
+
+.centerPoint {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent-green);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--accent-green);
+}
+
+/* Circular line chart overlay */
+.lineChartMock {
+  position: absolute;
+  width: 130px;
+  height: 70px;
+  bottom: 40px;
+  left: 10px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+[data-theme="dark"] .lineChartMock {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.chartTitle {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.chartSvg {
+  width: 100%;
+  height: 36px;
+}
+
+/* Green overlay stats badge */
+.statsOverlay {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  background-color: #10b981;
+  color: #ffffff;
+  border-radius: var(--border-radius-md);
+  padding: 14px 20px;
+  box-shadow: 0 15px 30px rgba(16, 185, 129, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 180px;
+  z-index: 10;
+}
+
+.statsVal {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.statsLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
