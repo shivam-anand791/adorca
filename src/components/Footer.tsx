@@ -1,4 +1,5 @@
 import styles from "./Footer.module.css";
+import { LogoMark } from "./Navbar";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,22 +11,11 @@ export default function Footer() {
           {/* Brand Info Column */}
           <div className={styles.brandCol}>
             <div className={styles.logoArea}>
-              <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="16" stroke="url(#footer-logo-grad)" strokeWidth="3" strokeLinecap="round" strokeDasharray="70 20"/>
-                <path d="M14 26L20 14L26 26" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M17 22H23" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                <circle cx="28" cy="14" r="3.5" fill="#10b981"/>
-                <defs>
-                  <linearGradient id="footer-logo-grad" x1="4" y1="4" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#10b981"/>
-                    <stop offset="1" stopColor="#6C4CF1"/>
-                  </linearGradient>
-                </defs>
-              </svg>
+              <LogoMark size={30} />
               <span className={styles.logoText}>Adorca<span className={styles.logoTextHighlight}>360</span></span>
             </div>
             <p className={styles.tagline}>
-              Our comprehensive SEO solutions are designed to put your website in front of the audience at the right time.
+              Adorca360 drives measurable growth for brands in 50+ markets — from organic search and programmatic to affiliate and app monetisation.
             </p>
           </div>
 

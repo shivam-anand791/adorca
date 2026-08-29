@@ -1,35 +1,43 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useIntersection, useCountUp } from "./utils";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
+  const [mounted, setMounted] = useState(false);
   const [revealRef, isVisible] = useIntersection();
   const countVal = useCountUp(79, 1500, isVisible);
 
+  useEffect(() => {
+    // Trigger entrance animation after first paint
+    const id = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
   return (
-    <section className={`floatingCardSection ${styles.hero}`} ref={revealRef}>
+    <section className={`floatingCardSection ${styles.hero} ${mounted ? styles.pageReady : ""}`} ref={revealRef}>
       <div className={styles.heroContainer}>
         {/* Left Column: Copywriting */}
         <div className={styles.content}>
-          <span className="badge">Welcome to Adorca360</span>
-          <h1 className={styles.title}>
+          <span className={`badge ${styles.entranceBadge}`}>Welcome to Adorca360</span>
+          <h1 className={`${styles.title} ${styles.entranceTitle}`}>
             Global Search <br />
             Dominance. <span className={styles.purpleText}>Accelerated.</span>
           </h1>
-          <p className={styles.description}>
+          <p className={`${styles.description} ${styles.entranceDesc}`}>
             We engineer high-performance SEO campaigns, programmatic advertising channels, and localized digital funnels designed to scale organic traffic and acquire customers across 50+ international markets.
           </p>
-          <div className={styles.ctas}>
+          <div className={`${styles.ctas} ${styles.entranceCtas}`}>
             <a href="#contact" className="btn btn-primary">
-              Get Started Now
+              See Your Growth Plan
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
             </a>
             <a href="#service" className="btn btn-secondary">
-              Our Services
+              Explore Services
             </a>
           </div>
         </div>

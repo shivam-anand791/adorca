@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import ClientLogos from "@/components/ClientLogos";
 import Endorsements from "@/components/Endorsements";
 import Services from "@/components/Services";
 import BoostTraffic from "@/components/BoostTraffic";
@@ -20,6 +21,9 @@ export default function Home() {
       <main className="pageCanvas" style={{ flex: 1 }}>
         {/* Hero Section */}
         <Hero />
+
+        {/* Trusted by client logos trust bar */}
+        <ClientLogos />
 
         {/* Brand Endorsements Tilted Cards Row */}
         <Endorsements />

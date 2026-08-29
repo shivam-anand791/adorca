@@ -2,6 +2,40 @@
 
 import { useEffect, useRef, useState } from "react";
 
+// ─── Scroll-reveal hook ────────────────────────────────────────────────────────
+// Returns a [ref, isVisible] tuple. Attach ref to any element; isVisible
+// flips true once the element enters the viewport.
+// Respects prefers-reduced-motion: if the user has requested reduced motion,
+// isVisible is immediately true so elements render without animation.
+export function useScrollReveal(options: IntersectionObserverInit = { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const prefersReduced =
+    typeof window !== "undefined"
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false;
+  const [isVisible, setIsVisible] = useState(prefersReduced); // skip anim if reduced-motion
+
+  useEffect(() => {
+    if (prefersReduced) return; // already visible, no observer needed
+    const currentRef = ref.current;
+    if (!currentRef) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.unobserve(currentRef);
+      }
+    }, options);
+
+    observer.observe(currentRef);
+    return () => { if (currentRef) observer.unobserve(currentRef); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return [ref, isVisible] as const;
+}
+
+// ─── Legacy alias (used by Hero, WhyChooseUs, CaseStudies) ───────────────────
 // Hook to detect when an element is in the viewport
 export function useIntersection(options: IntersectionObserverInit = { threshold: 0.1, rootMargin: "0px" }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -31,16 +65,19 @@ export function useIntersection(options: IntersectionObserverInit = { threshold:
   return [ref, isIntersecting] as const;
 }
 
-// Hook to animate count-up from 0 to target
+// Hook to animate count-up from 0 to target.
+// Correctly handles trigger=true on first mount (section already in viewport).
 export function useCountUp(target: number, duration: number = 1800, trigger: boolean = false) {
   const [count, setCount] = useState(0);
+  const hasRun = useRef(false);
 
   useEffect(() => {
-    if (!trigger) return;
-    
-    const start = 0;
+    // Guard: only run once even if trigger stays true across re-renders
+    if (!trigger || hasRun.current) return;
+    hasRun.current = true;
+
     const end = target;
-    if (start === end) return;
+    if (end === 0) { setCount(0); return; }
 
     const startTime = performance.now();
     let animationFrameId: number;
@@ -48,25 +85,19 @@ export function useCountUp(target: number, duration: number = 1800, trigger: boo
     const updateCount = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
-      // Easing out cubic: progress = 1 - (1 - progress) ^ 3
+      // Ease-out cubic
       const easeProgress = 1 - Math.pow(1 - progress, 3);
-      const current = Math.floor(easeProgress * (end - start) + start);
-      
-      setCount(current);
+      setCount(Math.floor(easeProgress * end));
 
       if (progress < 1) {
         animationFrameId = requestAnimationFrame(updateCount);
       } else {
-        setCount(end);
+        setCount(end); // guarantee final value is always exact
       }
     };
 
     animationFrameId = requestAnimationFrame(updateCount);
-
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-    };
+    return () => { cancelAnimationFrame(animationFrameId); };
   }, [target, duration, trigger]);
 
   return count;

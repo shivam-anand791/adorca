@@ -6,9 +6,77 @@ import styles from "./Endorsements.module.css";
 interface PartnerItem {
   id: string;
   name: string;
-  tilt: number; // default tilt in degrees
+  tilt: number;
   logo: React.ReactNode;
 }
+
+/* ─── Real brand SVG marks ───────────────────────────────────────────────── */
+const GoogleAdsLogo = () => (
+  <svg width="96" height="28" viewBox="0 0 192 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Google Ads">
+    {/* G icon */}
+    <path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 36c-8.82 0-16-7.18-16-16S15.18 8 24 8c4.23 0 8.08 1.62 10.96 4.27L30.7 16.5A9.95 9.95 0 0024 14c-5.52 0-10 4.48-10 10s4.48 10 10 10c5.08 0 9.24-3.58 9.9-8.27H24v-4h14.06c.12.78.19 1.59.19 2.4C38.25 32.37 31.88 40 24 40z" fill="#4285F4"/>
+    {/* "Ads" wordmark */}
+    <text x="50" y="36" fill="currentColor" fontWeight="700" fontSize="22" fontFamily="sans-serif" letterSpacing="-0.5">Ads</text>
+  </svg>
+);
+
+const AmazonLogo = () => (
+  <svg width="90" height="28" viewBox="0 0 180 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Amazon">
+    <text x="0" y="36" fill="currentColor" fontWeight="900" fontSize="30" fontFamily="Arial,sans-serif" letterSpacing="-1">amazon</text>
+    {/* smile arrow */}
+    <path d="M4 46 Q44 58 86 44" stroke="#FF9900" strokeWidth="3.5" strokeLinecap="round" fill="none"/>
+    <path d="M82 40 L90 46 L80 50" fill="#FF9900"/>
+  </svg>
+);
+
+const TaboolaLogo = () => (
+  <svg width="96" height="28" viewBox="0 0 192 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Taboola">
+    {/* T dot cluster icon */}
+    <circle cx="16" cy="28" r="10" fill="#3B4EFF"/>
+    <circle cx="32" cy="28" r="6"  fill="#3B4EFF" opacity="0.7"/>
+    <circle cx="44" cy="28" r="4"  fill="#3B4EFF" opacity="0.4"/>
+    <text x="54" y="36" fill="currentColor" fontWeight="800" fontSize="22" fontFamily="sans-serif">Taboola</text>
+  </svg>
+);
+
+const OutbrainLogo = () => (
+  <svg width="104" height="28" viewBox="0 0 208 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Outbrain">
+    {/* Outbrain "O" brand orb */}
+    <circle cx="22" cy="28" r="16" stroke="#FF6633" strokeWidth="4" fill="none"/>
+    <circle cx="22" cy="16" r="5"  fill="#FF6633"/>
+    <text x="46" y="36" fill="currentColor" fontWeight="800" fontSize="22" fontFamily="sans-serif">Outbrain</text>
+  </svg>
+);
+
+const CJAffiliateLogo = () => (
+  <svg width="110" height="28" viewBox="0 0 220 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="CJ Affiliate">
+    {/* Stylised CJ badge */}
+    <rect x="2" y="8" width="40" height="40" rx="8" fill="#00A859"/>
+    <text x="7" y="37" fill="white" fontWeight="900" fontSize="22" fontFamily="Arial,sans-serif">CJ</text>
+    <text x="50" y="36" fill="currentColor" fontWeight="700" fontSize="20" fontFamily="sans-serif">Affiliate</text>
+  </svg>
+);
+
+const ClickBankLogo = () => (
+  <svg width="118" height="28" viewBox="0 0 236 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ClickBank">
+    {/* CB coin mark */}
+    <circle cx="24" cy="28" r="20" fill="#1F4EBD"/>
+    <text x="11" y="35" fill="white" fontWeight="900" fontSize="16" fontFamily="Arial,sans-serif">CB</text>
+    <text x="52" y="36" fill="currentColor" fontWeight="800" fontSize="20" fontFamily="sans-serif">ClickBank</text>
+  </svg>
+);
+
+const ShareASaleLogo = () => (
+  <svg width="118" height="28" viewBox="0 0 236 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="ShareASale">
+    {/* Network node trio */}
+    <circle cx="12" cy="28" r="8" fill="#7B3FE4"/>
+    <circle cx="34" cy="14" r="6" fill="#FF6B57"/>
+    <circle cx="34" cy="42" r="6" fill="#22C55E"/>
+    <line x1="12" y1="28" x2="34" y2="14" stroke="#7B3FE4" strokeWidth="2"/>
+    <line x1="12" y1="28" x2="34" y2="42" stroke="#22C55E" strokeWidth="2"/>
+    <text x="48" y="36" fill="currentColor" fontWeight="800" fontSize="19" fontFamily="sans-serif">ShareASale</text>
+  </svg>
+);
 
 export default function Endorsements() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -16,91 +84,13 @@ export default function Endorsements() {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const partners: PartnerItem[] = [
-    {
-      id: "google-ads",
-      name: "Google Ads",
-      tilt: -4,
-      logo: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16.5 2.5L7.5 18H2.5L11.5 2.5H16.5Z" fill="#1A73E8" />
-          <path d="M16.5 2.5L21.5 11L12.5 23H7.5L16.5 2.5Z" fill="#F9BC05" />
-        </svg>
-      )
-    },
-    {
-      id: "amazon",
-      name: "Amazon Partner",
-      tilt: 3,
-      logo: (
-        <svg viewBox="0 0 48 24" width="48" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 14h6M8 18c10 4 20 4 30 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-          <path d="M36 16l3 3.5l-4.5 1" fill="currentColor"/>
-          <text x="10" y="11" fill="currentColor" fontWeight="800" fontSize="8" fontFamily="sans-serif">amazon</text>
-        </svg>
-      )
-    },
-    {
-      id: "taboola",
-      name: "Taboola Ads",
-      tilt: -3,
-      logo: (
-        <svg viewBox="0 0 70 20" width="70" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="8" cy="10" r="5" fill="#3B82F6"/>
-          <circle cx="16" cy="10" r="3" fill="#F97316"/>
-          <text x="24" y="14" fill="currentColor" fontWeight="800" fontSize="11" fontFamily="sans-serif">Taboola</text>
-        </svg>
-      )
-    },
-    {
-      id: "outbrain",
-      name: "Outbrain Platform",
-      tilt: 5,
-      logo: (
-        <svg viewBox="0 0 75 20" width="75" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 14c3-1 4-4 4-6s-2-4-4-4s-4 2-4 4s1 5 4 6Z" fill="#FF5A00"/>
-          <circle cx="12" cy="7" r="2" fill="#FF5A00"/>
-          <text x="20" y="14" fill="currentColor" fontWeight="800" fontSize="11" fontFamily="sans-serif">Outbrain</text>
-        </svg>
-      )
-    },
-    {
-      id: "cj",
-      name: "CJ Affiliate",
-      tilt: -5,
-      logo: (
-        <svg viewBox="0 0 75 20" width="75" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="8" cy="10" r="7" stroke="currentColor" strokeWidth="2" fill="none"/>
-          <text x="5" y="13" fill="currentColor" fontWeight="800" fontSize="9" fontFamily="sans-serif">CJ</text>
-          <text x="18" y="14" fill="currentColor" fontWeight="800" fontSize="10" fontFamily="sans-serif">Affiliate</text>
-        </svg>
-      )
-    },
-    {
-      id: "clickbank",
-      name: "ClickBank Network",
-      tilt: 4,
-      logo: (
-        <svg viewBox="0 0 85 20" width="85" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="8" cy="10" r="6" stroke="#1D4ED8" strokeWidth="2"/>
-          <path d="M8 4v12M4 10h8" stroke="#1D4ED8" strokeWidth="1.5"/>
-          <text x="18" y="14" fill="currentColor" fontWeight="800" fontSize="9" fontFamily="sans-serif">CLICKBANK</text>
-        </svg>
-      )
-    },
-    {
-      id: "shareasale",
-      name: "ShareASale",
-      tilt: -2,
-      logo: (
-        <svg viewBox="0 0 85 20" width="85" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="5" cy="10" r="3" fill="#22C55E"/>
-          <circle cx="13" cy="10" r="3" fill="#3B82F6"/>
-          <circle cx="9" cy="6" r="2" fill="#10B981"/>
-          <line x1="5" y1="10" x2="13" y2="10" stroke="currentColor" strokeWidth="1"/>
-          <text x="20" y="14" fill="currentColor" fontWeight="800" fontSize="10" fontFamily="sans-serif">ShareASale</text>
-        </svg>
-      )
-    }
+    { id: "google-ads",   name: "Google Ads",        tilt: -4, logo: <GoogleAdsLogo /> },
+    { id: "amazon",       name: "Amazon Partner",     tilt:  3, logo: <AmazonLogo /> },
+    { id: "taboola",      name: "Taboola",            tilt: -3, logo: <TaboolaLogo /> },
+    { id: "outbrain",     name: "Outbrain",           tilt:  5, logo: <OutbrainLogo /> },
+    { id: "cj",           name: "CJ Affiliate",       tilt: -5, logo: <CJAffiliateLogo /> },
+    { id: "clickbank",    name: "ClickBank",          tilt:  4, logo: <ClickBankLogo /> },
+    { id: "shareasale",   name: "ShareASale",         tilt: -2, logo: <ShareASaleLogo /> },
   ];
 
   useEffect(() => {
@@ -108,14 +98,10 @@ export default function Endorsements() {
       if (timerRef.current) clearInterval(timerRef.current);
       return;
     }
-
     timerRef.current = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % partners.length);
     }, 2800);
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [isHovered, partners.length]);
 
   const handleMouseEnter = (index: number) => {
@@ -128,11 +114,11 @@ export default function Endorsements() {
   };
 
   return (
-    <section className={styles.section}>
+    <section className={styles.section} aria-label="Partner networks">
       <div className={styles.container}>
-        <h3 className={styles.title}>Partnered with Premier Affiliate & Advertising Networks</h3>
-        
-        {/* Tilted Card Row Wrapper */}
+        <h3 className={styles.title}>Partnered with Premier Affiliate &amp; Advertising Networks</h3>
+
+        {/* Tilted Card Row */}
         <div className={styles.rowWrapper}>
           <div className={styles.cardsRow}>
             {partners.map((partner, idx) => {
@@ -142,10 +128,15 @@ export default function Endorsements() {
                   key={partner.id}
                   className={`${styles.partnerCard} ${isActive ? styles.active : ""}`}
                   style={{
-                    transform: isActive ? "rotate(0deg) scale(1.08)" : `rotate(${partner.tilt}deg)`
+                    /* tilt is applied via CSS var; mobile CSS overrides to 0 */
+                    ["--card-tilt" as string]: `${partner.tilt}deg`,
+                    transform: isActive
+                      ? "rotate(0deg) scale(1.05)"
+                      : `rotate(${partner.tilt}deg)`,
                   }}
                   onMouseEnter={() => handleMouseEnter(idx)}
                   onMouseLeave={handleMouseLeave}
+                  aria-label={partner.name}
                 >
                   <div className={styles.logoWrapper}>
                     {partner.logo}
@@ -156,15 +147,14 @@ export default function Endorsements() {
             })}
           </div>
 
-          {/* Dotted Connection Line beneath */}
-          <div className={styles.connectionLineContainer}>
-            <div className={styles.connectorLine}></div>
+          {/* Connector dots */}
+          <div className={styles.connectionLineContainer} aria-hidden="true">
             <div className={styles.dotsRow}>
-              {partners.map((partner, idx) => (
-                <div 
-                  key={idx} 
+              {partners.map((_, idx) => (
+                <div
+                  key={idx}
                   className={`${styles.connectorDot} ${activeIndex === idx ? styles.dotActive : ""}`}
-                ></div>
+                />
               ))}
             </div>
           </div>

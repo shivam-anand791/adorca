@@ -156,7 +156,7 @@ export default function ConsultationForm() {
                   style={{ width: "100%", marginTop: "10px" }}
                   disabled={isSubmitting}
                 >
-                  {isSubmitting ? "Sending Request..." : "Send Us Mail"}
+                  {isSubmitting ? "Sending Message..." : "Send Message"}
                 </button>
               </form>
             </>
@@ -233,7 +233,8 @@ export default function ConsultationForm() {
               <div className={styles.itemContent}>
                 <span className={styles.itemLabel}>Visit Our Office</span>
                 <span className={styles.itemValue}>
-                  Office: 2220 Plymouth Rd, Hopkins,<br />
+                  {/* TODO: confirm real office address with client */}
+                  2220 Plymouth Rd, Hopkins,<br />
                   Minnesota (MN), USA
                 </span>
               </div>
@@ -241,7 +242,7 @@ export default function ConsultationForm() {
           </div>
 
           <p className={styles.infoFooterText}>
-            Our comprehensive SEO solutions are designed to put your website in front of the audience at the right time.
+            Ready to grow? Fill out the form and one of our strategists will get back to you within one business day.
           </p>
         </div>
       </div>

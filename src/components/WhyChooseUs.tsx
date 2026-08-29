@@ -49,7 +49,6 @@ function StatCircleItem({ val, label, trigger }: StatCircleItemProps) {
             strokeDasharray={strokeCircumference}
             strokeDashoffset={strokeOffset}
             strokeLinecap="round"
-            style={{ transition: "stroke-dashoffset 0.1s ease-out" }}
           />
         </svg>
         <span className={styles.percentageText}>{animatedValue}%</span>

@@ -37,8 +37,9 @@
 .logoArea {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .logoText {
@@ -74,61 +75,151 @@
   gap: 6px;
   padding: 8px 0;
   cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .navLink:hover, .activeLink {
   color: var(--accent-primary);
 }
 
-/* Dropdown styling */
-.dropdown {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  width: 290px;
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-md);
-  padding: 12px;
-  box-shadow: var(--shadow-lg);
-  opacity: 0;
-  visibility: hidden;
-  transition: var(--transition-smooth);
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.navItem:hover .dropdown {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
-}
-
-.dropdownLink {
-  font-size: 0.85rem;
-  padding: 10px 12px;
-  color: var(--text-secondary);
-  border-radius: var(--border-radius-sm);
-  display: block;
-}
-
-.dropdownLink:hover {
-  background-color: rgba(108, 76, 241, 0.05);
-  color: var(--accent-primary);
-  padding-left: 16px;
-}
-
+/* Arrow icon */
 .arrowIcon {
-  transition: transform 0.2s ease;
+  transition: transform 0.25s ease;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
 }
 
 .navItem:hover .arrowIcon {
   transform: rotate(180deg);
 }
 
-/* Theme Toggle Button */
+/* ─────────────────────────────────────────────
+   Mega Menu
+───────────────────────────────────────────── */
+.hasMega {
+  position: static; /* relative to header */
+}
+
+.megaMenu {
+  position: absolute;
+  top: calc(var(--nav-height) - 2px);
+  left: 50%;
+  transform: translateX(-50%) translateY(12px);
+  width: min(860px, 92vw);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 28px 32px;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+
+/* Show on hover (desktop) */
+.hasMega:hover .megaMenu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Show when toggled (mobile) */
+.megaMenuOpen {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.megaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.megaCategory {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.megaCategoryTitle {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-primary);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 4px;
+}
+
+.megaList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.megaItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 10px;
+  border-radius: var(--border-radius-sm);
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+}
+
+.megaItem:hover {
+  background-color: rgba(108, 76, 241, 0.05);
+}
+
+.megaIcon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background-color: rgba(108, 76, 241, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-primary);
+  margin-top: 1px;
+}
+
+.megaText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.megaLabel {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.megaDesc {
+  font-size: 0.77rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.megaItem:hover .megaLabel {
+  color: var(--accent-primary);
+}
+
+/* ─────────────────────────────────────────────
+   Theme Toggle
+───────────────────────────────────────────── */
 .themeToggle {
   width: 40px;
   height: 40px;
@@ -157,7 +248,7 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
 }
 
 /* Mobile Hamburger */
@@ -198,7 +289,9 @@
   display: none;
 }
 
-/* Responsive navigation styles */
+/* ─────────────────────────────────────────────
+   Responsive — mobile
+───────────────────────────────────────────── */
 @media (max-width: 992px) {
   .navMenu {
     position: fixed;
@@ -215,6 +308,7 @@
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
     box-shadow: var(--shadow-lg);
+    overflow-y: auto;
   }
 
   .navMenuOpen {
@@ -225,23 +319,41 @@
     display: flex;
   }
 
-  .dropdown {
+  /* Mega-menu becomes an accordion in mobile */
+  .megaMenu {
     position: static;
-    transform: none;
-    opacity: 1;
-    visibility: visible;
     width: 100%;
-    background-color: rgba(108, 76, 241, 0.02);
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: hidden;
+    pointer-events: none;
     border: none;
     box-shadow: none;
-    padding: 4px 0 0 16px;
+    padding: 4px 0 0 8px;
+    background: transparent;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+    transition: max-height 0.35s ease-out, visibility 0s 0.35s;
   }
 
-  .dropdownOpen {
-    max-height: 500px;
+  .megaMenuOpen {
+    visibility: visible !important;
+    pointer-events: auto !important;
+    max-height: 600px;
+    transition: max-height 0.35s ease-in !important;
+  }
+
+  .megaGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .megaCategoryTitle {
+    font-size: 0.65rem;
+  }
+
+  .megaItem {
+    padding: 8px 6px;
   }
 
   .navItem {
@@ -256,12 +368,34 @@
   .actions {
     display: none;
   }
-  
+
   .actionsMobile {
     display: flex;
     flex-direction: column;
     width: 100%;
     gap: 12px;
     margin-top: auto;
+  }
+
+  /* Disable mega hover on mobile — only toggle works */
+  .hasMega:hover .megaMenu {
+    opacity: 1;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .megaMenu,
+  .arrowIcon,
+  .themeToggle,
+  .megaItem,
+  .navLink {
+    transition: none !important;
+  }
+
+  .navMenu {
+    transition: none !important;
   }
 }

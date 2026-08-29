@@ -3,7 +3,7 @@
   --bg-card: #FFFFFF; /* Floating rounded white cards */
   --text-primary: #14151A;
   --text-secondary: #52545D;
-  --text-muted: #888B97;
+  --text-muted: #6B6D76;
   
   --accent-primary: #6C4CF1; /* Confident purple primary CTA */
   --accent-primary-hover: #5639D2;
@@ -72,6 +72,12 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--text-primary);
+}
+
+/* Tighter display weight for primary heading levels */
+h1, h2, h3, h4 {
+  font-weight: 600;
+  letter-spacing: -0.03em;
 }
 
 .title-serif {
@@ -290,13 +296,80 @@ button, input, textarea, select {
   animation: float 6s ease-in-out infinite;
 }
 
+/* Scroll-reveal utility: fade-up + scale 0.98 → 1, ~500ms ease-out.
+   Pair with useScrollReveal() hook or the <ScrollReveal> wrapper component.
+   prefers-reduced-motion: the global override further below disables this. */
 .reveal-hidden {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(24px) scale(0.98);
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
 }
 
 .reveal-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger helpers — add to grid children */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ─────────────────────────────────────────────
+   Page-load entrance animation sequence
+───────────────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.pageEnter {
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─────────────────────────────────────────────
+   Global prefers-reduced-motion override
+   Disables all non-essential animations for
+   users who have requested reduced motion.
+───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal-hidden {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-float {
+    animation: none;
+  }
+
+  .pageEnter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }

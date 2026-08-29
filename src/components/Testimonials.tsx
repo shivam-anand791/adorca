@@ -17,33 +17,34 @@ interface Testimonial {
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // PLACEHOLDER: replace with real client testimonials before launch
   const testimonials: Testimonial[] = [
     {
       id: "t1",
-      name: "Sarah Jenkins",
-      role: "Director of Growth",
-      company: "EcoMart Group",
-      quote: "Adorca360 completely transformed our international traffic setup. Within six months of launching our localized SEO campaigns, organic conversions grew by 85% across Europe and LATAM.",
+      name: "Sarah Jenkins", /* PLACEHOLDER: replace with real client name */
+      role: "Director of Growth", /* PLACEHOLDER: replace with real role */
+      company: "EcoMart Group", /* PLACEHOLDER: replace with real company */
+      quote: "Adorca360 completely transformed our international traffic setup. Within six months of launching our localized SEO campaigns, organic conversions grew by 85% across Europe and LATAM.", /* PLACEHOLDER: replace with real testimonial quote */
       rating: 5,
       avatarColor: "#6C4CF1",
       avatarInitials: "SJ"
     },
     {
       id: "t2",
-      name: "Marcus Thorne",
-      role: "Head of Marketing",
-      company: "FinFlow Solutions",
-      quote: "Their programmatic funnel targeting and landing page optimizations cut our cost-per-acquisition by 42% while doubling our high-quality sales leads. Highly recommended.",
+      name: "Marcus Thorne", /* PLACEHOLDER: replace with real client name */
+      role: "Head of Marketing", /* PLACEHOLDER: replace with real role */
+      company: "FinFlow Solutions", /* PLACEHOLDER: replace with real company */
+      quote: "Their programmatic funnel targeting and landing page optimizations cut our cost-per-acquisition by 42% while doubling our high-quality sales leads. Highly recommended.", /* PLACEHOLDER: replace with real testimonial quote */
       rating: 5,
       avatarColor: "#FF6B57",
       avatarInitials: "MT"
     },
     {
       id: "t3",
-      name: "Elena Rostova",
-      role: "VP of Acquisition",
-      company: "PlaySphere Studio",
-      quote: "ASO and mobile traffic acquisition strategies from Adorca360 drove our flagship gaming app into the top 5 ranking categories in three highly competitive regional app stores.",
+      name: "Elena Rostova", /* PLACEHOLDER: replace with real client name */
+      role: "VP of Acquisition", /* PLACEHOLDER: replace with real role */
+      company: "PlaySphere Studio", /* PLACEHOLDER: replace with real company */
+      quote: "ASO and mobile traffic acquisition strategies from Adorca360 drove our flagship gaming app into the top 5 ranking categories in three highly competitive regional app stores.", /* PLACEHOLDER: replace with real testimonial quote */
       rating: 5,
       avatarColor: "#22C55E",
       avatarInitials: "ER"

@@ -322,3 +322,38 @@
   font-weight: 500;
   line-height: 1.3;
 }
+
+/* ─────────────────────────────────────────────
+   Page-load entrance animations
+   Elements start invisible; .pageReady on the
+   section parent activates each staggered step.
+───────────────────────────────────────────── */
+.entranceBadge,
+.entranceTitle,
+.entranceDesc,
+.entranceCtas {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.pageReady .entranceBadge {
+  animation: fadeSlideUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+
+.pageReady .entranceTitle {
+  animation: fadeSlideUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.pageReady .entranceDesc {
+  animation: fadeSlideUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+
+.pageReady .entranceCtas {
+  animation: fadeSlideUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+

@@ -52,7 +52,7 @@ export default function BoostTraffic() {
 
           <div>
             <a href="#why-choose" className="btn btn-primary">
-              Learn More About Us
+              Talk to a Strategist
             </a>
           </div>
         </div>

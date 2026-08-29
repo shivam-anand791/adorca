@@ -1,6 +1,6 @@
 .section {
   width: 100%;
-  padding: 40px 0 60px 0;
+  padding: 40px 0 60px;
   background-color: transparent;
   overflow: visible;
   position: relative;
@@ -15,49 +15,58 @@
 
 .title {
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
   font-family: var(--font-display);
 }
 
+/* ─── Row wrapper ──────────────────────────────────────────────────────── */
 .rowWrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 24px;
+  padding-bottom: 28px;
 }
 
-/* Horizontal connecting line */
+/* Horizontal connecting gradient underline */
 .rowWrapper::after {
   content: "";
   position: absolute;
   bottom: -4px;
   left: 5%;
   right: 5%;
-  height: 2px;
-  background: radial-gradient(circle, var(--border-color) 0%, transparent 100%);
-  background-size: 8px 2px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--border-color) 20%,
+    var(--border-color) 80%,
+    transparent
+  );
   z-index: 1;
 }
 
+/* ─── Cards row — desktop flex ─────────────────────────────────────────── */
 .cardsRow {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
-  gap: 24px;
+  gap: 20px;
   position: relative;
   z-index: 2;
 }
 
+/* ─── Individual partner card ──────────────────────────────────────────── */
 .partnerCard {
   position: relative;
+  flex-shrink: 0;
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
-  padding: 16px 28px;
+  padding: 18px 28px;
   border-radius: var(--border-radius-md);
   display: flex;
   flex-direction: column;
@@ -65,33 +74,43 @@
   justify-content: center;
   gap: 8px;
   box-shadow: var(--shadow-sm);
+
+  /* Grayscale + dim by default */
   filter: grayscale(100%);
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              filter 0.4s ease,
-              opacity 0.4s ease,
-              border-color 0.4s ease,
-              box-shadow 0.4s ease;
+
+  /* Smooth 300ms transitions for all interactive properties */
+  transition:
+    transform   0.3s ease,
+    filter      0.3s ease,
+    opacity     0.3s ease,
+    border-color 0.3s ease,
+    box-shadow  0.3s ease;
 }
 
-/* Active card transition (via hover or cycle index) */
+/* Active card (hover OR auto-cycle) */
 .partnerCard.active,
 .partnerCard:hover {
   filter: grayscale(0%);
   opacity: 1;
-  border-color: var(--accent-primary);
-  box-shadow: var(--shadow-md);
+  border-color: rgba(108, 76, 241, 0.35);
+  /* Spec: soft box-shadow using --accent-primary at low opacity */
+  box-shadow:
+    var(--shadow-md),
+    0 0 0 1px rgba(108, 76, 241, 0.12),
+    0 8px 32px rgba(108, 76, 241, 0.15);
   z-index: 5;
 }
 
-/* SVG logo styling */
+/* Logo container */
 .logoWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 28px;
+  min-height: 28px;
   color: var(--text-secondary);
+  pointer-events: none;
 }
 
 .partnerCard.active .logoWrapper,
@@ -99,13 +118,15 @@
   color: var(--text-primary);
 }
 
+/* Partner name label */
 .partnerName {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.06em;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .partnerCard.active .partnerName,
@@ -113,7 +134,7 @@
   color: var(--accent-primary);
 }
 
-/* Dots alignment logic */
+/* ─── Connector dots ───────────────────────────────────────────────────── */
 .connectionLineContainer {
   position: absolute;
   bottom: -10px;
@@ -128,27 +149,9 @@
 .dotsRow {
   display: flex;
   justify-content: center;
-  gap: 130px; /* approximates spacing matching cards */
+  gap: 110px;
   width: 100%;
-  max-width: 900px;
-}
-
-@media (max-width: 992px) {
-  .dotsRow {
-    gap: 80px;
-  }
-}
-
-@media (max-width: 768px) {
-  /* Hide the dot-line motif on small wrap screens for cleanliness */
-  .rowWrapper::after,
-  .connectionLineContainer {
-    display: none;
-  }
-  
-  .partnerCard {
-    padding: 12px 20px;
-  }
+  max-width: 940px;
 }
 
 .connectorDot {
@@ -166,4 +169,56 @@
   border-color: var(--accent-primary);
   transform: scale(1.3);
   box-shadow: 0 0 8px rgba(108, 76, 241, 0.4);
+}
+
+/* ─── Responsive — tablet ───────────────────────────────────────────────── */
+@media (max-width: 992px) {
+  .dotsRow {
+    gap: 72px;
+  }
+}
+
+/* ─── Responsive — mobile: horizontal scroll, tilt disabled ────────────── */
+@media (max-width: 768px) {
+  /* Hide decorative chrome */
+  .rowWrapper::after,
+  .connectionLineContainer {
+    display: none;
+  }
+
+  /* Horizontal scroll container */
+  .cardsRow {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    padding: 8px 4px 16px;
+    /* hide scrollbar visually */
+    scrollbar-width: none;
+  }
+  .cardsRow::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Disable tilt on touch — override inline style transform */
+  .partnerCard {
+    scroll-snap-align: start;
+    transform: none !important; /* kill rotation on mobile */
+    padding: 14px 20px;
+  }
+
+  /* Active/hover still shows colour — just no rotation */
+  .partnerCard.active,
+  .partnerCard:hover {
+    transform: none !important;
+  }
+}
+
+/* ─── prefers-reduced-motion ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .partnerCard {
+    transition: none !important;
+  }
 }

@@ -18,11 +18,12 @@ interface CaseStudy {
 export default function CaseStudies() {
   const [revealRef, isVisible] = useIntersection({ threshold: 0.1 });
 
+  // PLACEHOLDER: replace with real case study data (client name, metrics, chart) before launch
   const cases: CaseStudy[] = [
     {
       id: "case-ecomart",
       tag: "E-Commerce Growth",
-      client: "EcoMart Group",
+      client: "EcoMart Group", /* PLACEHOLDER: replace with real client name/logo */
       headline: "Expanding organic search reach across European and LATAM markets.",
       metricVal: "+140%",
       metricLabel: "Organic Traffic Increase",

@@ -11,6 +11,7 @@ interface BlogPost {
 }
 
 export default function Blog() {
+  // PLACEHOLDER: replace with real blog post data (title, date, description) before launch
   const posts: BlogPost[] = [
     {
       id: "seo-global",
