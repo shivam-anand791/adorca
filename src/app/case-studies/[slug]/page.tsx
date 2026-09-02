@@ -17,6 +17,7 @@ interface CaseStudyData {
   afterVal: string;
   timeline: string;
   industry: string;
+  opportunity: string;
   challenge: string[];
   strategy: {
     title: string;
@@ -26,37 +27,35 @@ interface CaseStudyData {
     stat: string;
     label: string;
   }[];
-  testimonial?: {
-    quote: string;
-    author: string;
-    role: string;
-  };
+  nextSlug: string;
+  nextTitle: string;
 }
 
 const CASE_STUDIES: Record<string, CaseStudyData> = {
   "ecomart-international-growth": {
     slug: "ecomart-international-growth",
-    client: "EcoMart Group",
+    client: "Global E-Commerce Enterprise",
     tag: "E-Commerce & International SEO",
-    headline: "Scaling Cross-Border Organic Traffic by 140% Across European & LATAM Markets",
+    headline: "Scaling Cross-Border Organic Traffic by +140% Across European & LATAM Markets",
     summary:
-      "How Adorca360 restructured technical hreflang infrastructure and deployed localized search clusters to unlock millions in organic e-commerce revenue.",
+      "How Adorca 360 restructured multi-region technical hreflang infrastructure and deployed localized search intent clusters across 50+ regional catalogs.",
     metricVal: "+140%",
     metricLabel: "Organic Traffic Growth",
     beforeVal: "12,000 / mo",
     afterVal: "28,800 / mo",
     timeline: "6 Months",
-    industry: "Consumer Retail & E-Commerce",
+    industry: "Consumer Retail & Cross-Border Commerce",
+    opportunity: "Unlocking transactional search intent across multilingual non-English markets that were previously neglected by domestic competitors.",
     challenge: [
-      "Duplicate multilingual product listings caused severe ranking cannibalization across Spanish and French locales.",
+      "Duplicate multilingual product listings caused severe ranking cannibalization across Spanish, French, and German locales.",
       "Crawl budget was wasted on faceted navigation filters, leaving core revenue category pages unindexed.",
-      "High mobile bounce rate due to slow server response times and unoptimized Core Web Vitals.",
+      "High mobile bounce rate due to slow server response times and unoptimized Core Web Vitals across overseas edge locations.",
     ],
     strategy: [
       {
-        title: "Technical Hreflang & Architecture Audit",
+        title: "Technical Hreflang & Crawl Optimization",
         description:
-          "Restructured the entire URL taxonomy, implemented strict server-side hreflang headers, and optimized canonical tagging to eliminate international ranking conflicts.",
+          "Restructured the entire URL taxonomy, implemented strict server-side hreflang headers, and optimized canonical tagging to eliminate international indexing conflicts.",
       },
       {
         title: "Localized Search Intent Clustering",
@@ -64,7 +63,7 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
           "Deployed native in-market search research across 50+ regional catalogs, targeting high-conversion transactional search terms in local dialects.",
       },
       {
-        title: "Next.js Performance & Core Web Vitals Sprint",
+        title: "Next.js Edge Performance & Core Web Vitals",
         description:
           "Re-architected product detail pages with instant edge rendering, lazy-loaded media assets, and streamlined mobile conversion funnels.",
       },
@@ -74,26 +73,23 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       { stat: "420+", label: "Top 3 Ranking High-Intent Keywords" },
       { stat: "2.4x", label: "Monthly E-Commerce Conversion Growth" },
     ],
-    testimonial: {
-      quote:
-        "Adorca360 completely transformed our international traffic setup. Within six months of launching our localized SEO campaigns, organic revenue grew by 85% across Europe and LATAM.",
-      author: "Sarah Jenkins",
-      role: "Director of Growth, EcoMart Group",
-    },
+    nextSlug: "finflow-programmatic-cpa",
+    nextTitle: "Slashing Enterprise B2B Cost-Per-Acquisition via Algorithmic Bid Pipelines",
   },
   "finflow-programmatic-cpa": {
     slug: "finflow-programmatic-cpa",
-    client: "FinFlow Solutions",
+    client: "Fintech & SaaS Platform",
     tag: "Programmatic Lead Gen & CPA Optimization",
     headline: "Slashing Enterprise B2B Cost-Per-Acquisition by 42% via Algorithmic Bid Pipelines",
     summary:
-      "A performance-focused programmatic overhaul that replaced generic search bidding with automated real-time audience segment targeting.",
+      "A performance-focused programmatic overhaul that replaced generic search bidding with automated real-time audience segment targeting across premier ad networks.",
     metricVal: "-42%",
     metricLabel: "CPA Reduction",
     beforeVal: "$78 CPA",
     afterVal: "$45 CPA",
     timeline: "90 Days",
-    industry: "Fintech & SaaS",
+    industry: "Financial Technology & Enterprise Software",
+    opportunity: "Routing ad budget dynamically toward high-intent decision makers on specialized ad inventory rather than paying inflated rates for broad search keywords.",
     challenge: [
       "Escalating competition on primary search keywords drove B2B acquisition costs up to an unsustainable $78 per lead.",
       "Landing page conversion drop-off on complex mobile financial calculators.",
@@ -121,26 +117,23 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       { stat: "2x", label: "Qualified Enterprise Inbound Leads" },
       { stat: "+65%", label: "Total Ad Spend Efficiency Gain" },
     ],
-    testimonial: {
-      quote:
-        "Their programmatic funnel targeting and landing page optimizations cut our cost-per-acquisition by 42% while doubling our verified sales leads. Highly recommended.",
-      author: "Marcus Thorne",
-      role: "Head of Marketing, FinFlow Solutions",
-    },
+    nextSlug: "playsphere-app-store-ranking",
+    nextTitle: "Pushing Flagship Mobile Game from Position #34 to Top 5 Category Ranking",
   },
   "playsphere-app-store-ranking": {
     slug: "playsphere-app-store-ranking",
-    client: "PlaySphere Studio",
+    client: "Mobile Studio & Gaming Studio",
     tag: "Mobile App Store Optimization (ASO)",
     headline: "Pushing Flagship Mobile Game from Position #34 to Top 5 Category Ranking",
     summary:
-      "Comprehensive App Store Optimization and keyword velocity acceleration that unlocked 210% organic download growth.",
+      "Comprehensive App Store Optimization and keyword velocity acceleration that unlocked +210% daily organic download growth across 14 stores.",
     metricVal: "Top 5",
     metricLabel: "Store Category Position",
     beforeVal: "Rank #34",
     afterVal: "Rank #4",
     timeline: "4 Months",
     industry: "Mobile Gaming & Interactive Media",
+    opportunity: "Leveraging under-indexed foreign localized keywords and visual A/B testing to outrank legacy competitors on the App Store and Google Play.",
     challenge: [
       "Stuck at position #34 in competitive regional App Stores despite high D30 player retention.",
       "Low visual store listing conversion rate on Android and iOS store pages.",
@@ -168,12 +161,8 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
       { stat: "+210%", label: "Daily Organic Downloads" },
       { stat: "350+", label: "Regional Ranked Keyword Terms" },
     ],
-    testimonial: {
-      quote:
-        "ASO and mobile traffic acquisition strategies from Adorca360 drove our flagship gaming app into the top 5 ranking categories in three highly competitive regional app stores.",
-      author: "Elena Rostova",
-      role: "VP of Acquisition, PlaySphere Studio",
-    },
+    nextSlug: "ecomart-international-growth",
+    nextTitle: "Scaling Cross-Border Organic Traffic by +140% Across European & LATAM Markets",
   },
 };
 
@@ -187,15 +176,15 @@ export async function generateMetadata({
 
   if (!study) {
     return {
-      title: "Case Study Not Found | Adorca360",
+      title: "Case Study Not Found | Adorca 360",
     };
   }
 
   return {
-    title: `${study.client} Case Study: ${study.headline}`,
+    title: `${study.headline} | Adorca 360 Case Study`,
     description: study.summary,
     openGraph: {
-      title: `${study.client} Case Study: ${study.headline}`,
+      title: `${study.headline} | Adorca 360 Case Study`,
       description: study.summary,
       type: "article",
     },
@@ -223,10 +212,10 @@ export default async function CaseStudyDetailPage({
           {/* Breadcrumb & Navigation */}
           <div className={styles.topNav}>
             <Link href="/case-studies" className={styles.backLink}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <polyline points="15 18 9 12 15 6" />
               </svg>
-              <span>Back to Case Studies</span>
+              <span>Back to All Case Studies</span>
             </Link>
           </div>
 
@@ -260,6 +249,13 @@ export default async function CaseStudyDetailPage({
             </div>
           </header>
 
+          {/* Opportunity & Strategic Context */}
+          <section className={styles.sectionCard}>
+            <span className={styles.sectionBadge}>The Opportunity</span>
+            <h2 className={styles.sectionHeading}>Market Context &amp; Growth Hypothesis</h2>
+            <p className={styles.summaryText}>{study.opportunity}</p>
+          </section>
+
           {/* Challenge & Technical Obstacles */}
           <section className={styles.sectionCard}>
             <span className={styles.sectionBadge}>The Challenge</span>
@@ -289,7 +285,7 @@ export default async function CaseStudyDetailPage({
             </div>
           </section>
 
-          {/* Verified Outcomes */}
+          {/* Verified Outcomes & Impact */}
           <section className={styles.sectionCard}>
             <span className={styles.sectionBadge}>Impact &amp; Results</span>
             <h2 className={styles.sectionHeading}>Measurable Growth Metrics</h2>
@@ -301,27 +297,29 @@ export default async function CaseStudyDetailPage({
                 </div>
               ))}
             </div>
-
-            {study.testimonial && (
-              <div className={styles.testimonialCallout}>
-                <p className={styles.testimonialQuote}>&ldquo;{study.testimonial.quote}&rdquo;</p>
-                <div className={styles.testimonialAuthor}>
-                  <strong>{study.testimonial.author}</strong> — <span>{study.testimonial.role}</span>
-                </div>
-              </div>
-            )}
           </section>
+
+          {/* Next Project Navigation Strip */}
+          <div className={styles.sectionCard} style={{ background: "var(--bg-subtle)" }}>
+            <span className={styles.sectionBadge}>Next Case Study</span>
+            <h3 className={styles.sectionHeading} style={{ fontSize: "1.3rem" }}>{study.nextTitle}</h3>
+            <div style={{ marginTop: "12px" }}>
+              <Link href={`/case-studies/${study.nextSlug}`} className="btn btn-primary">
+                View Next Project &rarr;
+              </Link>
+            </div>
+          </div>
 
           {/* Bottom Conversion CTA Strip */}
           <section className={styles.ctaStrip}>
             <div className={styles.ctaContent}>
               <h3 className={styles.ctaHeading}>Ready for similar results for your business?</h3>
               <p className={styles.ctaDesc}>
-                Schedule a complimentary 30-minute growth audit with our senior strategy team.
+                Configure your target parameters with our senior strategy team using the Growth Opportunity Tool.
               </p>
             </div>
-            <Link href="/#contact" className="btn btn-primary">
-              Schedule Free Consultation
+            <Link href="/#opportunity-tool" className="btn btn-lime">
+              Build My Growth Plan
             </Link>
           </section>
         </div>
