@@ -1,0 +1,38 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.val {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.primary .val {
+  color: var(--blue);
+}
+
+.lime .val {
+  color: var(--lime);
+}
+
+.neutral .val {
+  color: var(--text-primary);
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}

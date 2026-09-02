@@ -1,0 +1,28 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-weight: 600;
+  font-size: 0.78rem;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+}
+
+.blue {
+  background-color: var(--blue-light);
+  color: var(--blue);
+  border: 1px solid rgba(22, 87, 255, 0.18);
+}
+
+.lime {
+  background-color: rgba(152, 242, 42, 0.12);
+  color: var(--lime);
+  border: 1px solid rgba(152, 242, 42, 0.25);
+}
+
+.neutral {
+  background-color: var(--bg-subtle);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}

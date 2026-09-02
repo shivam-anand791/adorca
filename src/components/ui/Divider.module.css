@@ -1,0 +1,17 @@
+.divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  width: 100%;
+}
+
+.sm {
+  margin: 16px 0;
+}
+
+.md {
+  margin: 32px 0;
+}
+
+.lg {
+  margin: 56px 0;
+}
