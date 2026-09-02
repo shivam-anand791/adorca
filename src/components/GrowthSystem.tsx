@@ -8,6 +8,7 @@ import styles from "./GrowthSystem.module.css";
 interface SystemStage {
   id: string;
   step: string;
+  phase: string;
   name: string;
   category: string;
   summary: string;
@@ -16,17 +17,20 @@ interface SystemStage {
   icon: React.ReactNode;
 }
 
+const LIFECYCLE_STEPS = ["DISCOVER", "ATTRACT", "CONVERT", "RETAIN", "SCALE"];
+
 const STAGES: SystemStage[] = [
   {
     id: "seo",
     step: "01",
-    name: "Search Infrastructure & SEO",
+    phase: "DISCOVER",
+    name: "Search Infrastructure & Technical SEO",
     category: "High-Intent Discovery",
     summary: "Build an unshakeable organic footprint with technical crawl optimization, semantic indexation, and multilingual hreflang architecture.",
     deliverables: ["Technical Architecture Audit", "International Hreflang Configuration", "Core Web Vitals Performance", "Keyword Intent Clustering"],
     kpi: "Rank #1 for transactional queries",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="11" cy="11" r="8" />
         <line x1="21" y1="21" x2="16.65" y2="16.65" />
       </svg>
@@ -35,13 +39,14 @@ const STAGES: SystemStage[] = [
   {
     id: "content",
     step: "02",
-    name: "Localized Semantic Content",
+    phase: "ATTRACT",
+    name: "Localized Semantic Content & Authority",
     category: "Relevance & Authority",
     summary: "Produce authoritative localized content hubs crafted by native linguistic analysts to outrank local incumbents in target geographies.",
     deliverables: ["Native Linguistic Localization", "Search Intent Topic Clusters", "Authority Link Architecture", "Competitive Keyword Gap Capture"],
     kpi: "50+ regional catalogs ranked",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
         <polyline points="14 2 14 8 20 8" />
         <line x1="16" y1="13" x2="8" y2="13" />
@@ -52,13 +57,14 @@ const STAGES: SystemStage[] = [
   {
     id: "social",
     step: "03",
+    phase: "ATTRACT",
     name: "Social Influence & Amplification",
     category: "Brand Trust & Demand",
     summary: "Orchestrate creator partnerships and social community channels that generate validated referral demand and organic backlinks.",
     deliverables: ["Vetted Creator Network Outreach", "Multi-Platform Brand Presence", "Social Demand Stimulation", "Community Retention Funnels"],
     kpi: "Compounding referral velocity",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
         <circle cx="9" cy="7" r="4" />
         <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -69,13 +75,14 @@ const STAGES: SystemStage[] = [
   {
     id: "paid",
     step: "04",
-    name: "Programmatic Advertising",
+    phase: "CONVERT",
+    name: "Programmatic Advertising & Media",
     category: "Real-Time Acquisition",
     summary: "Deploy algorithmic real-time bidding across premier inventory networks to capture high-intent buyers without budget leakage.",
     deliverables: ["Real-Time Bidding Automation", "High-ROAS Network Allocation", "Audience Intent Retargeting", "Ad Creative Matrix Testing"],
     kpi: "-42% Cost-Per-Acquisition",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="2" y="2" width="20" height="8" rx="2" />
         <rect x="2" y="14" width="20" height="8" rx="2" />
         <line x1="6" y1="6" x2="6.01" y2="6" />
@@ -86,13 +93,14 @@ const STAGES: SystemStage[] = [
   {
     id: "data",
     step: "05",
-    name: "Multi-Touch Attribution & Data",
+    phase: "RETAIN",
+    name: "Multi-Touch Attribution & First-Party Data",
     category: "Attribution Transparency",
     summary: "Implement server-side first-party tracking pipelines providing unvarnished visibility into cross-channel conversion paths.",
     deliverables: ["Server-Side Tracking Pipelines", "Cross-Device Conversion Mapping", "Looker Studio Custom Dashboards", "100% Client Data Ownership"],
     kpi: "Zero vanity metrics",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <line x1="18" y1="20" x2="18" y2="10" />
         <line x1="12" y1="20" x2="12" y2="4" />
         <line x1="6" y1="20" x2="6" y2="14" />
@@ -102,13 +110,14 @@ const STAGES: SystemStage[] = [
   {
     id: "conversion",
     step: "06",
-    name: "Conversion Systems & Retention",
+    phase: "SCALE",
+    name: "Conversion Tech & App Scaling",
     category: "Revenue Acceleration",
-    summary: "Transform inbound traffic into paying customers through high-velocity Next.js landing flows, ASO, and user onboarding optimization.",
+    summary: "Transform inbound traffic into paying customers through high-velocity Next.js landing platforms, ASO, and retention loops.",
     deliverables: ["High-Velocity Edge Landing Pages", "App Store Optimization (ASO)", "A/B Funnel Experimentation", "Customer Retention Loops"],
     kpi: "2.4x Funnel Conversion Lift",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
         <polyline points="17 6 23 6 23 12" />
       </svg>
@@ -129,6 +138,20 @@ export default function GrowthSystem() {
         <p className="section-desc">
           Rather than treating SEO, paid media, and web development as isolated silos, we engineer a continuous acquisition system that turns search demand into measurable revenue.
         </p>
+      </div>
+
+      {/* Lifecycle Flow Ribbon */}
+      <div className={styles.lifecycleRibbon} aria-label="Customer Lifecycle Progression">
+        {LIFECYCLE_STEPS.map((step, idx) => {
+          const isPhaseActive = activeStage.phase === step;
+          return (
+            <div key={step} className={`${styles.lifecycleStep} ${isPhaseActive ? styles.lifecycleStepActive : ""}`}>
+              <span className={styles.lifecycleDot} />
+              <span className={styles.lifecycleText}>{step}</span>
+              {idx < LIFECYCLE_STEPS.length - 1 && <span className={styles.lifecycleArrow}>&rarr;</span>}
+            </div>
+          );
+        })}
       </div>
 
       <div className={styles.systemContainer}>
@@ -180,7 +203,6 @@ export default function GrowthSystem() {
                 </Link>
               </div>
             </div>
-
 
             {/* Right: Key Deliverables List */}
             <div className={styles.deliverablesBox}>

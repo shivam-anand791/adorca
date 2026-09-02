@@ -38,18 +38,21 @@ export default function ProofStrip() {
   return (
     <section className={styles.section} aria-label="Verified Performance Proof">
       <div className="container">
-        {/* KPI Counter Grid */}
+        {/* Minimal Typography-Driven Credibility Grid */}
         <div className={styles.kpiGrid}>
           {PROOF_POINTS.map((item, idx) => (
             <div key={idx} className={styles.kpiCard}>
-              <span className={styles.kpiVal}>{item.val}</span>
+              <div className={styles.kpiTop}>
+                <span className={styles.kpiVal}>{item.val}</span>
+                <span className={styles.kpiBadge}>Verified</span>
+              </div>
               <span className={styles.kpiLabel}>{item.label}</span>
               <p className={styles.kpiDesc}>{item.desc}</p>
             </div>
           ))}
         </div>
 
-        {/* Partner Networks Bar */}
+        {/* Direct Partner Networks Bar */}
         <div className={styles.partnerRow}>
           <span className={styles.partnerIntro}>Direct Network Integrations:</span>
           <div className={styles.logoMarquee}>

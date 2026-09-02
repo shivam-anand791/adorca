@@ -6,9 +6,65 @@
 }
 
 /* ─────────────────────────────────────────────
+   Lifecycle Ribbon
+   ───────────────────────────────────────────── */
+.lifecycleRibbon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background-color: var(--navy-surface);
+  border: 1px solid var(--navy-border);
+  border-radius: var(--radius-pill);
+  padding: 10px 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  width: max-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lifecycleStep {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--navy-text-muted);
+  transition: var(--transition-smooth);
+}
+
+.lifecycleDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--navy-border);
+  transition: var(--transition-smooth);
+}
+
+.lifecycleStepActive {
+  color: var(--lime);
+}
+
+.lifecycleStepActive .lifecycleDot {
+  background-color: var(--lime);
+  box-shadow: 0 0 8px var(--lime-glow);
+}
+
+.lifecycleArrow {
+  color: var(--navy-text-muted);
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+
+/* ─────────────────────────────────────────────
    Pipeline Stage Tabs Strip
    ───────────────────────────────────────────── */
 .pipelineStrip {
+
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 12px;

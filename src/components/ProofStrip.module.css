@@ -28,6 +28,24 @@
   box-shadow: var(--shadow-md);
 }
 
+.kpiTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kpiBadge {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--blue);
+  background-color: var(--blue-light);
+  padding: 2px 6px;
+  border-radius: var(--radius-pill);
+}
+
 .kpiVal {
   font-family: var(--font-display);
   font-size: 2.2rem;
@@ -36,6 +54,7 @@
   line-height: 1.1;
   letter-spacing: -0.03em;
 }
+
 
 .kpiLabel {
   font-family: var(--font-display);
