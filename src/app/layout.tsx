@@ -79,22 +79,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
-      <head>
-        <JsonLd />
+      <body style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }} suppressHydrationWarning>
         <script
+          id="theme-init"
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
-                  const theme = localStorage.getItem('theme') || 'light';
+                  var theme = localStorage.getItem('theme') || 'light';
                   document.documentElement.setAttribute('data-theme', theme);
                 } catch (e) {}
-              })()
+              })();
             `,
           }}
         />
-      </head>
-      <body style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+        <JsonLd />
         {children}
       </body>
     </html>

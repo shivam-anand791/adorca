@@ -186,14 +186,7 @@
 
 /* ─── prefers-reduced-motion ───────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .marqueeTrack {
-    animation: none !important;
-  }
-  .partnerCard,
-  .logoWrapper {
-    transition: none !important;
+  .partnerCard {
     transform: none !important;
-    opacity: 1 !important;
-    filter: grayscale(0%) !important;
   }
 }

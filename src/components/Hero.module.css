@@ -408,18 +408,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nodesContainer,
-  .line,
-  .lineDot,
-  .statsOverlay,
   .entranceBadge,
   .entranceTitle,
   .entranceDesc,
   .entranceCtas,
   .visualEntrance {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }
 
