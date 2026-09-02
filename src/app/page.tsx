@@ -8,6 +8,7 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import CaseStudies from "@/components/CaseStudies";
 import Testimonials from "@/components/Testimonials";
 import Blog from "@/components/Blog";
+import FAQ from "@/components/FAQ";
 import ConsultationForm from "@/components/ConsultationForm";
 import Footer from "@/components/Footer";
 
@@ -45,6 +46,9 @@ export default function Home() {
 
         {/* News & Blogs Section */}
         <Blog />
+
+        {/* Frequently Asked Questions Section */}
+        <FAQ />
 
         {/* SEO Consultation & Contact Section */}
         <ConsultationForm />

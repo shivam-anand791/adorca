@@ -17,38 +17,52 @@ interface Testimonial {
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // PLACEHOLDER: replace with real client testimonials before launch
+  // <!-- TODO: replace with real client testimonial -->
   const testimonials: Testimonial[] = [
     {
+      /* TODO: replace with real client testimonial */
       id: "t1",
-      name: "Sarah Jenkins", /* PLACEHOLDER: replace with real client name */
-      role: "Director of Growth", /* PLACEHOLDER: replace with real role */
-      company: "EcoMart Group", /* PLACEHOLDER: replace with real company */
-      quote: "Adorca360 completely transformed our international traffic setup. Within six months of launching our localized SEO campaigns, organic conversions grew by 85% across Europe and LATAM.", /* PLACEHOLDER: replace with real testimonial quote */
+      name: "Sarah Jenkins",
+      role: "Director of Growth",
+      company: "EcoMart Group",
+      quote: "Adorca360 completely transformed our international search footprint. Within six months of deploying their localized SEO funnels, our organic revenue across European and LATAM markets surged by 85%.",
       rating: 5,
       avatarColor: "#6C4CF1",
-      avatarInitials: "SJ"
+      avatarInitials: "SJ",
     },
     {
+      /* TODO: replace with real client testimonial */
       id: "t2",
-      name: "Marcus Thorne", /* PLACEHOLDER: replace with real client name */
-      role: "Head of Marketing", /* PLACEHOLDER: replace with real role */
-      company: "FinFlow Solutions", /* PLACEHOLDER: replace with real company */
-      quote: "Their programmatic funnel targeting and landing page optimizations cut our cost-per-acquisition by 42% while doubling our high-quality sales leads. Highly recommended.", /* PLACEHOLDER: replace with real testimonial quote */
+      name: "Marcus Thorne",
+      role: "Head of Marketing",
+      company: "FinFlow Solutions",
+      quote: "Partnering with Adorca360 cut our cost-per-acquisition by 42% while doubling our verified inbound enterprise leads through algorithmic programmatic campaigns.",
       rating: 5,
       avatarColor: "#FF6B57",
-      avatarInitials: "MT"
+      avatarInitials: "MT",
     },
     {
+      /* TODO: replace with real client testimonial */
       id: "t3",
-      name: "Elena Rostova", /* PLACEHOLDER: replace with real client name */
-      role: "VP of Acquisition", /* PLACEHOLDER: replace with real role */
-      company: "PlaySphere Studio", /* PLACEHOLDER: replace with real company */
-      quote: "ASO and mobile traffic acquisition strategies from Adorca360 drove our flagship gaming app into the top 5 ranking categories in three highly competitive regional app stores.", /* PLACEHOLDER: replace with real testimonial quote */
+      name: "Elena Rostova",
+      role: "VP of User Acquisition",
+      company: "PlaySphere Studio",
+      quote: "The App Store Optimization and keyword acceleration playbooks from Adorca360 pushed our flagship mobile gaming app into the Top 5 rankings in three competitive regional stores.",
       rating: 5,
       avatarColor: "#22C55E",
-      avatarInitials: "ER"
-    }
+      avatarInitials: "ER",
+    },
+    {
+      /* TODO: replace with real client testimonial */
+      id: "t4",
+      name: "David Chen",
+      role: "Chief Marketing Officer",
+      company: "Nexus Commerce",
+      quote: "Adorca360 delivered a technical site architecture overhaul that doubled our crawl efficiency and boosted organic search click-through rates by 68% within 90 days.",
+      rating: 5,
+      avatarColor: "#3B82F6",
+      avatarInitials: "DC",
+    },
   ];
 
   const handlePrev = () => {
@@ -74,13 +88,13 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="testimonials" className="floatingCardSection">
+    <section id="testimonials" className="floatingCardSection" aria-label="Customer Testimonials">
       {/* Section Header */}
       <div className="section-header center">
         <span className="section-subtitle">Words of Appreciation</span>
         <h2 className="section-title">What Our Partners Say</h2>
         <p className="section-desc">
-          Hear from the marketing and growth executives who have scaled their search presence with Adorca360.
+          Hear from marketing and growth leaders who scaled their digital presence and search visibility with Adorca360.
         </p>
       </div>
 
@@ -90,10 +104,10 @@ export default function Testimonials() {
           {testimonials.map((testimonial, idx) => (
             <div key={testimonial.id} className={getCardClass(idx)}>
               {/* Star Rating */}
-              <div className={styles.starsRow}>
+              <div className={styles.starsRow} aria-label={`${testimonial.rating} out of 5 stars`}>
                 {[...Array(testimonial.rating)].map((_, i) => (
-                  <svg key={i} className={styles.star} width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  <svg key={i} className={styles.star} width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                   </svg>
                 ))}
               </div>
@@ -103,9 +117,10 @@ export default function Testimonials() {
 
               {/* Client Info Block */}
               <div className={styles.clientBlock}>
-                <div 
-                  className={styles.avatar} 
+                <div
+                  className={styles.avatar}
                   style={{ backgroundColor: testimonial.avatarColor }}
+                  aria-hidden="true"
                 >
                   {testimonial.avatarInitials}
                 </div>
@@ -120,18 +135,26 @@ export default function Testimonials() {
           ))}
         </div>
 
-        {/* Carousel controls */}
+        {/* Circular Prev/Next Controls */}
         <div className={styles.controls}>
-          <button className={styles.controlBtn} onClick={handlePrev} aria-label="Previous testimonial">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="19" y1="12" x2="5" y2="12"></line>
-              <polyline points="12 19 5 12 12 5"></polyline>
+          <button
+            className={styles.controlBtn}
+            onClick={handlePrev}
+            aria-label="Previous testimonial"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
             </svg>
           </button>
-          <button className={styles.controlBtn} onClick={handleNext} aria-label="Next testimonial">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
+          <button
+            className={styles.controlBtn}
+            onClick={handleNext}
+            aria-label="Next testimonial"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
             </svg>
           </button>
         </div>

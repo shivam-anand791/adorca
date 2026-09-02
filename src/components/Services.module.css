@@ -1,39 +1,56 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+/* ─── Horizontally Scrollable Services Row ────────────────────────────── */
+.scrollWrapper {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  padding: 10px 0 20px;
+}
+
+.scrollRow {
+  display: flex;
+  flex-wrap: nowrap;
   gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px 24px 28px;
+  margin: 0 -24px;
+  scrollbar-width: none; /* Hide native scrollbar (Firefox) */
+  -ms-overflow-style: none; /* Hide native scrollbar (IE/Edge) */
 }
 
-@media (max-width: 1200px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* Hide native scrollbar for Chrome, Safari and Opera */
+.scrollRow::-webkit-scrollbar {
+  display: none;
 }
 
-@media (max-width: 576px) {
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-}
-
-/* Individual Card Styling */
+/* ─── Individual Card Styling in Row ──────────────────────────────────── */
 .card {
-  background-color: var(--bg-page); /* contrasting with card section background */
+  flex: 0 0 320px;
+  min-width: 300px;
+  max-width: 340px;
+  scroll-snap-align: start;
+  background-color: var(--bg-page);
   border: 1px solid var(--border-color);
-  padding: 36px 30px;
+  padding: 36px 28px;
   border-radius: var(--border-radius-md);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+  position: relative;
+  
+  /* Initial state before scroll reveal */
   opacity: 0;
-  transform: translateY(30px);
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s ease,
-              box-shadow 0.3s ease,
-              background-color 0.3s ease;
+  transform: translateY(24px);
+
+  /* ~300ms ease transition for hover lift & glow */
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease,
+    opacity 0.5s ease-out;
 }
 
 [data-theme="dark"] .card {
@@ -41,57 +58,83 @@
 }
 
 /* Scroll reveal trigger class */
-.grid.visible .card {
+.scrollRow.visible .card {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Card hover interactions (Lift + Glow) */
+/* On hover — card lifts (translateY(-6px)), gains border-glow using --accent-primary */
 .card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-6px);
   border-color: var(--accent-primary);
   background-color: var(--bg-card);
-  box-shadow: var(--shadow-md);
+  box-shadow:
+    0 16px 36px rgba(108, 76, 241, 0.16),
+    0 0 0 1px rgba(108, 76, 241, 0.25);
+  z-index: 2;
 }
 
-/* Card Icon */
+/* ─── Card Icon ────────────────────────────────────────────────────────── */
 .iconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
   background-color: rgba(108, 76, 241, 0.08);
   color: var(--accent-primary);
-  transition: var(--transition-smooth);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .iconWrapper svg {
-  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.4s ease;
+  color: var(--accent-primary);
+  transition: transform 0.3s ease, color 0.3s ease;
+  flex-shrink: 0;
 }
 
-/* Icon micro-animations on card hover */
+/* On hover — icon does a subtle scale(1.1) or slight rotate */
 .card:hover .iconWrapper {
   background-color: var(--accent-primary);
-  color: #ffffff;
 }
 
 .card:hover .iconWrapper svg {
-  transform: scale(1.15) rotate(8deg);
+  color: #ffffff;
+  transform: scale(1.1) rotate(5deg);
 }
 
-/* Typography Inside Cards */
+/* ─── Typography Inside Cards ──────────────────────────────────────────── */
 .cardTitle {
   font-size: 1.15rem;
   font-weight: 700;
   line-height: 1.3;
   color: var(--text-primary);
   font-family: var(--font-display);
+  letter-spacing: -0.02em;
 }
 
 .cardDesc {
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+/* ─── Responsive adjustments ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .card {
+    flex: 0 0 280px;
+    min-width: 260px;
+    padding: 28px 22px;
+  }
+}
+
+/* ─── prefers-reduced-motion ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .iconWrapper,
+  .iconWrapper svg {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }

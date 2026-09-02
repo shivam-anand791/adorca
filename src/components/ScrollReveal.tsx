@@ -1,5 +1,7 @@
+"use client";
 
-
+import React from "react";
+import { useScrollReveal } from "./utils";
 
 /**
  * <ScrollReveal> — Reusable wrapper component
@@ -8,9 +10,9 @@
  * scroll-reveal animation defined in globals.css (.reveal-hidden / .reveal-visible).
  *
  * Props:
- *  - as?: keyof JSX.IntrinsicElements  — rendered tag, default "div"
- *  - delay?: 0 | 1 | 2 | 3 | 4 | 5   — stagger step (0 = no extra delay)
- *  - className?: string                 — extra class names
+ *  - as?: React.ElementType            — rendered tag or component, default "div"
+ *  - delay?: 0 | 1 | 2 | 3 | 4 | 5      — stagger step (0 = no extra delay)
+ *  - className?: string                — extra class names
  *  - children: React.ReactNode
  *
  * Usage:
@@ -18,13 +20,9 @@
  *     ...content...
  *   </ScrollReveal>
  *
- * prefers-reduced-motion: the CSS global override in globals.css disables
+ * prefers-reduced-motion: the CSS global override and hook disable
  * all transitions, so reduced-motion users see the content instantly.
  */
-"use client";
-
-import React from "react";
-import { useScrollReveal } from "./utils";
 
 interface ScrollRevealProps {
   as?: React.ElementType;

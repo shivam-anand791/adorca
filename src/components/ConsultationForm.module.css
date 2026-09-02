@@ -50,7 +50,7 @@
   gap: 20px;
 }
 
-/* Floating Label CSS Patterns */
+/* ─── Floating Label Input Styling & Focus Micro-Animations ───────────── */
 .formGroup {
   position: relative;
   display: flex;
@@ -60,33 +60,42 @@
 
 .input {
   width: 100%;
-  padding: 16px;
+  padding: 16px 18px;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-sm);
   background-color: var(--bg-page);
   color: var(--text-primary);
   font-size: 1rem;
-  transition: var(--transition-smooth);
+  font-family: var(--font-body);
+  outline: none;
+  /* Spec 1: Smooth border-color and box-shadow transition */
+  transition:
+    border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.25s ease;
 }
 
 [data-theme="dark"] .input {
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
+/* Spec 1: Focus micro-animation on input */
 .input:focus {
   border-color: var(--accent-primary);
   background-color: var(--bg-card);
-  box-shadow: 0 0 0 4px rgba(108, 76, 241, 0.1);
+  box-shadow:
+    0 0 0 4px rgba(108, 76, 241, 0.12),
+    0 2px 8px rgba(108, 76, 241, 0.08);
 }
 
 .inputError {
   border-color: var(--accent-secondary) !important;
-  box-shadow: 0 0 0 4px rgba(255, 107, 87, 0.1) !important;
+  box-shadow: 0 0 0 4px rgba(255, 107, 87, 0.12) !important;
 }
 
 .label {
   position: absolute;
-  left: 16px;
+  left: 14px;
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-muted);
@@ -95,16 +104,25 @@
   pointer-events: none;
   background-color: transparent;
   padding: 0 6px;
-  transition: var(--transition-smooth);
+  border-radius: 4px;
+  /* Spec 1: Label floats up/shrinks on focus */
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    top 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.25s ease,
+    background-color 0.2s ease,
+    font-size 0.25s ease;
+  transform-origin: left center;
 }
 
-/* Float logic for inputs */
+/* Float logic for inputs: active on focus or populated */
 .input:focus ~ .label,
 .input:not(:placeholder-shown) ~ .label {
   top: 0;
-  transform: translateY(-50%) scale(0.85);
+  transform: translateY(-50%) scale(0.82);
   color: var(--accent-primary);
   background-color: var(--bg-card);
+  font-weight: 600;
 }
 
 [data-theme="dark"] .input:focus ~ .label,
@@ -112,47 +130,70 @@
   background-color: var(--bg-card);
 }
 
-/* Textarea Pattern */
+/* ─── Textarea Pattern ─────────────────────────────────────────────────── */
 .textarea {
   width: 100%;
-  height: 120px;
-  padding: 16px;
+  height: 124px;
+  padding: 16px 18px;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-sm);
   background-color: var(--bg-page);
   color: var(--text-primary);
   font-size: 1rem;
+  font-family: var(--font-body);
   resize: vertical;
-  transition: var(--transition-smooth);
+  outline: none;
+  /* Spec 1: Smooth border-color and box-shadow transition */
+  transition:
+    border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.25s ease;
 }
 
 [data-theme="dark"] .textarea {
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
+/* Spec 1: Focus micro-animation on textarea */
 .textarea:focus {
   border-color: var(--accent-primary);
   background-color: var(--bg-card);
-  box-shadow: 0 0 0 4px rgba(108, 76, 241, 0.1);
+  box-shadow:
+    0 0 0 4px rgba(108, 76, 241, 0.12),
+    0 2px 8px rgba(108, 76, 241, 0.08);
 }
 
 .textareaLabel {
   position: absolute;
-  left: 16px;
+  left: 14px;
   top: 20px;
   color: var(--text-muted);
   font-size: 0.95rem;
   font-weight: 500;
   pointer-events: none;
   padding: 0 6px;
-  transition: var(--transition-smooth);
+  border-radius: 4px;
+  /* Spec 1: Label floats up/shrinks on focus */
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    top 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.25s ease,
+    background-color 0.2s ease,
+    font-size 0.25s ease;
+  transform-origin: left center;
 }
 
 .textarea:focus ~ .textareaLabel,
 .textarea:not(:placeholder-shown) ~ .textareaLabel {
   top: 0;
-  transform: translateY(-50%) scale(0.85);
+  transform: translateY(-50%) scale(0.82);
   color: var(--accent-primary);
+  background-color: var(--bg-card);
+  font-weight: 600;
+}
+
+[data-theme="dark"] .textarea:focus ~ .textareaLabel,
+[data-theme="dark"] .textarea:not(:placeholder-shown) ~ .textareaLabel {
   background-color: var(--bg-card);
 }
 
@@ -281,4 +322,15 @@
 @keyframes scaleReveal {
   from { transform: scale(0.95); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .textarea,
+  .label,
+  .textareaLabel,
+  .successContainer {
+    transition: none !important;
+    animation: none !important;
+  }
 }

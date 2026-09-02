@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import styles from "./Navbar.module.css";
 
 /* Shared logomark SVG used in Navbar, Footer, and Hero */
@@ -226,10 +227,10 @@ export default function Navbar() {
       <div className="container">
         <div className={styles.navContainer}>
           {/* Logo Area */}
-          <a href="#" className={styles.logoArea} onClick={handleLinkClick}>
+          <Link href="/" className={styles.logoArea} onClick={handleLinkClick}>
             <LogoMark size={36} />
             <span className={styles.logoText}>Adorca<span className={styles.logoTextHighlight}>360</span></span>
-          </a>
+          </Link>
 
           {/* Hamburger Menu Toggle (Mobile) */}
           <button

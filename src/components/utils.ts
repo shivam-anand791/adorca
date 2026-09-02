@@ -7,16 +7,22 @@ import { useEffect, useRef, useState } from "react";
 // flips true once the element enters the viewport.
 // Respects prefers-reduced-motion: if the user has requested reduced motion,
 // isVisible is immediately true so elements render without animation.
-export function useScrollReveal(options: IntersectionObserverInit = { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const prefersReduced =
-    typeof window !== "undefined"
-      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
-      : false;
-  const [isVisible, setIsVisible] = useState(prefersReduced); // skip anim if reduced-motion
+export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(
+  options: IntersectionObserverInit = { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+) {
+  const ref = useRef<T>(null);
+  const [isVisible, setIsVisible] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    }
+    return false;
+  });
 
   useEffect(() => {
-    if (prefersReduced) return; // already visible, no observer needed
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
     const currentRef = ref.current;
     if (!currentRef) return;
 
@@ -28,9 +34,10 @@ export function useScrollReveal(options: IntersectionObserverInit = { threshold:
     }, options);
 
     observer.observe(currentRef);
-    return () => { if (currentRef) observer.unobserve(currentRef); };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return () => {
+      if (currentRef) observer.unobserve(currentRef);
+    };
+  }, [options]);
 
   return [ref, isVisible] as const;
 }
@@ -66,18 +73,27 @@ export function useIntersection(options: IntersectionObserverInit = { threshold:
 }
 
 // Hook to animate count-up from 0 to target.
-// Correctly handles trigger=true on first mount (section already in viewport).
-export function useCountUp(target: number, duration: number = 1800, trigger: boolean = false) {
-  const [count, setCount] = useState(0);
+// Correctly handles trigger=true on first mount and ensures final target is always reached.
+export function useCountUp(target: number, duration: number = 1600, trigger: boolean = false) {
+  const prefersReduced =
+    typeof window !== "undefined"
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false;
+
+  const [count, setCount] = useState(() => (prefersReduced ? target : 0));
   const hasRun = useRef(false);
 
   useEffect(() => {
+    if (prefersReduced) {
+      return;
+    }
+
     // Guard: only run once even if trigger stays true across re-renders
     if (!trigger || hasRun.current) return;
     hasRun.current = true;
 
     const end = target;
-    if (end === 0) { setCount(0); return; }
+    if (end === 0) return;
 
     const startTime = performance.now();
     let animationFrameId: number;
@@ -87,18 +103,19 @@ export function useCountUp(target: number, duration: number = 1800, trigger: boo
       const progress = Math.min(elapsed / duration, 1);
       // Ease-out cubic
       const easeProgress = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(easeProgress * end));
+      const current = Math.floor(easeProgress * end);
 
       if (progress < 1) {
+        setCount(current);
         animationFrameId = requestAnimationFrame(updateCount);
       } else {
-        setCount(end); // guarantee final value is always exact
+        setCount(end); // Guarantee exact final value
       }
     };
 
     animationFrameId = requestAnimationFrame(updateCount);
     return () => { cancelAnimationFrame(animationFrameId); };
-  }, [target, duration, trigger]);
+  }, [target, duration, trigger, prefersReduced]);
 
   return count;
 }

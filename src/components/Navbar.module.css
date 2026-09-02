@@ -40,6 +40,12 @@
   gap: 10px;
   cursor: pointer;
   text-decoration: none;
+  animation: logoFadeIn 0.2s ease-out both;
+}
+
+@keyframes logoFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .logoText {
@@ -59,6 +65,25 @@
   align-items: center;
   gap: 28px;
   list-style: none;
+  animation: navSlideDown 0.2s ease-out 0.1s both;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: navSlideDown 0.2s ease-out 0.15s both;
+}
+
+@keyframes navSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .navItem {
@@ -244,12 +269,7 @@
   background-color: rgba(255, 255, 255, 0.04);
 }
 
-/* Actions */
-.actions {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
+
 
 /* Mobile Hamburger */
 .hamburger {
@@ -395,7 +415,12 @@
     transition: none !important;
   }
 
-  .navMenu {
+  .navMenu,
+  .logoArea,
+  .actions {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
     transition: none !important;
   }
 }

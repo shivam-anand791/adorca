@@ -84,7 +84,7 @@ export default function ConsultationForm() {
           {!isSubmitted ? (
             <>
               <div className={styles.formHeader}>
-                <span className={styles.formSubtitle}>Send Us Mail</span>
+                <span className={styles.formSubtitle}>Consultation Request</span>
                 <h3 className={styles.formTitle}>Schedule Free SEO Consultation</h3>
                 <p className={styles.formDesc}>
                   Submit details about your website performance targets and our audit team will prepare a custom report.
@@ -103,7 +103,7 @@ export default function ConsultationForm() {
                     value={formData.name}
                     onChange={handleChange}
                   />
-                  <label htmlFor="name" className={styles.label}>Name</label>
+                  <label htmlFor="name" className={styles.label}>Full Name</label>
                   {errors.name && <span className={styles.error}>{errors.name}</span>}
                 </div>
 

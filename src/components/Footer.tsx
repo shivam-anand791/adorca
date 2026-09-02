@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Footer.module.css";
 import { LogoMark } from "./Navbar";
 
@@ -23,12 +24,12 @@ export default function Footer() {
           <div className={styles.linksCol}>
             <h4 className={styles.colTitle}>Company</h4>
             <ul className={styles.linksList}>
-              <li className={styles.linkItem}><a href="#about">About Us</a></li>
-              <li className={styles.linkItem}><a href="#service">Our Services</a></li>
-              <li className={styles.linkItem}><a href="#case-studies">Case Studies</a></li>
-              <li className={styles.linkItem}><a href="#testimonials">Testimonials</a></li>
-              <li className={styles.linkItem}><a href="#blog">News &amp; Blogs</a></li>
-              <li className={styles.linkItem}><a href="#contact">Contact</a></li>
+              <li className={styles.linkItem}><Link href="/#about">About Us</Link></li>
+              <li className={styles.linkItem}><Link href="/#service">Our Services</Link></li>
+              <li className={styles.linkItem}><Link href="/case-studies">Case Studies</Link></li>
+              <li className={styles.linkItem}><Link href="/#testimonials">Testimonials</Link></li>
+              <li className={styles.linkItem}><Link href="/blog">News &amp; Blogs</Link></li>
+              <li className={styles.linkItem}><Link href="/#contact">Contact</Link></li>
             </ul>
           </div>
 
@@ -36,12 +37,12 @@ export default function Footer() {
           <div className={styles.linksCol}>
             <h4 className={styles.colTitle}>Services</h4>
             <ul className={styles.linksList}>
-              <li className={styles.linkItem}><a href="#service-growth">Global Growth Marketing</a></li>
-              <li className={styles.linkItem}><a href="#service-webdev">Website Designing</a></li>
-              <li className={styles.linkItem}><a href="#service-programmatic">Programmatic Ads</a></li>
-              <li className={styles.linkItem}><a href="#service-leadgen">Lead Generation</a></li>
-              <li className={styles.linkItem}><a href="#service-smm">Social Media Growth</a></li>
-              <li className={styles.linkItem}><a href="#service-boosters">App &amp; Revenue Boosters</a></li>
+              <li className={styles.linkItem}><Link href="/#service-growth">Global Growth Marketing</Link></li>
+              <li className={styles.linkItem}><Link href="/#service-webdev">Website Designing</Link></li>
+              <li className={styles.linkItem}><Link href="/#service-programmatic">Programmatic Ads</Link></li>
+              <li className={styles.linkItem}><Link href="/#service-leadgen">Lead Generation</Link></li>
+              <li className={styles.linkItem}><Link href="/#service-smm">Social Media Growth</Link></li>
+              <li className={styles.linkItem}><Link href="/#service-boosters">App &amp; Revenue Boosters</Link></li>
             </ul>
           </div>
         </div>

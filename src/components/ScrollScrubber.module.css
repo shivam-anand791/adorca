@@ -1,0 +1,74 @@
+.scrubberWrapper {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 36px auto 0;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ─── Scrubber Track (~7px tall, rounded, muted background) ────────────── */
+.track {
+  position: relative;
+  width: 100%;
+  height: 7px;
+  background-color: var(--border-color);
+  border-radius: 999px;
+  cursor: pointer;
+  outline: none;
+  touch-action: none;
+  transition: background-color 0.25s ease;
+}
+
+[data-theme="dark"] .track {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.track:focus-visible {
+  box-shadow: 0 0 0 2px var(--bg-page), 0 0 0 4px var(--accent-primary);
+}
+
+/* ─── Pill-shaped Draggable Handle ─────────────────────────────────────── */
+.handle {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  height: 13px;
+  background: linear-gradient(135deg, var(--accent-primary) 0%, #8364F7 100%);
+  border-radius: 999px;
+  cursor: grab;
+  touch-action: none;
+  will-change: transform, width;
+  box-shadow: 0 2px 8px rgba(108, 76, 241, 0.35);
+  transition:
+    transform 0.05s linear,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    scale 0.2s ease;
+}
+
+/* Hover state on handle (scale 1.05) */
+.handle:hover {
+  transform: scaleY(1.15) scaleX(1.02);
+  box-shadow: 0 0 12px rgba(108, 76, 241, 0.55);
+}
+
+/* Active / Dragging state (scale 1.1 + accent-color glow via box-shadow) */
+.handle.dragging {
+  cursor: grabbing;
+  transform: scaleY(1.25) scaleX(1.04);
+  box-shadow:
+    0 0 18px rgba(108, 76, 241, 0.75),
+    0 2px 10px rgba(108, 76, 241, 0.5);
+  transition: none !important;
+}
+
+/* ─── prefers-reduced-motion ───────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .handle {
+    transition: none !important;
+  }
+}

@@ -2,7 +2,7 @@
   width: 100%;
   padding: 40px 0 60px;
   background-color: transparent;
-  overflow: visible;
+  overflow: hidden;
   position: relative;
 }
 
@@ -15,202 +15,170 @@
 
 .title {
   text-align: center;
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.14em;
   margin-bottom: 40px;
   font-family: var(--font-display);
 }
 
-/* ─── Row wrapper ──────────────────────────────────────────────────────── */
-.rowWrapper {
+/* ─── Continuous Moving Banner Wrapper ─────────────────────────────────── */
+.marqueeWrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 28px;
-}
-
-/* Horizontal connecting gradient underline */
-.rowWrapper::after {
-  content: "";
-  position: absolute;
-  bottom: -4px;
-  left: 5%;
-  right: 5%;
-  height: 1px;
-  background: linear-gradient(
+  overflow: hidden;
+  display: flex;
+  padding: 24px 0;
+  /* Smooth edge gradient masks so cards gracefully appear and disappear */
+  mask-image: linear-gradient(
     to right,
-    transparent,
-    var(--border-color) 20%,
-    var(--border-color) 80%,
-    transparent
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
   );
-  z-index: 1;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 6%,
+    black 94%,
+    transparent 100%
+  );
 }
 
-/* ─── Cards row — desktop flex ─────────────────────────────────────────── */
-.cardsRow {
+/* ─── Continuous Moving Marquee Track ──────────────────────────────────── */
+.marqueeTrack {
   display: flex;
   flex-wrap: nowrap;
-  justify-content: center;
   align-items: center;
-  gap: 20px;
-  position: relative;
-  z-index: 2;
+  gap: 28px;
+  width: max-content;
+  animation: continuousMarquee 26s linear infinite;
+  will-change: transform;
 }
 
-/* ─── Individual partner card ──────────────────────────────────────────── */
+/* Pause marquee when user hovers over any card */
+.marqueeWrapper:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+@keyframes continuousMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 14px));
+  }
+}
+
+/* ─── Individual Partner Card ──────────────────────────────────────────── */
 .partnerCard {
   position: relative;
   flex-shrink: 0;
   background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  padding: 18px 28px;
+  /* Persistent, visible border at baseline in both light and dark themes */
+  border: 1px solid var(--border-color-hover);
+  padding: 16px 26px;
   border-radius: var(--border-radius-md);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  min-height: 64px;
+  min-width: 140px;
+
+  /* Card shape & background are full opacity with persistent border */
+  transform: rotate(var(--card-tilt, 0deg));
+  opacity: 1;
+  filter: none;
+  cursor: pointer;
   box-shadow: var(--shadow-sm);
 
-  /* Grayscale + dim by default */
-  filter: grayscale(100%);
-  opacity: 0.6;
-  cursor: pointer;
-
-  /* Smooth 300ms transitions for all interactive properties */
+  /* 300ms ease transition */
   transition:
-    transform   0.3s ease,
-    filter      0.3s ease,
-    opacity     0.3s ease,
+    transform 0.3s ease,
     border-color 0.3s ease,
-    box-shadow  0.3s ease;
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
 }
 
-/* Active card (hover OR auto-cycle) */
-.partnerCard.active,
-.partnerCard:hover {
-  filter: grayscale(0%);
-  opacity: 1;
-  border-color: rgba(108, 76, 241, 0.35);
-  /* Spec: soft box-shadow using --accent-primary at low opacity */
+/* On hover / active — card un-tilts, scales, gains accent glow */
+.partnerCard:hover,
+.partnerCard.active {
+  transform: rotate(0deg) scale(1.06);
+  border-color: var(--accent-primary);
   box-shadow:
-    var(--shadow-md),
-    0 0 0 1px rgba(108, 76, 241, 0.12),
-    0 8px 32px rgba(108, 76, 241, 0.15);
-  z-index: 5;
+    0 12px 32px rgba(108, 76, 241, 0.22),
+    0 0 0 1px rgba(108, 76, 241, 0.35);
+  z-index: 10;
 }
 
-/* Logo container */
+/* ─── Logo Wrapper: Dim & Grayscale applied ONLY to the icon mark ──────── */
 .logoWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 28px;
-  color: var(--text-secondary);
   pointer-events: none;
+  filter: grayscale(70%);
+  opacity: 0.75;
+  transition: filter 0.3s ease, opacity 0.3s ease;
 }
 
-.partnerCard.active .logoWrapper,
-.partnerCard:hover .logoWrapper {
-  color: var(--text-primary);
+/* Full color & full opacity payoff on hover / active */
+.partnerCard:hover .logoWrapper,
+.partnerCard.active .logoWrapper {
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
-/* Partner name label */
+.logoImg {
+  width: auto;
+  height: 32px;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Text label: full opacity & high contrast at all times */
 .partnerName {
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: var(--text-muted);
+  color: var(--text-secondary);
+  opacity: 1;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   pointer-events: none;
   white-space: nowrap;
+  transition: color 0.3s ease;
 }
 
-.partnerCard.active .partnerName,
-.partnerCard:hover .partnerName {
+.partnerCard:hover .partnerName,
+.partnerCard.active .partnerName {
   color: var(--accent-primary);
 }
 
-/* ─── Connector dots ───────────────────────────────────────────────────── */
-.connectionLineContainer {
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  pointer-events: none;
+/* Dark mode tweaks for logos with dark text */
+[data-theme="dark"] .logoImg {
+  color: #FFFFFF;
 }
 
-.dotsRow {
-  display: flex;
-  justify-content: center;
-  gap: 110px;
-  width: 100%;
-  max-width: 940px;
-}
-
-.connectorDot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: var(--bg-page);
-  border: 2px solid var(--border-color);
-  transition: var(--transition-smooth);
-  z-index: 3;
-}
-
-.connectorDot.dotActive {
-  background-color: var(--accent-primary);
-  border-color: var(--accent-primary);
-  transform: scale(1.3);
-  box-shadow: 0 0 8px rgba(108, 76, 241, 0.4);
-}
-
-/* ─── Responsive — tablet ───────────────────────────────────────────────── */
-@media (max-width: 992px) {
-  .dotsRow {
-    gap: 72px;
-  }
-}
-
-/* ─── Responsive — mobile: horizontal scroll, tilt disabled ────────────── */
+/* ─── Responsive — mobile ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  /* Hide decorative chrome */
-  .rowWrapper::after,
-  .connectionLineContainer {
-    display: none;
+  .marqueeTrack {
+    gap: 16px;
+    animation-duration: 20s;
   }
 
-  /* Horizontal scroll container */
-  .cardsRow {
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    gap: 14px;
-    padding: 8px 4px 16px;
-    /* hide scrollbar visually */
-    scrollbar-width: none;
-  }
-  .cardsRow::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Disable tilt on touch — override inline style transform */
   .partnerCard {
-    scroll-snap-align: start;
-    transform: none !important; /* kill rotation on mobile */
-    padding: 14px 20px;
+    padding: 12px 20px;
+    min-height: 56px;
+    min-width: 120px;
+    transform: none !important; /* tilt disabled on mobile touch */
+    opacity: 1;
+    filter: none;
   }
 
-  /* Active/hover still shows colour — just no rotation */
-  .partnerCard.active,
   .partnerCard:hover {
     transform: none !important;
   }
@@ -218,7 +186,14 @@
 
 /* ─── prefers-reduced-motion ───────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .partnerCard {
+  .marqueeTrack {
+    animation: none !important;
+  }
+  .partnerCard,
+  .logoWrapper {
     transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: grayscale(0%) !important;
   }
 }

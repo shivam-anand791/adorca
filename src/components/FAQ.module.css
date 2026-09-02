@@ -1,0 +1,135 @@
+.accordionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 860px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.accordionWrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.faqCard {
+  background-color: var(--bg-page);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  transition:
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] .faqCard {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.faqCard:hover {
+  border-color: rgba(108, 76, 241, 0.4);
+}
+
+.faqCardOpen {
+  border-color: var(--accent-primary);
+  background-color: var(--bg-card);
+  box-shadow:
+    0 8px 24px rgba(108, 76, 241, 0.08),
+    0 0 0 1px rgba(108, 76, 241, 0.15);
+}
+
+.questionBtn {
+  width: 100%;
+  padding: 22px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.questionBtn:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--accent-primary);
+}
+
+.questionText {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.faqCardOpen .questionText {
+  color: var(--accent-primary);
+}
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.faqCardOpen .chevron {
+  color: var(--accent-primary);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* CSS Grid Height Animation for Accordion Body */
+.answerContainer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.answerOpen {
+  grid-template-rows: 1fr;
+}
+
+.answerContent {
+  overflow: hidden;
+}
+
+.answerText {
+  padding: 0 26px 24px;
+  font-size: 0.96rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .questionBtn {
+    padding: 18px 20px;
+  }
+  .questionText {
+    font-size: 1rem;
+  }
+  .answerText {
+    padding: 0 20px 20px;
+    font-size: 0.92rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accordionWrapper,
+  .chevron,
+  .answerContainer {
+    transition: none !important;
+  }
+}
