@@ -1,190 +1,186 @@
 "use client";
 
-import { useRef } from "react";
+import { useState } from "react";
+import Link from "next/link";
 import { useIntersection } from "./utils";
-import ScrollScrubber from "./ScrollScrubber";
 import styles from "./Services.module.css";
 
-interface ServiceItem {
-  id: string;
-  anchorId: string;
+interface ServiceCapability {
   title: string;
   desc: string;
-  icon: React.ReactNode;
+  deliverables: string[];
 }
+
+interface ServicePillar {
+  id: string;
+  pillarNum: string;
+  title: string;
+  subtitle: string;
+  summary: string;
+  capabilities: ServiceCapability[];
+  color: string;
+}
+
+const SERVICE_PILLARS: ServicePillar[] = [
+  {
+    id: "acquire",
+    pillarNum: "01",
+    title: "ACQUIRE",
+    subtitle: "High-Intent Customer Acquisition",
+    summary:
+      "Capture in-market buyers across organic search, programmatic bidding, and cross-border discovery pipelines with precision indexing and zero budget leakage.",
+    color: "var(--blue)",
+    capabilities: [
+      {
+        title: "Global Growth Marketing",
+        desc: "Scale your footprint across 50+ international markets with localized regional bidding and multilingual search architectures.",
+        deliverables: ["Cross-Border Strategy", "International SEO", "Regional Intent Mapping"],
+      },
+      {
+        title: "Technical SEO & Indexing",
+        desc: "Restructure crawl efficiency, resolve hreflang conflicts, and guarantee Core Web Vitals excellence to dominate top search positions.",
+        deliverables: ["Architecture Audits", "Hreflang Configuration", "Core Web Vitals Sprint"],
+      },
+      {
+        title: "Lead Generation Pipelines",
+        desc: "Acquire verified, high-converting B2B and consumer prospects through custom landing funnels and programmatic audience matching.",
+        deliverables: ["High-Intent Inbound Funnels", "Conversion Flow Optimization", "Lead Scoring Models"],
+      },
+      {
+        title: "Programmatic Advertising",
+        desc: "Target the exact audience segments at scale using automated, algorithmic real-time bid optimization on top ad networks.",
+        deliverables: ["Real-Time Bidding", "High-ROAS Allocation", "Audience Retargeting"],
+      },
+    ],
+  },
+  {
+    id: "amplify",
+    pillarNum: "02",
+    title: "AMPLIFY",
+    subtitle: "Brand Authority & Demand Stimulation",
+    summary:
+      "Transform search visibility into compounding brand equity through verified creator partnerships, social authority, and multi-channel marketing consulting.",
+    color: "var(--lime)",
+    capabilities: [
+      {
+        title: "Digital Marketing Strategy",
+        desc: "Deploy full-funnel marketing campaigns backed by data-driven consulting, channel priority scoring, and continuous ROI audits.",
+        deliverables: ["Cross-Channel Strategy", "Campaign Audits", "Growth Benchmarking"],
+      },
+      {
+        title: "Social Media Marketing",
+        desc: "Build engaged digital communities and orchestrate organic audience acquisition campaigns across leading digital platforms.",
+        deliverables: ["Community Architecture", "Content Distribution", "Organic Engagement"],
+      },
+      {
+        title: "Social Influence Marketing",
+        desc: "Partner with premier creators and industry voices to amplify your brand message, build trust, and generate direct referral sales.",
+        deliverables: ["Creator Network Outreach", "Attribution Tracking", "Sponsored Campaigns"],
+      },
+    ],
+  },
+  {
+    id: "convert",
+    pillarNum: "03",
+    title: "CONVERT",
+    subtitle: "Revenue Systems & App Acceleration",
+    summary:
+      "Turn incoming clicks into compounding revenue with blazing-fast Next.js platforms, App Store category dominance, and rigorous funnel experimentation.",
+    color: "#60A5FA",
+    capabilities: [
+      {
+        title: "Website Design & Development",
+        desc: "Launch blazing-fast, search-optimized Next.js web applications styled cleanly to maximize engagement, retention, and conversion rates.",
+        deliverables: ["Next.js Edge Architecture", "Responsive UI Systems", "Speed Optimization"],
+      },
+      {
+        title: "App & Revenue Boosters",
+        desc: "Accelerate mobile application downloads and in-app subscription revenue with advanced App Store Optimization (ASO) and user loops.",
+        deliverables: ["ASO Keyword Velocity", "Store Page A/B Testing", "Monetization Uplift"],
+      },
+      {
+        title: "Conversion Rate Optimization",
+        desc: "Systematically test and eliminate friction points along every user touchpoint to continuously lower customer acquisition cost.",
+        deliverables: ["A/B Funnel Testing", "User Journey Audits", "Drop-off Reduction"],
+      },
+    ],
+  },
+];
 
 export default function Services() {
   const [revealRef, isVisible] = useIntersection({ threshold: 0.08 });
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  const servicesList: ServiceItem[] = [
-    {
-      id: "growth",
-      anchorId: "service-growth",
-      title: "Global Growth Marketing",
-      desc: "Scale your business across international borders with multi-language setups, targeted region bidding, and localized cross-channel strategies.",
-      icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="10" />
-          <line x1="2" y1="12" x2="22" y2="12" />
-          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-          <polyline points="16 8 20 8 20 12" />
-          <line x1="14" y1="14" x2="20" y2="8" />
-        </svg>
-      ),
-    },
-    {
-      id: "smm",
-      anchorId: "service-smm",
-      title: "Social Media Marketing",
-      desc: "Build engaged digital communities. Orchestrate organic campaigns and high-performing social branding content on top networks.",
-      icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-          <line x1="8" y1="12" x2="16" y2="12" />
-          <line x1="12" y1="9" x2="12" y2="15" />
-        </svg>
-      ),
-    },
-    {
-      id: "webdev",
-      anchorId: "service-webdev",
-      title: "Website Designing & Development",
-      desc: "Launch blazing fast, search-optimized Next.js web systems styled cleanly to maximize engagement, retention, and conversion rates.",
-      icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <rect x="2" y="3" width="20" height="18" rx="3" />
-          <line x1="2" y1="9" x2="22" y2="9" />
-          <polyline points="8 14 6 16 8 18" />
-          <polyline points="14 14 16 16 14 18" />
-          <line x1="12" y1="13" x2="10" y2="19" />
-        </svg>
-      ),
-    },
-    {
-      id: "digital",
-      anchorId: "service-digital",
-      title: "Digital Marketing Services",
-      desc: "Implement high-performance SEO strategy audits, multi-channel growth consulting, and data-driven marketing campaigns built for ROI.",
-      icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <line x1="18" y1="20" x2="18" y2="10" />
-          <line x1="12" y1="20" x2="12" y2="4" />
-          <line x1="6" y1="20" x2="6" y2="14" />
-          <polyline points="3 8 9 3 15 7 21 2" />
-        </svg>
-      ),
-    },
-    {
-      id: "social",
-      anchorId: "service-social",
-      title: "Social Influence Marketing",
-      desc: "Leverage premium creators and social personalities to amplify your brand voice, build trust, and organic user acquisition channels globally.",
-      icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-          <circle cx="9" cy="7" r="4" />
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-          <polygon points="19 11 20.5 14 23.5 14.5 21.2 16.8 21.8 20 19 18.5 16.2 20 16.8 16.8 14.5 14.5 17.5 14" fill="none" strokeWidth="1.5" />
-        </svg>
-      ),
-    },
-    {
-      id: "boosters",
-      anchorId: "service-boosters",
-      title: "App & Revenue Boosters",
-      desc: "Boost your application ranking and drive organic conversions with advanced App Store Optimization (ASO) and revenue growth strategies.",
-      icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <rect x="5" y="2" width="14" height="20" rx="3" />
-          <line x1="12" y1="18" x2="12.01" y2="18" strokeWidth="2.5" />
-          <polyline points="9 11 12 7 15 11" />
-          <line x1="12" y1="7" x2="12" y2="14" />
-        </svg>
-      ),
-    },
-    {
-      id: "leadgen",
-      anchorId: "service-leadgen",
-      title: "Lead Generation Service",
-      desc: "Acquire high-quality marketing and sales leads using conversion-focused landing pages, optimized funnels, and programmatic matching.",
-      icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="10" />
-          <circle cx="12" cy="12" r="6" />
-          <circle cx="12" cy="12" r="2" />
-          <line x1="12" y1="2" x2="12" y2="5" />
-          <line x1="12" y1="19" x2="12" y2="22" />
-          <line x1="2" y1="12" x2="5" y2="12" />
-          <line x1="19" y1="12" x2="22" y2="12" />
-        </svg>
-      ),
-    },
-    {
-      id: "programmatic",
-      anchorId: "service-programmatic",
-      title: "Programmatic Advertising Growth",
-      desc: "Target the exact audience segments at scale. Implement automated, real-time bid optimization across premier advertising inventory networks.",
-      icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <rect x="4" y="4" width="16" height="16" rx="2" />
-          <rect x="9" y="9" width="6" height="6" />
-          <line x1="9" y1="1" x2="9" y2="4" />
-          <line x1="15" y1="1" x2="15" y2="4" />
-          <line x1="9" y1="20" x2="9" y2="23" />
-          <line x1="15" y1="20" x2="15" y2="23" />
-          <line x1="20" y1="9" x2="23" y2="9" />
-          <line x1="20" y1="15" x2="23" y2="15" />
-          <line x1="1" y1="9" x2="4" y2="9" />
-          <line x1="1" y1="15" x2="4" y2="15" />
-        </svg>
-      ),
-    },
-  ];
+  const [activePillar, setActivePillar] = useState<ServicePillar>(SERVICE_PILLARS[0]);
 
   return (
-    <section id="service" className="floatingCardSection" ref={revealRef}>
+    <section id="services" className="floatingCardSection" ref={revealRef}>
       {/* Section Header */}
       <div className="section-header">
-        <span className="section-subtitle">Our Exclusive Services</span>
+        <span className="section-subtitle">Our Service Pillars</span>
         <h2 className="section-title">Engineered for Performance. Built for Growth.</h2>
         <p className="section-desc">
-          We deploy localized organic campaigns, programmatic search pipelines, and conversion-optimized web platforms built to expand your market share.
+          We organize our capabilities into three cohesive growth pillars to deliver an integrated acquisition, amplification, and conversion engine.
         </p>
       </div>
 
-      {/* Horizontally Scrollable Services Row */}
-      <div className={styles.scrollWrapper}>
-        <div
-          id="services-scroll-container"
-          ref={scrollContainerRef}
-          className={`${styles.scrollRow} ${isVisible ? styles.visible : ""}`}
-        >
-          {servicesList.map((service, idx) => (
-            <div
-              key={service.id}
-              id={service.anchorId}
-              className={styles.card}
-              style={{
-                transitionDelay: isVisible ? `${idx * 80}ms` : "0ms",
-              }}
+      {/* Pillar Selection Tabs */}
+      <div className={styles.pillarTabs} role="tablist" aria-label="Service Pillars">
+        {SERVICE_PILLARS.map((p) => {
+          const isActive = p.id === activePillar.id;
+          return (
+            <button
+              key={p.id}
+              role="tab"
+              aria-selected={isActive}
+              aria-controls={`pillar-panel-${p.id}`}
+              id={`pillar-tab-${p.id}`}
+              className={`${styles.pillarTab} ${isActive ? styles.pillarTabActive : ""}`}
+              onClick={() => setActivePillar(p)}
             >
-              <div className={styles.iconWrapper}>
-                {service.icon}
-              </div>
-              <h3 className={styles.cardTitle}>{service.title}</h3>
-              <p className={styles.cardDesc}>{service.desc}</p>
-            </div>
-          ))}
-        </div>
+              <span className={styles.tabNum}>{p.pillarNum}</span>
+              <span className={styles.tabTitle}>{p.title}</span>
+              <span className={styles.tabSubtitle}>{p.subtitle}</span>
+            </button>
+          );
+        })}
       </div>
 
-      {/* Drag-Handle Scrubber Control */}
-      <ScrollScrubber
-        containerRef={scrollContainerRef}
-        ariaLabel="Exclusive services horizontal scrubber"
-      />
+      {/* Active Pillar Capabilities Grid */}
+      <div
+        id={`pillar-panel-${activePillar.id}`}
+        role="tabpanel"
+        aria-labelledby={`pillar-tab-${activePillar.id}`}
+        className={`${styles.capabilitiesGrid} ${isVisible ? styles.visible : ""}`}
+      >
+        {activePillar.capabilities.map((cap, idx) => (
+          <div key={idx} className={styles.capabilityCard}>
+            <div className={styles.capHeader}>
+              <span className={styles.capIndex}>0{idx + 1}</span>
+              <h3 className={styles.capTitle}>{cap.title}</h3>
+            </div>
+            <p className={styles.capDesc}>{cap.desc}</p>
+
+            {/* Deliverable tags */}
+            <div className={styles.tagsRow}>
+              {cap.deliverables.map((tag, tIdx) => (
+                <span key={tIdx} className={styles.deliverableTag}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className={styles.capFooter}>
+              <Link href="/#opportunity-tool" className={styles.capLink}>
+                Explore in Growth Plan
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </Link>
+            </div>
+
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

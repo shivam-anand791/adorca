@@ -1,98 +1,113 @@
+"use client";
+
 import Link from "next/link";
+import { useIntersection } from "./utils";
 import styles from "./Blog.module.css";
 
-interface BlogPost {
-  id: string;
-  tag: string;
-  date: string;
-  title: string;
-  desc: string;
-  icon: React.ReactNode;
-}
+const ARTICLES = [
+  {
+    id: "seo-global",
+    tag: "Organic Growth",
+    date: "August 24, 2026",
+    readTime: "6 min read",
+    title: "Unlocking Organic Growth: The Future of Global Multi-Region SEO",
+    desc: "How localized regional intent matching, server-side hreflang tagging, and Core Web Vitals optimization drive sustainable organic traffic acquisition across cross-border markets.",
+    isFeatured: true,
+  },
+  {
+    id: "aso-boosters",
+    tag: "App Store Optimization",
+    date: "August 18, 2026",
+    readTime: "5 min read",
+    title: "ASO Best Practices for App Revenue Boosting & Category Dominance",
+    desc: "Key tactical steps to optimize app store conversion velocity, streamline onboarding funnels, and boost organic store algorithms.",
+    isFeatured: false,
+  },
+  {
+    id: "programmatic-ads",
+    tag: "Programmatic Bidding",
+    date: "August 10, 2026",
+    readTime: "7 min read",
+    title: "Why Programmatic Bidding is Outperforming Generic Ad Networks",
+    desc: "Leveraging algorithmic audience segmentation and real-time bid adjustments to eliminate budget leakage and slash acquisition costs.",
+    isFeatured: false,
+  },
+];
 
 export default function Blog() {
-  // PLACEHOLDER: replace with real blog post data (title, date, description) before launch
-  const posts: BlogPost[] = [
-    {
-      id: "seo-global",
-      tag: "Organic Growth",
-      date: "August 24, 2026",
-      title: "Unlocking Organic Growth: The Future of Global SEO",
-      desc: "How localized regional intent matching and Core Web Vitals optimization are driving organic traffic acquisition across cross-border markets.",
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-          <polyline points="17 6 23 6 23 12"></polyline>
-        </svg>
-      )
-    },
-    {
-      id: "aso-boosters",
-      tag: "App Store Optimization",
-      date: "August 18, 2026",
-      title: "ASO Best Practices for App Revenue Boosting",
-      desc: "Key tactical steps to optimize app store conversions, streamline onboarding, retain active users, and boost subscriptions.",
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-          <line x1="12" y1="18" x2="12.01" y2="18"></line>
-        </svg>
-      )
-    },
-    {
-      id: "programmatic-ads",
-      tag: "Programmatic Bidding",
-      date: "August 10, 2026",
-      title: "Why Programmatic Bidding is Outperforming Ad Networks",
-      desc: "Leveraging algorithmic audience segmentation and real-time bids adjustments to maximize returns and lower acquisition costs.",
-      icon: (
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="10"></circle>
-          <polygon points="12 8 8 12 16 12 12 8"></polygon>
-        </svg>
-      )
-    }
-  ];
+  const [revealRef, isVisible] = useIntersection({ threshold: 0.08 });
+  const featuredArticle = ARTICLES.find((a) => a.isFeatured) || ARTICLES[0];
+  const secondaryArticles = ARTICLES.filter((a) => !a.isFeatured);
 
   return (
-    <section id="blog" className="floatingCardSection">
+    <section id="insights" className="floatingCardSection" ref={revealRef}>
       {/* Section Header */}
       <div className="section-header">
-        <span className="section-subtitle">Our Blog</span>
-        <h2 className="section-title">News &amp; Blogs</h2>
-        <p className="section-desc">
-          Stay updated with the latest digital advertising, organic growth insights, and programmatic search trends from our international network.
-        </p>
+        <div className={styles.headerRow}>
+          <div>
+            <span className="section-subtitle">Strategic Intelligence</span>
+            <h2 className="section-title">News &amp; Insights</h2>
+            <p className="section-desc">
+              Stay ahead with tactical breakdowns on organic search architecture, international SEO, and programmatic performance.
+            </p>
+          </div>
+          <Link href="/blog" className="btn btn-secondary" style={{ width: "max-content", height: "max-content" }}>
+            View All Articles &rarr;
+          </Link>
+        </div>
       </div>
 
-      {/* Blog Grid */}
-      <div className={styles.grid}>
-        {posts.map((post) => (
-          <article key={post.id} className={styles.card}>
-            {/* Thumbnail Mockup */}
-            <div className={styles.thumbnailMockup}>
-              {post.icon}
-            </div>
+      {/* Editorial Grid: 1 Featured (Left) + 2 Secondary (Right) */}
+      <div className={`${styles.articlesGrid} ${isVisible ? styles.visible : ""}`}>
+        {/* Featured Article Card */}
+        <article className={styles.featuredCard}>
+          <div className={styles.metaRow}>
+            <span className={styles.tagBadge}>{featuredArticle.tag}</span>
+            <span className={styles.metaDot}>&bull;</span>
+            <span className={styles.metaText}>{featuredArticle.date}</span>
+            <span className={styles.metaDot}>&bull;</span>
+            <span className={styles.metaText}>{featuredArticle.readTime}</span>
+          </div>
 
-            {/* Card Body */}
-            <div className={styles.cardBody}>
+          <h3 className={styles.featuredTitle}>
+            <Link href={`/blog/${featuredArticle.id}`}>{featuredArticle.title}</Link>
+          </h3>
+
+          <p className={styles.featuredDesc}>{featuredArticle.desc}</p>
+
+          <Link href={`/blog/${featuredArticle.id}`} className={styles.readMoreBtn}>
+            Read Full Intelligence Brief
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </Link>
+        </article>
+
+        {/* Secondary Articles Stack */}
+        <div className={styles.secondaryStack}>
+          {secondaryArticles.map((article) => (
+            <article key={article.id} className={styles.secondaryCard}>
               <div className={styles.metaRow}>
-                <span className={styles.tag}>{post.tag}</span>
-                <span className={styles.date}>{post.date}</span>
+                <span className={styles.tagBadge}>{article.tag}</span>
+                <span className={styles.metaDot}>&bull;</span>
+                <span className={styles.metaText}>{article.date}</span>
+                <span className={styles.metaDot}>&bull;</span>
+                <span className={styles.metaText}>{article.readTime}</span>
               </div>
-              <h3 className={styles.cardTitle}>
-                <Link href={`/blog/${post.id}`}>{post.title}</Link>
+
+              <h3 className={styles.secondaryTitle}>
+                <Link href={`/blog/${article.id}`}>{article.title}</Link>
               </h3>
-              <p className={styles.cardDesc}>{post.desc}</p>
-              <Link href={`/blog/${post.id}`} className={styles.readMoreLink}>
-                Read Article
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M2.5 6H9.5M9.5 6L6 2.5M9.5 6L6 9.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+
+              <p className={styles.secondaryDesc}>{article.desc}</p>
+
+              <Link href={`/blog/${article.id}`} className={styles.readLink}>
+                Read Article &rarr;
               </Link>
-            </div>
-          </article>
-        ))}
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );

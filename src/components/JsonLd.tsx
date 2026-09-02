@@ -7,58 +7,36 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": `${siteUrl}/#organization`,
-    name: "Adorca360",
-    legalName: "Adorca360 Growth & SEO Agency",
+    name: "Adorca 360",
+    legalName: "Adorca 360 Global Growth & Search Agency",
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     image: `${siteUrl}/og-image.png`,
     description:
-      "Global growth, digital marketing, programmatic advertising, and localized SEO agency delivering data-backed organic rankings and verified ROI.",
-    telephone: "+1-234-244-8888",
+      "Adorca 360 is a performance growth studio combining technical SEO, programmatic advertising, content architecture, and international market intelligence across 50+ markets.",
     email: "contact@adorca360.com",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "2220 Plymouth Rd",
-      addressLocality: "Hopkins",
-      addressRegion: "MN",
-      addressCountry: "US",
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: 44.9255,
-      longitude: -93.4358,
-    },
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "09:00",
-        closes: "18:00",
-      },
-    ],
     sameAs: [
       "https://twitter.com/adorca360",
       "https://linkedin.com/company/adorca360",
-      "https://facebook.com/adorca360",
-      "https://instagram.com/adorca360",
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "86",
-      bestRating: "5",
-      worstRating: "1",
-    },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Core Growth & Digital Marketing Services",
+      name: "Core Growth & Performance Marketing Services",
       itemListElement: [
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
             name: "Global Growth Marketing",
-            description: "Cross-border search expansion, international SEO, and localized multi-language setup.",
+            description: "Cross-border search expansion, international SEO, and localized multi-language setup across 50+ markets.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Technical SEO & Indexing",
+            description: "Crawl architecture, server-side hreflang configuration, and Core Web Vitals optimization.",
           },
         },
         {
@@ -74,7 +52,7 @@ export default function JsonLd() {
           itemOffered: {
             "@type": "Service",
             name: "App & Revenue Boosters",
-            description: "App Store Optimization (ASO) and user acquisition to push category rankings.",
+            description: "App Store Optimization (ASO) and user acquisition loops to push category rankings.",
           },
         },
         {
@@ -94,7 +72,7 @@ export default function JsonLd() {
     "@type": "WebSite",
     "@id": `${siteUrl}/#website`,
     url: siteUrl,
-    name: "Adorca360",
+    name: "Adorca 360",
     publisher: {
       "@id": `${siteUrl}/#organization`,
     },

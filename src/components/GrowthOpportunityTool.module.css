@@ -1,0 +1,384 @@
+.toolContainer {
+  width: 100%;
+}
+
+.toolGrid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.formCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stepIndicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.stepBadge {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  background-color: var(--bg-subtle);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+}
+
+.stepBadgeActive {
+  color: var(--blue);
+  background-color: var(--blue-light);
+  border-color: var(--blue);
+}
+
+.stepDivider {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.required {
+  color: var(--accent-coral);
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  transition: var(--transition-smooth);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-light);
+}
+
+.inputError {
+  border-color: var(--accent-coral) !important;
+}
+
+.errorText {
+  font-size: 0.75rem;
+  color: var(--accent-coral);
+  font-weight: 600;
+}
+
+.select {
+  cursor: pointer;
+}
+
+.objectiveGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.objectiveCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.objectiveCard:hover {
+  background-color: var(--bg-card);
+  border-color: var(--border-hover);
+}
+
+.objectiveCardActive {
+  background-color: var(--bg-card);
+  border-color: var(--blue);
+  box-shadow: 0 0 12px var(--blue-light);
+}
+
+.objRadio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.objectiveCardActive .objRadio {
+  border-color: var(--blue);
+}
+
+.objRadioDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--blue);
+}
+
+.objText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.objLabel {
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.objSub {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.buttonRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* ─────────────────────────────────────────────
+   Right: Blueprint Preview Card
+   ───────────────────────────────────────────── */
+.previewCol {
+  position: sticky;
+  top: 100px;
+}
+
+.previewCard {
+  background-color: var(--navy);
+  color: var(--navy-text);
+  border: 1px solid var(--navy-border);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--navy-border);
+}
+
+.previewBadge {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--lime);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.previewMarket {
+  font-size: 0.75rem;
+  color: var(--navy-text-secondary);
+  font-weight: 500;
+}
+
+.blueprintDomain {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.domainLabel {
+  font-size: 0.75rem;
+  color: var(--navy-text-muted);
+}
+
+.domainVal {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.strategyBlock {
+  background-color: var(--navy-surface);
+  border: 1px solid var(--navy-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.strategyTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--navy-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.strategyHighlight {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--lime);
+}
+
+.strategyDesc {
+  font-size: 0.8rem;
+  color: var(--navy-text-secondary);
+  line-height: 1.4;
+}
+
+.channelsBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.channelsHeading {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--navy-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.channelsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.channelItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--navy-text);
+  font-weight: 500;
+}
+
+.chDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--blue);
+  flex-shrink: 0;
+}
+
+.guaranteeNote {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--lime);
+  font-weight: 600;
+  padding-top: 14px;
+  border-top: 1px solid var(--navy-border);
+}
+
+/* ─────────────────────────────────────────────
+   Success State
+   ───────────────────────────────────────────── */
+.successState {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 48px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.successIcon {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: var(--blue-light);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.successTitle {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.successDesc {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+/* ─────────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────────── */
+@media (max-width: 992px) {
+  .toolGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .previewCol {
+    position: static;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .objectiveCard,
+  .input,
+  .select,
+  .textarea {
+    transition: none !important;
+  }
+}

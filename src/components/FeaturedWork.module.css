@@ -1,0 +1,327 @@
+.workContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ─────────────────────────────────────────────
+   Primary Large Featured Case Study
+   ───────────────────────────────────────────── */
+.featuredCase {
+  background-color: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+  align-items: center;
+  transition: var(--transition-smooth);
+}
+
+.featuredCase:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.featuredLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.caseTagRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tagBadge {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  background-color: var(--blue);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.categoryPill {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.featuredHeadline {
+  font-size: clamp(1.4rem, 2vw + 0.5rem, 1.85rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.featuredSummary {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.strategyPillars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.strategyItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.stratNum {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--blue);
+  background-color: var(--blue-light);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  margin-top: 2px;
+}
+
+.stratTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.stratDesc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Featured Right KPI Box */
+.featuredRight {
+  width: 100%;
+}
+
+.kpiHeroCard {
+  background-color: var(--navy);
+  color: var(--navy-text);
+  border: 1px solid var(--navy-border);
+  border-radius: var(--radius-md);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.kpiHeroLabel {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+
+.kpiHeroVal {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.kpiHeroSub {
+  font-size: 0.95rem;
+  color: var(--navy-text-secondary);
+  font-weight: 500;
+}
+
+.chartWrapper {
+  width: 100%;
+  margin: 16px 0;
+}
+
+.trendSvg {
+  width: 100%;
+  height: 80px;
+}
+
+.compareRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: 14px;
+  border-top: 1px solid var(--navy-border);
+}
+
+.compareBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.compareLabel {
+  font-size: 0.75rem;
+  color: var(--navy-text-muted);
+  font-weight: 500;
+}
+
+.compareVal {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--navy-text-secondary);
+}
+
+.compareValHighlight {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--lime);
+}
+
+.compareArrow {
+  font-size: 1.1rem;
+  color: var(--navy-text-muted);
+}
+
+/* ─────────────────────────────────────────────
+   Secondary Case Study Grid
+   ───────────────────────────────────────────── */
+.secondaryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.secondaryCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: var(--transition-smooth);
+}
+
+.secondaryCard:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.secondaryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.secondaryCategory {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.secondaryKpi {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--blue);
+  background-color: var(--blue-light);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.secondaryTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.secondaryDesc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  flex: 1;
+}
+
+.secondaryMeta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-light);
+}
+
+.metaStat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metaVal {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.metaLabel {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.cardReadLink {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--blue);
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cardReadLink:hover {
+  color: var(--blue-hover);
+  text-decoration: underline;
+}
+
+/* ─────────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────────── */
+@media (max-width: 992px) {
+  .featuredCase {
+    grid-template-columns: 1fr;
+    padding: 28px 24px;
+    gap: 32px;
+  }
+
+  .secondaryGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featuredCase,
+  .secondaryCard {
+    transition: none !important;
+  }
+}

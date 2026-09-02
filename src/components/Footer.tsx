@@ -1,6 +1,6 @@
 import Link from "next/link";
-import styles from "./Footer.module.css";
 import { LogoMark } from "./Navbar";
+import styles from "./Footer.module.css";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,25 +11,34 @@ export default function Footer() {
         <div className={styles.grid}>
           {/* Brand Info Column */}
           <div className={styles.brandCol}>
-            <div className={styles.logoArea}>
-              <LogoMark size={30} />
-              <span className={styles.logoText}>Adorca<span className={styles.logoTextHighlight}>360</span></span>
-            </div>
+            <Link href="/" className={styles.logoArea}>
+              <LogoMark size={32} />
+              <span className={styles.logoText}>
+                Adorca<span className={styles.logoTextHighlight}>360</span>
+              </span>
+            </Link>
             <p className={styles.tagline}>
-              Adorca360 drives measurable growth for brands in 50+ markets — from organic search and programmatic to affiliate and app monetisation.
+              Adorca 360 is a performance growth and search marketing studio. We engineer high-velocity organic search, programmatic bidding, and localized digital funnels across 50+ international markets.
             </p>
+            <div className={styles.contactEmailBox}>
+              <span className={styles.contactEmailLabel}>Inquiries &amp; Strategy:</span>
+              <a href="mailto:contact@adorca360.com" className={styles.contactEmail}>
+                contact@adorca360.com
+              </a>
+            </div>
           </div>
 
-          {/* Quick Links Column */}
+          {/* Navigation Column */}
           <div className={styles.linksCol}>
-            <h4 className={styles.colTitle}>Company</h4>
+            <h4 className={styles.colTitle}>Platform</h4>
             <ul className={styles.linksList}>
-              <li className={styles.linkItem}><Link href="/#about">About Us</Link></li>
-              <li className={styles.linkItem}><Link href="/#service">Our Services</Link></li>
-              <li className={styles.linkItem}><Link href="/case-studies">Case Studies</Link></li>
-              <li className={styles.linkItem}><Link href="/#testimonials">Testimonials</Link></li>
-              <li className={styles.linkItem}><Link href="/blog">News &amp; Blogs</Link></li>
-              <li className={styles.linkItem}><Link href="/#contact">Contact</Link></li>
+              <li className={styles.linkItem}><Link href="/#work">Featured Work</Link></li>
+              <li className={styles.linkItem}><Link href="/#services">Service Pillars</Link></li>
+              <li className={styles.linkItem}><Link href="/#growth-system">Growth System</Link></li>
+              <li className={styles.linkItem}><Link href="/#approach">Approach</Link></li>
+              <li className={styles.linkItem}><Link href="/#opportunity-tool">Growth Diagnostic</Link></li>
+              <li className={styles.linkItem}><Link href="/#insights">News &amp; Insights</Link></li>
+              <li className={styles.linkItem}><Link href="/#about">About Adorca</Link></li>
             </ul>
           </div>
 
@@ -37,12 +46,12 @@ export default function Footer() {
           <div className={styles.linksCol}>
             <h4 className={styles.colTitle}>Services</h4>
             <ul className={styles.linksList}>
-              <li className={styles.linkItem}><Link href="/#service-growth">Global Growth Marketing</Link></li>
-              <li className={styles.linkItem}><Link href="/#service-webdev">Website Designing</Link></li>
-              <li className={styles.linkItem}><Link href="/#service-programmatic">Programmatic Ads</Link></li>
-              <li className={styles.linkItem}><Link href="/#service-leadgen">Lead Generation</Link></li>
-              <li className={styles.linkItem}><Link href="/#service-smm">Social Media Growth</Link></li>
-              <li className={styles.linkItem}><Link href="/#service-boosters">App &amp; Revenue Boosters</Link></li>
+              <li className={styles.linkItem}><Link href="/#services">Global Growth Marketing</Link></li>
+              <li className={styles.linkItem}><Link href="/#services">Technical SEO &amp; Indexing</Link></li>
+              <li className={styles.linkItem}><Link href="/#services">Programmatic Advertising</Link></li>
+              <li className={styles.linkItem}><Link href="/#services">Lead Generation Pipelines</Link></li>
+              <li className={styles.linkItem}><Link href="/#services">Website Design &amp; Dev</Link></li>
+              <li className={styles.linkItem}><Link href="/#services">App Store Optimization</Link></li>
             </ul>
           </div>
         </div>
@@ -50,8 +59,13 @@ export default function Footer() {
         {/* Bottom copyright area */}
         <div className={styles.bottomBar}>
           <span className={styles.copyright}>
-            &copy; {currentYear} Adorca360. All rights reserved.
+            &copy; {currentYear} Adorca 360. All rights reserved. 100% Attribution Transparency.
           </span>
+          <div className={styles.legalLinks}>
+            <a href="#about" className={styles.legalLink}>Operating Model</a>
+            <span className={styles.legalDot}>&bull;</span>
+            <a href="mailto:contact@adorca360.com" className={styles.legalLink}>Contact Us</a>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,60 +1,60 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import ClientLogos from "@/components/ClientLogos";
-import Endorsements from "@/components/Endorsements";
+import ProofStrip from "@/components/ProofStrip";
+import GrowthSystem from "@/components/GrowthSystem";
 import Services from "@/components/Services";
-import BoostTraffic from "@/components/BoostTraffic";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import CaseStudies from "@/components/CaseStudies";
-import Testimonials from "@/components/Testimonials";
+import FeaturedWork from "@/components/FeaturedWork";
+import Approach from "@/components/Approach";
+import GrowthOpportunityTool from "@/components/GrowthOpportunityTool";
+import AboutSection from "@/components/AboutSection";
 import Blog from "@/components/Blog";
 import FAQ from "@/components/FAQ";
-import ConsultationForm from "@/components/ConsultationForm";
+import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <>
-      {/* Navigation Header */}
+      {/* Sticky Navigation Header with 3-Pillar Mega Menu */}
       <Navbar />
 
-      {/* Main Content Area: Styled as a canvas holding floating card sections */}
+      {/* Main Content Canvas with Floating & Dark Cinematic Sections */}
       <main className="pageCanvas" style={{ flex: 1 }}>
-        {/* Hero Section */}
+        {/* Section 01: Hero with Growth Intelligence Orbit Dashboard */}
         <Hero />
 
-        {/* Trusted by client logos trust bar */}
-        <ClientLogos />
+        {/* Section 02: Verified Proof Strip & Direct Partner Networks */}
+        <ProofStrip />
 
-        {/* Brand Endorsements Tilted Cards Row */}
-        <Endorsements />
+        {/* Section 03: Dark Cinematic Growth System Interactive Pipeline */}
+        <GrowthSystem />
 
-        {/* Exclusive Services Grid Section */}
+        {/* Section 04: 3-Pillar Service Explorer (Acquire, Amplify, Convert) */}
         <Services />
 
-        {/* Boost Traffic Feature Section */}
-        <BoostTraffic />
+        {/* Section 05: Verified Case Studies & Editorial Results Storytelling */}
+        <FeaturedWork />
 
-        {/* Why Choose Us & Stats Block */}
-        <WhyChooseUs />
+        {/* Section 06: 4-Step Execution Methodology (From Strategy To Scale) */}
+        <Approach />
 
-        {/* Case Studies / Client Results Section */}
-        <CaseStudies />
+        {/* Section 07: Interactive Growth Opportunity Diagnostic Tool */}
+        <GrowthOpportunityTool />
 
-        {/* Testimonials Carousel Section */}
-        <Testimonials />
+        {/* Section 08: Operating Principles & Narrative (Built For Ambitious Growth) */}
+        <AboutSection />
 
-        {/* News & Blogs Section */}
+        {/* Section 09: Strategic Intelligence & Editorial Articles */}
         <Blog />
 
-        {/* Frequently Asked Questions Section */}
+        {/* Section 10: Frequently Asked Questions Accordion */}
         <FAQ />
 
-        {/* SEO Consultation & Contact Section */}
-        <ConsultationForm />
+        {/* Section 11: Final Cinematic Call to Action */}
+        <FinalCTA />
       </main>
 
-      {/* Site Footer */}
+      {/* Verified Footer */}
       <Footer />
     </>
   );

@@ -1,94 +1,156 @@
 .footer {
   background-color: var(--bg-card);
-  border-top: 1px solid var(--border-color);
-  padding: 80px 0 40px;
-  position: relative;
-  z-index: 10;
-  transition: background-color 0.4s ease;
+  border-top: 1px solid var(--border);
+  padding: 64px 0 32px 0;
+  margin-top: 20px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 60px;
-  margin-bottom: 60px;
-}
-
-@media (max-width: 768px) {
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
 }
 
 .brandCol {
   display: flex;
   flex-direction: column;
+  gap: 16px;
+  max-width: 440px;
 }
 
 .logoArea {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
+  gap: 10px;
+  text-decoration: none;
 }
 
 .logoText {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   letter-spacing: -0.03em;
   color: var(--text-primary);
 }
 
 .logoTextHighlight {
-  color: var(--accent-primary);
+  color: var(--blue);
 }
 
 .tagline {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   line-height: 1.6;
-  max-width: 320px;
+  color: var(--text-secondary);
+}
+
+.contactEmailBox {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 6px;
+}
+
+.contactEmailLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.contactEmail {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.contactEmail:hover {
+  text-decoration: underline;
+}
+
+/* Links Columns */
+.linksCol {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .colTitle {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 24px;
-  color: var(--text-primary);
   font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-primary);
 }
 
 .linksList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .linkItem a {
+  font-size: 0.88rem;
   color: var(--text-secondary);
-  font-size: 0.9rem;
-  display: inline-block;
+  transition: var(--transition-smooth);
 }
 
 .linkItem a:hover {
-  color: var(--accent-primary);
-  transform: translateX(4px);
+  color: var(--blue);
+  transform: translateX(2px);
 }
 
 /* Bottom Bar */
 .bottomBar {
-  border-top: 1px solid var(--border-color);
-  padding-top: 30px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-light);
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .copyright {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
-  text-align: center;
+}
+
+.legalLinks {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legalLink {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.legalLink:hover {
+  color: var(--blue);
+}
+
+.legalDot {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+/* ─────────────────────────────────────────────
+   Responsive
+   ───────────────────────────────────────────── */
+@media (max-width: 850px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
