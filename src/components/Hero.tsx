@@ -15,6 +15,7 @@ interface OrbitChannel {
   cx: number;
   cy: number;
   icon: React.ReactNode;
+  sparkline: string;
 }
 
 const CHANNELS: OrbitChannel[] = [
@@ -26,6 +27,7 @@ const CHANNELS: OrbitChannel[] = [
     desc: "Technical crawl optimization, semantic clusters, and server-side hreflang tagging.",
     cx: 80,
     cy: 95,
+    sparkline: "M 0 35 Q 30 30, 60 22 T 120 12 T 180 4",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="11" cy="11" r="8" />
@@ -41,6 +43,7 @@ const CHANNELS: OrbitChannel[] = [
     desc: "High-conversion landing architectures and verified multi-channel capture funnels.",
     cx: 340,
     cy: 85,
+    sparkline: "M 0 32 Q 40 28, 80 18 T 140 10 T 180 2",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -58,6 +61,7 @@ const CHANNELS: OrbitChannel[] = [
     desc: "Localized native search extraction across European, Americas, and APAC markets.",
     cx: 355,
     cy: 280,
+    sparkline: "M 0 30 Q 45 25, 90 20 T 135 14 T 180 6",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10" />
@@ -74,6 +78,7 @@ const CHANNELS: OrbitChannel[] = [
     desc: "Algorithmic real-time bid optimization across premier inventory networks.",
     cx: 85,
     cy: 290,
+    sparkline: "M 0 5 Q 35 12, 70 20 T 130 28 T 180 34",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
@@ -89,6 +94,7 @@ const CHANNELS: OrbitChannel[] = [
     desc: "High-performance Next.js web systems and privacy-compliant first-party attribution.",
     cx: 210,
     cy: 350,
+    sparkline: "M 0 36 Q 30 25, 75 16 T 135 8 T 180 2",
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
@@ -104,23 +110,23 @@ export default function Hero() {
   return (
     <section className={`floatingCardSection ${styles.heroSection}`} ref={revealRef}>
       <div className={styles.grid}>
-        {/* Left Column: Editorial Headline & Value Proposition */}
+        {/* Left Column: Editorial Headline & Staggered Content Sequence */}
         <div className={`${styles.contentCol} ${isVisible ? styles.visible : ""}`}>
-          <div className={styles.badgeRow}>
+          <div className={`${styles.badgeRow} ${styles.stagger1}`}>
             <span className="badge">Performance Growth Studio</span>
             <span className={styles.regionPill}>50+ Markets Supported</span>
           </div>
 
-          <h1 className={styles.heroTitle}>
+          <h1 className={`${styles.heroTitle} ${styles.stagger2}`}>
             Turn Search Into <br />
             <span className={styles.highlightText}>Sustainable Growth.</span>
           </h1>
 
-          <p className={styles.heroDesc}>
+          <p className={`${styles.heroDesc} ${styles.stagger3}`}>
             We combine technical SEO, programmatic media, content architecture, and international market intelligence to help ambitious brands acquire high-value customers across 50+ markets.
           </p>
 
-          <div className={styles.ctaGroup}>
+          <div className={`${styles.ctaGroup} ${styles.stagger4}`}>
             <Link href="/#opportunity-tool" className="btn btn-primary">
               Build My Growth Plan
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -134,7 +140,7 @@ export default function Hero() {
           </div>
 
           {/* Quick Metrics Bar */}
-          <div className={styles.trustRow}>
+          <div className={`${styles.trustRow} ${styles.stagger5}`}>
             <div className={styles.trustItem}>
               <span className={styles.trustVal}>12+</span>
               <span className={styles.trustLabel}>Years Experience</span>
@@ -222,14 +228,28 @@ export default function Hero() {
               })}
             </div>
 
-            {/* Active Channel Live KPI Card */}
+            {/* Active Channel Live KPI Card with Trend Sparkline */}
             <div className={styles.activeKpiBox}>
               <div className={styles.kpiHeader}>
                 <span className={styles.kpiTag}>{activeChannel.label}</span>
                 <span className={styles.kpiMetric}>{activeChannel.metric}</span>
               </div>
-              <p className={styles.kpiLabel}>{activeChannel.metricLabel}</p>
-              <p className={styles.kpiDesc}>{activeChannel.desc}</p>
+              <div className={styles.kpiContentRow}>
+                <div className={styles.kpiTextGroup}>
+                  <p className={styles.kpiLabel}>{activeChannel.metricLabel}</p>
+                  <p className={styles.kpiDesc}>{activeChannel.desc}</p>
+                </div>
+                <div className={styles.kpiSparklineBox} aria-hidden="true">
+                  <svg viewBox="0 0 180 40" className={styles.sparklineSvg} fill="none">
+                    <path
+                      d={activeChannel.sparkline}
+                      stroke="var(--lime)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
         </div>

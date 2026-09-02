@@ -17,6 +17,27 @@
   gap: 20px;
 }
 
+/* Staggered Sequence */
+.stagger1 {
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.stagger2 {
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+.stagger3 {
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.stagger4 {
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+}
+
+.stagger5 {
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+}
+
 .badgeRow {
   display: flex;
   align-items: center;
@@ -274,17 +295,41 @@
   letter-spacing: -0.02em;
 }
 
+.kpiContentRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.kpiTextGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
 .kpiLabel {
   font-size: 0.88rem;
   font-weight: 600;
   color: var(--navy-text);
-  margin-bottom: 4px;
 }
 
 .kpiDesc {
   font-size: 0.78rem;
   color: var(--navy-text-muted);
   line-height: 1.4;
+}
+
+.kpiSparklineBox {
+  width: 90px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.sparklineSvg {
+  width: 100%;
+  height: 100%;
 }
 
 /* ─────────────────────────────────────────────
@@ -328,6 +373,15 @@
     padding: 4px 8px;
     font-size: 0.72rem;
   }
+
+  .kpiContentRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .kpiSparklineBox {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -338,5 +392,9 @@
   .channelChip {
     transition: none !important;
     transform: translate(-50%, -50%) !important;
+  }
+
+  .stagger1, .stagger2, .stagger3, .stagger4, .stagger5 {
+    transition: none !important;
   }
 }
