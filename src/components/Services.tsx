@@ -32,11 +32,6 @@ const SERVICE_PILLARS: ServicePillar[] = [
     color: "var(--blue)",
     capabilities: [
       {
-        title: "Global Growth Marketing",
-        desc: "Scale your footprint across 50+ international markets with localized regional bidding and multilingual search architectures.",
-        deliverables: ["Cross-Border Strategy", "International SEO", "Regional Intent Mapping"],
-      },
-      {
         title: "Technical SEO & Indexing",
         desc: "Restructure crawl efficiency, resolve hreflang conflicts, and guarantee Core Web Vitals excellence to dominate top search positions.",
         deliverables: ["Architecture Audits", "Hreflang Configuration", "Core Web Vitals Sprint"],
@@ -50,6 +45,11 @@ const SERVICE_PILLARS: ServicePillar[] = [
         title: "Programmatic Advertising",
         desc: "Target the exact audience segments at scale using automated, algorithmic real-time bid optimization on top ad networks.",
         deliverables: ["Real-Time Bidding", "High-ROAS Allocation", "Audience Retargeting"],
+      },
+      {
+        title: "Global Growth Marketing",
+        desc: "Scale your footprint across 50+ international markets with localized regional bidding and multilingual search architectures.",
+        deliverables: ["Cross-Border Strategy", "International SEO", "Regional Intent Mapping"],
       },
     ],
   },
@@ -73,7 +73,7 @@ const SERVICE_PILLARS: ServicePillar[] = [
         deliverables: ["Community Architecture", "Content Distribution", "Organic Engagement"],
       },
       {
-        title: "Social Influence Marketing",
+        title: "Influencer & Creator Marketing",
         desc: "Partner with premier creators and industry voices to amplify your brand message, build trust, and generate direct referral sales.",
         deliverables: ["Creator Network Outreach", "Attribution Tracking", "Sponsored Campaigns"],
       },
@@ -144,6 +144,26 @@ export default function Services() {
         })}
       </div>
 
+      {/* Editorial Overview Panel for Active Pillar */}
+      <div className={styles.pillarOverview}>
+        <div className={styles.overviewText}>
+          <div className={styles.overviewBadge}>
+            <span className={styles.overviewNum}>Pillar {activePillar.pillarNum}</span>
+            <span className={styles.overviewTitle}>{activePillar.subtitle}</span>
+          </div>
+          <p className={styles.overviewSummary}>{activePillar.summary}</p>
+        </div>
+        <div className={styles.overviewCta}>
+          <Link href="/#opportunity-tool" className="btn btn-primary">
+            Scope {activePillar.title} Strategy
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </Link>
+        </div>
+      </div>
+
       {/* Active Pillar Capabilities Grid */}
       <div
         id={`pillar-panel-${activePillar.id}`}
@@ -177,7 +197,6 @@ export default function Services() {
                 </svg>
               </Link>
             </div>
-
           </div>
         ))}
       </div>
