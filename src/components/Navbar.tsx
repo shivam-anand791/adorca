@@ -214,12 +214,33 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll and listen for Escape key when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          setMenuOpen(false);
+          setServicesOpen(false);
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+      return () => {
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [menuOpen]);
+
   const toggleTheme = () => {
     const nextTheme = theme === "light" ? "dark" : "light";
     setTheme(nextTheme);
     document.documentElement.setAttribute("data-theme", nextTheme);
     localStorage.setItem("theme", nextTheme);
   };
+
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -262,8 +283,18 @@ export default function Navbar() {
             <span></span>
           </button>
 
+          {/* Mobile Overlay */}
+          {menuOpen && (
+            <div
+              className={styles.mobileOverlay}
+              onClick={handleLinkClick}
+              aria-hidden="true"
+            />
+          )}
+
           {/* Navigation Links */}
           <nav className={`${styles.navMenu} ${menuOpen ? styles.navMenuOpen : ""}`} aria-label="Main Navigation">
+
             <li className={styles.navItem}>
               <Link href="/#work" className={styles.navLink} onClick={handleLinkClick}>
                 Work
