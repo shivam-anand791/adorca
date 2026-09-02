@@ -69,7 +69,7 @@ const megaCategories: MegaCategory[] = [
         label: "Global Growth Marketing",
         desc: "Cross-border search dominance in 50+ regions",
         icon: (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="10" />
             <line x1="2" y1="12" x2="22" y2="12" />
             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
@@ -81,7 +81,7 @@ const megaCategories: MegaCategory[] = [
         label: "Technical SEO & Indexing",
         desc: "Architecture, crawl efficiency & Core Web Vitals",
         icon: (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
           </svg>
         ),
@@ -91,7 +91,7 @@ const megaCategories: MegaCategory[] = [
         label: "Programmatic Advertising",
         desc: "Algorithmic real-time bidding & inventory routing",
         icon: (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <rect x="2" y="2" width="20" height="8" rx="2" />
             <rect x="2" y="14" width="20" height="8" rx="2" />
             <line x1="6" y1="6" x2="6.01" y2="6" />
@@ -101,14 +101,13 @@ const megaCategories: MegaCategory[] = [
       },
       {
         href: "/#services",
-        label: "Lead Generation",
-        desc: "High-intent prospect acquisition pipelines",
+        label: "Lead Generation Pipelines",
+        desc: "High-intent customer acquisition & capture funnels",
         icon: (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-            <circle cx="9" cy="7" r="4" />
-            <line x1="19" y1="8" x2="19" y2="14" />
-            <line x1="22" y1="11" x2="16" y2="11" />
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="8.5" cy="7" r="4" />
+            <polyline points="17 11 19 13 23 9" />
           </svg>
         ),
       },
@@ -121,33 +120,35 @@ const megaCategories: MegaCategory[] = [
       {
         href: "/#services",
         label: "Digital Marketing Strategy",
-        desc: "Data-driven multi-channel growth consulting",
+        desc: "Full-funnel consulting & data-driven ROI roadmaps",
         icon: (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="18" y1="20" x2="18" y2="10" />
-            <line x1="12" y1="20" x2="12" y2="4" />
-            <line x1="6" y1="20" x2="6" y2="14" />
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polygon points="12 2 2 7 12 12 22 7 12 2" />
+            <polyline points="2 17 12 22 22 17" />
+            <polyline points="2 12 12 17 22 12" />
           </svg>
         ),
       },
       {
         href: "/#services",
-        label: "Social Media Growth",
-        desc: "Brand authority & engaged community expansion",
+        label: "Social Media Marketing",
+        desc: "Digital community architecture & organic reach",
         icon: (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M17 2H7C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4z" />
-            <path d="M8 12h8M8 8h8M8 16h5" />
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
           </svg>
         ),
       },
       {
         href: "/#services",
-        label: "Social Influence Marketing",
-        desc: "Targeted creator partnerships with verified ROI",
+        label: "Influencer & Creator Marketing",
+        desc: "Vetted creator partnerships driving referral revenue",
         icon: (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
           </svg>
         ),
       },
@@ -160,33 +161,34 @@ const megaCategories: MegaCategory[] = [
       {
         href: "/#services",
         label: "Website Design & Development",
-        desc: "High-performance, Next.js conversion platforms",
+        desc: "High-performance Next.js web applications",
         icon: (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2" />
-            <path d="M3 9h18M9 21V9" />
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <polyline points="16 18 22 12 16 6" />
+            <polyline points="8 6 2 12 8 18" />
           </svg>
         ),
       },
       {
         href: "/#services",
         label: "App & Revenue Boosters",
-        desc: "ASO keyword velocity & category ranking pushes",
+        desc: "App Store Optimization (ASO) & category rank",
         icon: (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="5" y="2" width="14" height="20" rx="2" />
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
             <line x1="12" y1="18" x2="12.01" y2="18" />
           </svg>
         ),
       },
       {
         href: "/#services",
-        label: "Conversion Optimization",
-        desc: "Landing page experiments & multi-touch tuning",
+        label: "Conversion Rate Optimization",
+        desc: "Systematic user journey audits & A/B testing",
         icon: (
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
-            <polyline points="17 6 23 6 23 12" />
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
           </svg>
         ),
       },
@@ -241,7 +243,6 @@ export default function Navbar() {
     localStorage.setItem("theme", nextTheme);
   };
 
-
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
     if (menuOpen) setServicesOpen(false);
@@ -264,7 +265,7 @@ export default function Navbar() {
       <div className="container">
         <div className={styles.navContainer}>
           {/* Brand Logo */}
-          <Link href="/" className={styles.logoArea} onClick={handleLinkClick}>
+          <Link href="/" className={styles.logoArea} onClick={handleLinkClick} aria-label="Adorca 360 Home">
             <LogoMark size={36} />
             <span className={styles.logoText}>
               Adorca<span className={styles.logoTextHighlight}>360</span>
@@ -273,6 +274,7 @@ export default function Navbar() {
 
           {/* Hamburger Menu Button (Mobile) */}
           <button
+            type="button"
             className={`${styles.hamburger} ${menuOpen ? styles.hamburgerOpen : ""}`}
             onClick={toggleMenu}
             aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -294,88 +296,89 @@ export default function Navbar() {
 
           {/* Navigation Links */}
           <nav className={`${styles.navMenu} ${menuOpen ? styles.navMenuOpen : ""}`} aria-label="Main Navigation">
+            <ul className={styles.navList}>
+              <li className={styles.navItem}>
+                <Link href="/#work" className={styles.navLink} onClick={handleLinkClick}>
+                  Work
+                </Link>
+              </li>
 
-            <li className={styles.navItem}>
-              <Link href="/#work" className={styles.navLink} onClick={handleLinkClick}>
-                Work
-              </Link>
-            </li>
+              {/* Services 3-Pillar Mega Menu */}
+              <li className={`${styles.navItem} ${styles.hasMega}`}>
+                <Link
+                  href="/#services"
+                  className={styles.navLink}
+                  onClick={toggleServices}
+                  aria-expanded={servicesOpen}
+                >
+                  Services
+                  <svg className={`${styles.arrowIcon} ${servicesOpen ? styles.arrowOpen : ""}`} width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
 
-            {/* Services 3-Pillar Mega Menu */}
-            <li className={`${styles.navItem} ${styles.hasMega}`}>
-              <Link
-                href="/#services"
-                className={styles.navLink}
-                onClick={toggleServices}
-                aria-expanded={servicesOpen}
-              >
-                Services
-                <svg className={`${styles.arrowIcon} ${servicesOpen ? styles.arrowOpen : ""}`} width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
-                  <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
-
-              {/* Mega Dropdown */}
-              <div className={`${styles.megaMenu} ${servicesOpen ? styles.megaMenuOpen : ""}`}>
-                <div className={styles.megaGrid}>
-                  {megaCategories.map((cat) => (
-                    <div key={cat.title} className={styles.megaCategory}>
-                      <div className={styles.categoryHeader}>
-                        <span className={styles.pillarBadge}>{cat.pillarNum}</span>
-                        <span className={styles.megaCategoryTitle}>{cat.title}</span>
+                {/* Mega Dropdown */}
+                <div className={`${styles.megaMenu} ${servicesOpen ? styles.megaMenuOpen : ""}`}>
+                  <div className={styles.megaGrid}>
+                    {megaCategories.map((cat) => (
+                      <div key={cat.title} className={styles.megaCategory}>
+                        <div className={styles.categoryHeader}>
+                          <span className={styles.pillarBadge}>{cat.pillarNum}</span>
+                          <span className={styles.megaCategoryTitle}>{cat.title}</span>
+                        </div>
+                        <ul className={styles.megaList}>
+                          {cat.items.map((item) => (
+                            <li key={item.label}>
+                              <Link href={item.href} className={styles.megaItem} onClick={handleLinkClick}>
+                                <span className={styles.megaIcon}>{item.icon}</span>
+                                <span className={styles.megaText}>
+                                  <span className={styles.megaLabel}>{item.label}</span>
+                                  <span className={styles.megaDesc}>{item.desc}</span>
+                                </span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      <ul className={styles.megaList}>
-                        {cat.items.map((item) => (
-                          <li key={item.label}>
-                            <Link href={item.href} className={styles.megaItem} onClick={handleLinkClick}>
-                              <span className={styles.megaIcon}>{item.icon}</span>
-                              <span className={styles.megaText}>
-                                <span className={styles.megaLabel}>{item.label}</span>
-                                <span className={styles.megaDesc}>{item.desc}</span>
-                              </span>
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </li>
+              </li>
 
-            <li className={styles.navItem}>
-              <Link href="/#growth-system" className={styles.navLink} onClick={handleLinkClick}>
-                Growth System
-              </Link>
-            </li>
+              <li className={styles.navItem}>
+                <Link href="/#growth-system" className={styles.navLink} onClick={handleLinkClick}>
+                  Growth System
+                </Link>
+              </li>
 
-            <li className={styles.navItem}>
-              <Link href="/#approach" className={styles.navLink} onClick={handleLinkClick}>
-                Approach
-              </Link>
-            </li>
+              <li className={styles.navItem}>
+                <Link href="/#approach" className={styles.navLink} onClick={handleLinkClick}>
+                  Approach
+                </Link>
+              </li>
 
-            <li className={styles.navItem}>
-              <Link href="/#opportunity-tool" className={styles.navLink} onClick={handleLinkClick}>
-                Opportunity Tool
-              </Link>
-            </li>
+              <li className={styles.navItem}>
+                <Link href="/#opportunity-tool" className={styles.navLink} onClick={handleLinkClick}>
+                  Opportunity Tool
+                </Link>
+              </li>
 
-            <li className={styles.navItem}>
-              <Link href="/#insights" className={styles.navLink} onClick={handleLinkClick}>
-                Insights
-              </Link>
-            </li>
+              <li className={styles.navItem}>
+                <Link href="/blog" className={styles.navLink} onClick={handleLinkClick}>
+                  Insights
+                </Link>
+              </li>
 
-            <li className={styles.navItem}>
-              <Link href="/#about" className={styles.navLink} onClick={handleLinkClick}>
-                About
-              </Link>
-            </li>
+              <li className={styles.navItem}>
+                <Link href="/#about" className={styles.navLink} onClick={handleLinkClick}>
+                  About
+                </Link>
+              </li>
+            </ul>
 
             {/* Mobile Actions Drawer */}
             <div className={styles.actionsMobile}>
-              <button className="btn btn-secondary" onClick={toggleTheme} style={{ width: "100%" }}>
+              <button type="button" className="btn btn-secondary" onClick={toggleTheme} style={{ width: "100%" }}>
                 {theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
               </button>
               <Link href="/#opportunity-tool" className="btn btn-primary" onClick={handleLinkClick} style={{ width: "100%" }}>
@@ -387,6 +390,7 @@ export default function Navbar() {
           {/* Desktop Right Actions */}
           <div className={styles.actions}>
             <button
+              type="button"
               className={styles.themeToggle}
               onClick={toggleTheme}
               aria-label={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
@@ -410,12 +414,10 @@ export default function Navbar() {
               )}
             </button>
 
-            {/* Single Primary Conversion Button */}
-            <Link href="/#opportunity-tool" className="btn btn-primary" style={{ padding: "9px 20px", fontSize: "0.88rem" }}>
+            <Link href="/#opportunity-tool" className="btn btn-primary" style={{ padding: "10px 22px", fontSize: "0.88rem" }}>
               Talk to a Strategist
             </Link>
           </div>
-
         </div>
       </div>
     </header>

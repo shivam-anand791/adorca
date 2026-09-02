@@ -317,7 +317,6 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   line-height: 1.6;
 }
 
-/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -331,6 +330,15 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
   font-family: var(--font-display);
   gap: 10px;
   white-space: nowrap;
+}
+
+.btn svg {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn:hover svg,
+.btn:focus-visible svg {
+  transform: translateX(3px);
 }
 
 .btn-primary {

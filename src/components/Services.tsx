@@ -124,17 +124,31 @@ export default function Services() {
 
       {/* Pillar Selection Tabs */}
       <div className={styles.pillarTabs} role="tablist" aria-label="Service Pillars">
-        {SERVICE_PILLARS.map((p) => {
+        {SERVICE_PILLARS.map((p, idx) => {
           const isActive = p.id === activePillar.id;
           return (
             <button
               key={p.id}
+              type="button"
               role="tab"
               aria-selected={isActive}
               aria-controls={`pillar-panel-${p.id}`}
               id={`pillar-tab-${p.id}`}
               className={`${styles.pillarTab} ${isActive ? styles.pillarTabActive : ""}`}
               onClick={() => setActivePillar(p)}
+              onKeyDown={(e) => {
+                if (e.key === "ArrowRight") {
+                  e.preventDefault();
+                  const nextIdx = (idx + 1) % SERVICE_PILLARS.length;
+                  setActivePillar(SERVICE_PILLARS[nextIdx]);
+                  document.getElementById(`pillar-tab-${SERVICE_PILLARS[nextIdx].id}`)?.focus();
+                } else if (e.key === "ArrowLeft") {
+                  e.preventDefault();
+                  const prevIdx = (idx - 1 + SERVICE_PILLARS.length) % SERVICE_PILLARS.length;
+                  setActivePillar(SERVICE_PILLARS[prevIdx]);
+                  document.getElementById(`pillar-tab-${SERVICE_PILLARS[prevIdx].id}`)?.focus();
+                }
+              }}
             >
               <span className={styles.tabNum}>{p.pillarNum}</span>
               <span className={styles.tabTitle}>{p.title}</span>

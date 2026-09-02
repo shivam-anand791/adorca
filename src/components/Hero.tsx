@@ -108,7 +108,7 @@ export default function Hero() {
   const [activeChannel, setActiveChannel] = useState<OrbitChannel>(CHANNELS[0]);
 
   return (
-    <section className={`floatingCardSection ${styles.heroSection}`} ref={revealRef}>
+    <section className={`floatingCardSection ${styles.heroSection}`} ref={revealRef} aria-label="Hero Introduction">
       <div className={styles.grid}>
         {/* Left Column: Editorial Headline & Staggered Content Sequence */}
         <div className={`${styles.contentCol} ${isVisible ? styles.visible : ""}`}>
@@ -128,18 +128,18 @@ export default function Hero() {
 
           <div className={`${styles.ctaGroup} ${styles.stagger4}`}>
             <Link href="/#opportunity-tool" className="btn btn-primary">
-              Build My Growth Plan
+              Launch Diagnostic Tool
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <line x1="5" y1="12" x2="19" y2="12" />
                 <polyline points="12 5 19 12 12 19" />
               </svg>
             </Link>
-            <Link href="/#work" className="btn btn-secondary">
+            <Link href="/case-studies" className="btn btn-secondary">
               Explore Our Work
             </Link>
           </div>
 
-          {/* Quick Metrics Bar */}
+          {/* Trust Layer Strip */}
           <div className={`${styles.trustRow} ${styles.stagger5}`}>
             <div className={styles.trustItem}>
               <span className={styles.trustVal}>12+</span>
@@ -163,14 +163,14 @@ export default function Hero() {
           <div className={styles.dashboardCard} aria-label="Adorca Growth Orbit Intelligence Dashboard">
             {/* Window Top Bar */}
             <div className={styles.dashboardHeader}>
-              <div className={styles.headerDots}>
+              <div className={styles.headerDots} aria-hidden="true">
                 <span className={styles.dot} />
                 <span className={styles.dot} />
                 <span className={styles.dot} />
               </div>
               <span className={styles.dashboardTitle}>Growth Orbit Intelligence</span>
               <span className={styles.liveIndicator}>
-                <span className={styles.pulseDot} /> Live
+                <span className={styles.pulseDot} aria-hidden="true" /> Live
               </span>
             </div>
 
@@ -178,8 +178,8 @@ export default function Hero() {
             <div className={styles.orbitCanvas}>
               <svg className={styles.orbitSvg} viewBox="0 0 420 380" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 {/* Orbital Paths */}
-                <ellipse cx="210" cy="190" rx="170" ry="120" stroke="var(--blue)" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="4 4" />
-                <ellipse cx="210" cy="190" rx="110" ry="80" stroke="var(--lime)" strokeWidth="1.2" strokeOpacity="0.3" />
+                <ellipse cx="210" cy="190" rx="170" ry="120" stroke="var(--blue)" strokeWidth="1" strokeOpacity="0.2" strokeDasharray="4 4" className={styles.orbitOuterRing} />
+                <ellipse cx="210" cy="190" rx="110" ry="80" stroke="var(--lime)" strokeWidth="1.2" strokeOpacity="0.3" className={styles.orbitInnerRing} />
 
                 {/* Dynamic Connection Lines from Hub to Active Node */}
                 {CHANNELS.map((ch) => {
@@ -195,6 +195,7 @@ export default function Hero() {
                       strokeWidth={isActive ? "2" : "1"}
                       strokeOpacity={isActive ? "0.85" : "0.15"}
                       strokeDasharray={isActive ? "none" : "2 2"}
+                      className={isActive ? styles.activeBeam : styles.idleBeam}
                     />
                   );
                 })}
@@ -219,7 +220,7 @@ export default function Hero() {
                     style={{ left: `${(ch.cx / 420) * 100}%`, top: `${(ch.cy / 380) * 100}%` }}
                     onClick={() => setActiveChannel(ch)}
                     onMouseEnter={() => setActiveChannel(ch)}
-                    aria-label={`Inspect ${ch.label} metrics`}
+                    aria-label={`Inspect ${ch.label} metrics: ${ch.metric}`}
                   >
                     <span className={styles.chipIcon}>{ch.icon}</span>
                     <span className={styles.chipText}>{ch.label}</span>
@@ -242,10 +243,12 @@ export default function Hero() {
                 <div className={styles.kpiSparklineBox} aria-hidden="true">
                   <svg viewBox="0 0 180 40" className={styles.sparklineSvg} fill="none">
                     <path
+                      key={activeChannel.id}
                       d={activeChannel.sparkline}
                       stroke="var(--lime)"
                       strokeWidth="2.5"
                       strokeLinecap="round"
+                      className={styles.sparklinePath}
                     />
                   </svg>
                 </div>

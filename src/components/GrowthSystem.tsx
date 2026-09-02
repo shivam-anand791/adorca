@@ -162,12 +162,26 @@ export default function GrowthSystem() {
             return (
               <button
                 key={st.id}
+                type="button"
                 role="tab"
                 aria-selected={isActive}
                 aria-controls={`stage-panel-${st.id}`}
                 id={`stage-tab-${st.id}`}
                 className={`${styles.stepNode} ${isActive ? styles.stepNodeActive : ""}`}
                 onClick={() => setActiveStage(st)}
+                onKeyDown={(e) => {
+                  if (e.key === "ArrowRight") {
+                    e.preventDefault();
+                    const nextIdx = (idx + 1) % STAGES.length;
+                    setActiveStage(STAGES[nextIdx]);
+                    document.getElementById(`stage-tab-${STAGES[nextIdx].id}`)?.focus();
+                  } else if (e.key === "ArrowLeft") {
+                    e.preventDefault();
+                    const prevIdx = (idx - 1 + STAGES.length) % STAGES.length;
+                    setActiveStage(STAGES[prevIdx]);
+                    document.getElementById(`stage-tab-${STAGES[prevIdx].id}`)?.focus();
+                  }
+                }}
               >
                 <div className={styles.nodeTop}>
                   <span className={styles.stepNum}>{st.step}</span>

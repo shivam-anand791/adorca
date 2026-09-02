@@ -1,111 +1,525 @@
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 48px;
-  align-items: center;
-}
-
-.narrativeCol {
+.container {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 40px;
 }
 
-.title {
-  font-size: clamp(2.2rem, 3.5vw + 0.5rem, 3.2rem);
+.header {
+  max-width: 840px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mainHeading {
+  font-size: clamp(2.4rem, 4vw + 0.5rem, 3.8rem);
   font-weight: 800;
-  line-height: 1.12;
-  letter-spacing: -0.03em;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
   color: var(--text-primary);
 }
 
-.blueHighlight {
+.accentText {
   color: var(--blue);
+  background: linear-gradient(135deg, var(--blue) 0%, #3B82F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.desc {
-  font-size: 1.05rem;
+.leadNarrative {
+  font-size: 1.125rem;
   line-height: 1.65;
   color: var(--text-secondary);
 }
 
-.ctaRow {
-  margin-top: 8px;
+/* ─────────────────────────────────────────────
+   Workspace 2-Column Grid
+   ───────────────────────────────────────────── */
+.workspaceGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 36px;
+  align-items: start;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.workspaceGrid.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ─────────────────────────────────────────────
-   Principles 2x2 Grid
+   Left Column: Pillars Navigation & Detail Panel
    ───────────────────────────────────────────── */
-.principlesCol {
-  width: 100%;
-}
-
-.principlesGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.principleCard {
-  background-color: var(--bg-subtle);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 24px 20px;
+.pillarsCol {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  transition: var(--transition-smooth);
+  gap: 24px;
 }
 
-.principleCard:hover {
-  background-color: var(--bg-card);
+.pillarNav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.pillarTab {
+  appearance: none;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: inherit;
+}
+
+.pillarTab:hover {
+  background: var(--bg-card);
   border-color: var(--border-hover);
+  transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
+}
+
+.pillarTabActive {
+  background: var(--bg-card);
+  border-color: var(--blue);
+  box-shadow: 0 4px 20px rgba(22, 87, 255, 0.12);
   transform: translateY(-2px);
 }
 
-.iconBox {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
-  background-color: var(--blue-light);
+.tabHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.tabNum {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
   color: var(--blue);
+}
+
+.tabTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.tabStatBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: var(--blue-light);
+  color: var(--blue);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.tabSubtitle {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+/* ─────────────────────────────────────────────
+   Active Pillar Detail Card
+   ───────────────────────────────────────────── */
+.activePillarDetail {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 28px 24px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detailHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.detailTitleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.detailBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--blue);
+}
+
+.detailTitle {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.detailMetricBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.detailMetricVal {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--blue);
+  line-height: 1;
+}
+
+.detailMetricLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.detailSummary {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.checkIcon {
+  color: var(--blue);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.highlightText {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+
+.actionRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+/* ─────────────────────────────────────────────
+   Right Column: Growth Orbit Global Visual Card
+   ───────────────────────────────────────────── */
+.visualCol {
+  width: 100%;
+}
+
+.orbitCard {
+  background: var(--navy);
+  border: 1px solid var(--navy-border);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.orbitHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.windowControls {
+  display: flex;
+  gap: 6px;
+}
+
+.windowDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.orbitBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--navy-text);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.orbitStatusDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 10px var(--lime-glow);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.verifiedTag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--lime);
+  background: rgba(152, 242, 42, 0.12);
+  border: 1px solid rgba(152, 242, 42, 0.25);
+  padding: 3px 8px;
+  border-radius: var(--radius-pill);
+}
+
+/* ─────────────────────────────────────────────
+   Orbit Canvas & SVG Visual
+   ───────────────────────────────────────────── */
+.orbitCanvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 500 / 440;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.principleTitle {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  line-height: 1.3;
+.orbitSvg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
-.principleDesc {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: var(--text-muted);
+.orbitPath {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 1;
+  stroke-opacity: 0.25;
+  transition: all 0.4s ease;
+}
+
+.pathActive {
+  stroke: var(--lime);
+  stroke-width: 1.8;
+  stroke-opacity: 0.85;
+  filter: drop-shadow(0 0 6px rgba(152, 242, 42, 0.4));
+  animation: orbitRotate 30s linear infinite;
+  transform-origin: 250px 220px;
+}
+
+@keyframes orbitRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.networkBeam {
+  stroke: var(--blue);
+  stroke-width: 1;
+  stroke-opacity: 0.15;
+  stroke-dasharray: 2 4;
+  transition: all 0.4s ease;
+}
+
+.beamActive {
+  stroke: var(--lime);
+  stroke-width: 1.5;
+  stroke-opacity: 0.8;
+  stroke-dasharray: none;
+}
+
+.orbitNodeGroup {
+  transition: transform 0.3s ease;
+}
+
+.nodeBackdrop {
+  fill: rgba(22, 87, 255, 0.15);
+  stroke: rgba(22, 87, 255, 0.3);
+  stroke-width: 1;
+  transition: all 0.3s ease;
+}
+
+.nodeCore {
+  fill: var(--blue);
+  transition: all 0.3s ease;
+}
+
+.nodeLabel {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--navy-text-secondary);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+.nodeGroupActive .nodeBackdrop {
+  fill: rgba(152, 242, 42, 0.2);
+  stroke: var(--lime);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 8px rgba(152, 242, 42, 0.5));
+}
+
+.nodeGroupActive .nodeCore {
+  fill: var(--lime);
+}
+
+.nodeGroupActive .nodeLabel {
+  fill: #FFFFFF;
+  font-weight: 700;
+}
+
+.centerHubBadge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.hubTitle {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+}
+
+.hubSub {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--lime);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* ─────────────────────────────────────────────
-   Responsive
+   Live Telemetry Readout Card
    ───────────────────────────────────────────── */
-@media (max-width: 992px) {
-  .grid {
+.telemetryCard {
+  background: var(--navy-card);
+  border: 1px solid var(--navy-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.telemetryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 8px;
+}
+
+.telemetryTag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--navy-text-secondary);
+}
+
+.telemetryStatus {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--lime);
+}
+
+.telemetryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.telemetryItem {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.telemetryLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--navy-text-muted);
+}
+
+.telemetryVal {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--navy-text);
+  line-height: 1.3;
+}
+
+/* ─────────────────────────────────────────────
+   Responsive Breakpoints
+   ───────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .workspaceGrid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 32px;
   }
 }
 
-@media (max-width: 576px) {
-  .principlesGrid {
+@media (max-width: 640px) {
+  .pillarNav {
+    grid-template-columns: 1fr;
+  }
+
+  .telemetryGrid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .principleCard {
+  .pathActive {
+    animation: none !important;
+  }
+  .orbitStatusDot {
+    animation: none !important;
+  }
+  .workspaceGrid {
     transition: none !important;
   }
 }

@@ -1,8 +1,10 @@
 .footer {
-  background-color: var(--bg-card);
-  border-top: 1px solid var(--border);
+  background-color: var(--navy);
+  border-top: 1px solid var(--navy-border);
   padding: 64px 0 32px 0;
-  margin-top: 20px;
+  color: var(--navy-text);
+  position: relative;
+  overflow: hidden;
 }
 
 .grid {
@@ -12,141 +14,173 @@
   margin-bottom: 48px;
 }
 
+/* ─────────────────────────────────────────────
+   Brand Column
+   ───────────────────────────────────────────── */
 .brandCol {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-width: 440px;
+  max-width: 480px;
 }
 
 .logoArea {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
   text-decoration: none;
+  width: max-content;
 }
 
 .logoText {
   font-family: var(--font-display);
+  font-size: 1.25rem;
   font-weight: 800;
-  font-size: 1.35rem;
-  letter-spacing: -0.03em;
-  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
 }
 
-.logoTextHighlight {
-  color: var(--blue);
+.logoHighlight {
+  color: var(--lime);
 }
 
 .tagline {
   font-size: 0.92rem;
   line-height: 1.6;
-  color: var(--text-secondary);
+  color: var(--navy-text-secondary);
 }
 
 .contactEmailBox {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   margin-top: 6px;
 }
 
-.contactEmailLabel {
-  font-size: 0.75rem;
+.contactLabel {
+  font-size: 0.72rem;
   font-weight: 700;
+  color: var(--navy-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--text-muted);
 }
 
 .contactEmail {
   font-family: var(--font-display);
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--blue);
+  color: var(--lime);
+  text-decoration: none;
+  transition: var(--transition-smooth);
 }
 
 .contactEmail:hover {
+  color: #FFFFFF;
   text-decoration: underline;
 }
 
-/* Links Columns */
-.linksCol {
+/* ─────────────────────────────────────────────
+   Link Columns
+   ───────────────────────────────────────────── */
+.navCol,
+.legalCol {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
 }
 
 .colTitle {
   font-family: var(--font-display);
   font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  color: var(--navy-text-muted);
   text-transform: uppercase;
-  color: var(--text-primary);
+  letter-spacing: 0.1em;
 }
 
 .linksList {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
-.linkItem a {
-  font-size: 0.88rem;
-  color: var(--text-secondary);
+.footerLink {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--navy-text-secondary);
+  text-decoration: none;
   transition: var(--transition-smooth);
+  display: inline-block;
 }
 
-.linkItem a:hover {
-  color: var(--blue);
-  transform: translateX(2px);
-}
-
-/* Bottom Bar */
-.bottomBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 24px;
-  border-top: 1px solid var(--border-light);
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.copyright {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-}
-
-.legalLinks {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.legalLink {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-}
-
-.legalLink:hover {
-  color: var(--blue);
-}
-
-.legalDot {
-  color: var(--text-muted);
-  font-size: 0.75rem;
+.footerLink:hover {
+  color: #FFFFFF;
+  transform: translateX(3px);
 }
 
 /* ─────────────────────────────────────────────
-   Responsive
+   Bottom Bar
    ───────────────────────────────────────────── */
-@media (max-width: 850px) {
+.bottomBar {
+  padding-top: 28px;
+  border-top: 1px solid var(--navy-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: var(--navy-text-muted);
+}
+
+.bottomLegalLinks {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bottomLink {
+  font-size: 0.8rem;
+  color: var(--navy-text-muted);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.bottomLink:hover {
+  color: var(--navy-text-secondary);
+}
+
+.dot {
+  color: var(--navy-text-muted);
+  font-size: 0.8rem;
+}
+
+/* ─────────────────────────────────────────────
+   Responsive Breakpoints
+   ───────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+
+  .brandCol {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 540px) {
   .grid {
     grid-template-columns: 1fr;
     gap: 32px;
+  }
+
+  .brandCol {
+    grid-column: span 1;
   }
 
   .bottomBar {

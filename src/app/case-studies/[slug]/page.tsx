@@ -166,6 +166,10 @@ const CASE_STUDIES: Record<string, CaseStudyData> = {
   },
 };
 
+export async function generateStaticParams() {
+  return Object.keys(CASE_STUDIES).map((slug) => ({ slug }));
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -180,13 +184,26 @@ export async function generateMetadata({
     };
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://adorca360.com";
+  const url = `${siteUrl}/case-studies/${study.slug}`;
+
   return {
     title: `${study.headline} | Adorca 360 Case Study`,
     description: study.summary,
+    alternates: {
+      canonical: url,
+    },
     openGraph: {
       title: `${study.headline} | Adorca 360 Case Study`,
       description: study.summary,
+      url,
+      siteName: "Adorca 360",
       type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: study.headline,
+      description: study.summary,
     },
   };
 }
@@ -203,8 +220,70 @@ export default async function CaseStudyDetailPage({
     notFound();
   }
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://adorca360.com";
+
+  // Case Study Schema (Article + BreadcrumbList)
+  const caseStudySchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: study.headline,
+    description: study.summary,
+    author: {
+      "@type": "Organization",
+      name: "Adorca 360 Strategy Team",
+      url: siteUrl,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Adorca 360",
+      url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/logo.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/case-studies/${study.slug}`,
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Case Studies",
+        item: `${siteUrl}/case-studies`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: study.headline,
+        item: `${siteUrl}/case-studies/${study.slug}`,
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudySchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <Navbar />
 
       <main className="pageCanvas" style={{ flex: 1, padding: "40px 0 80px" }}>

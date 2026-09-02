@@ -1,54 +1,56 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://adorca360.com";
+
   return [
     {
-      url: "https://adorca360.com",
+      url: `${siteUrl}`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
+      changeFrequency: "weekly",
+      priority: 1.0,
     },
     {
-      url: "https://adorca360.com/#about",
+      url: `${siteUrl}/blog`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
+      changeFrequency: "weekly",
+      priority: 0.9,
     },
     {
-      url: "https://adorca360.com/#service",
+      url: `${siteUrl}/case-studies`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: "https://adorca360.com/#why-choose",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: "https://adorca360.com/#contact",
+      url: `${siteUrl}/blog/seo-global`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: "https://adorca360.com/blog/seo-global",
+      url: `${siteUrl}/blog/aso-boosters`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.8,
     },
     {
-      url: "https://adorca360.com/blog/aso-boosters",
+      url: `${siteUrl}/blog/programmatic-ads`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.7,
+      priority: 0.8,
     },
     {
-      url: "https://adorca360.com/blog/programmatic-ads",
+      url: `${siteUrl}/privacy`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
+    {
+      url: `${siteUrl}/terms`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.3,
     },
   ];
 }

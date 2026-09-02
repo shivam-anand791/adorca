@@ -6,22 +6,22 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} aria-label="Site Footer">
       <div className="container">
         <div className={styles.grid}>
           {/* Brand Info Column */}
           <div className={styles.brandCol}>
-            <Link href="/" className={styles.logoArea}>
-              <LogoMark size={32} />
+            <Link href="/" className={styles.logoArea} aria-label="Adorca 360 Home">
+              <LogoMark size={28} />
               <span className={styles.logoText}>
-                Adorca<span className={styles.logoTextHighlight}>360</span>
+                ADORCA <span className={styles.logoHighlight}>360</span>
               </span>
             </Link>
             <p className={styles.tagline}>
-              Adorca 360 is a performance growth and search marketing studio. We engineer high-velocity organic search, programmatic bidding, and localized digital funnels across 50+ international markets.
+              Digital search and performance engineering studio. Engineering compounding organic search, programmatic distribution, and localized conversion architecture across 50+ global markets.
             </p>
             <div className={styles.contactEmailBox}>
-              <span className={styles.contactEmailLabel}>Inquiries &amp; Strategy:</span>
+              <span className={styles.contactLabel}>Inquiries &amp; Strategy:</span>
               <a href="mailto:contact@adorca360.com" className={styles.contactEmail}>
                 contact@adorca360.com
               </a>
@@ -29,42 +29,74 @@ export default function Footer() {
           </div>
 
           {/* Navigation Column */}
-          <div className={styles.linksCol}>
-            <h4 className={styles.colTitle}>Platform</h4>
+          <div className={styles.navCol}>
+            <h4 className={styles.colTitle}>Navigation</h4>
             <ul className={styles.linksList}>
-              <li className={styles.linkItem}><Link href="/#work">Featured Work</Link></li>
-              <li className={styles.linkItem}><Link href="/#services">Service Pillars</Link></li>
-              <li className={styles.linkItem}><Link href="/#growth-system">Growth System</Link></li>
-              <li className={styles.linkItem}><Link href="/#approach">Approach</Link></li>
-              <li className={styles.linkItem}><Link href="/#opportunity-tool">Growth Diagnostic</Link></li>
-              <li className={styles.linkItem}><Link href="/#insights">News &amp; Insights</Link></li>
-              <li className={styles.linkItem}><Link href="/#about">About Adorca</Link></li>
+              <li>
+                <Link href="/#work" className={styles.footerLink}>
+                  Work
+                </Link>
+              </li>
+              <li>
+                <Link href="/#services" className={styles.footerLink}>
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/#approach" className={styles.footerLink}>
+                  Approach
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className={styles.footerLink}>
+                  Insights
+                </Link>
+              </li>
+              <li>
+                <Link href="/#about" className={styles.footerLink}>
+                  About
+                </Link>
+              </li>
+              <li>
+                <Link href="/#opportunity-tool" className={styles.footerLink}>
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Services Column */}
-          <div className={styles.linksCol}>
-            <h4 className={styles.colTitle}>Services</h4>
+          {/* Legal & Governance Column */}
+          <div className={styles.legalCol}>
+            <h4 className={styles.colTitle}>Governance</h4>
             <ul className={styles.linksList}>
-              <li className={styles.linkItem}><Link href="/#services">Global Growth Marketing</Link></li>
-              <li className={styles.linkItem}><Link href="/#services">Technical SEO &amp; Indexing</Link></li>
-              <li className={styles.linkItem}><Link href="/#services">Programmatic Advertising</Link></li>
-              <li className={styles.linkItem}><Link href="/#services">Lead Generation Pipelines</Link></li>
-              <li className={styles.linkItem}><Link href="/#services">Website Design &amp; Dev</Link></li>
-              <li className={styles.linkItem}><Link href="/#services">App Store Optimization</Link></li>
+              <li>
+                <Link href="/privacy" className={styles.footerLink}>
+                  Privacy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className={styles.footerLink}>
+                  Terms
+                </Link>
+              </li>
+              <li>
+                <Link href="/case-studies" className={styles.footerLink}>
+                  Case Studies
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom copyright area */}
+        {/* Bottom Bar with Verified Copyright */}
         <div className={styles.bottomBar}>
           <span className={styles.copyright}>
-            &copy; {currentYear} Adorca 360. All rights reserved. 100% Attribution Transparency.
+            &copy; {currentYear} ADORCA 360. All rights reserved. 100% Attribution &amp; Data Ownership.
           </span>
-          <div className={styles.legalLinks}>
-            <a href="#about" className={styles.legalLink}>Operating Model</a>
-            <span className={styles.legalDot}>&bull;</span>
-            <a href="mailto:contact@adorca360.com" className={styles.legalLink}>Contact Us</a>
+          <div className={styles.bottomLegalLinks}>
+            <Link href="/privacy" className={styles.bottomLink}>Privacy Policy</Link>
+            <span className={styles.dot}>•</span>
+            <Link href="/terms" className={styles.bottomLink}>Terms of Service</Link>
           </div>
         </div>
       </div>

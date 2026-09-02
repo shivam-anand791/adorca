@@ -34,15 +34,74 @@
 }
 
 .stepBadgeActive {
-  color: var(--blue);
-  background-color: var(--blue-light);
+  background-color: var(--blue);
+  color: #FFFFFF;
   border-color: var(--blue);
 }
 
 .stepDivider {
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
+
+.serverErrorBox {
+  background-color: rgba(255, 107, 87, 0.1);
+  border: 1px solid var(--accent-coral);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.errorTextRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--accent-coral);
+}
+
+.errorTextRow svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.errorTitle {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.errorMessage {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.retryBtn {
+  background-color: var(--accent-coral);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.retryBtn:hover {
+  opacity: 0.9;
+}
+
 
 .form {
   display: flex;

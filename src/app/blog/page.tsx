@@ -5,8 +5,20 @@ import styles from "./BlogIndex.module.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "News & Insights | Adorca360 Blog",
-  description: "Explore the latest insights, strategies, and industry analysis on global SEO, App Store Optimization, and programmatic advertising.",
+  title: "Strategic Intelligence & Insights | Adorca 360",
+  description:
+    "Explore tactical breakdowns and performance engineering analysis on global SEO, App Store Optimization, and programmatic advertising.",
+  alternates: {
+    canonical: "https://adorca360.com/blog",
+  },
+  openGraph: {
+    title: "Strategic Intelligence & Insights | Adorca 360",
+    description:
+      "Explore tactical breakdowns and performance engineering analysis on global SEO, App Store Optimization, and programmatic advertising.",
+    url: "https://adorca360.com/blog",
+    siteName: "Adorca 360",
+    type: "website",
+  },
 };
 
 const ARTICLES = [
@@ -15,24 +27,24 @@ const ARTICLES = [
     tag: "Organic Growth",
     date: "August 24, 2026",
     readTime: "6 min read",
-    title: "Unlocking Organic Growth: The Future of Global SEO",
-    desc: "How localized regional intent matching and Core Web Vitals optimization are driving organic traffic acquisition across cross-border markets.",
+    title: "Unlocking Organic Growth: The Future of Global Multi-Region SEO",
+    desc: "How localized regional intent matching, server-side hreflang tagging, and Core Web Vitals optimization drive sustainable organic traffic acquisition across cross-border markets.",
   },
   {
     id: "aso-boosters",
     tag: "App Store Optimization",
     date: "August 18, 2026",
     readTime: "5 min read",
-    title: "ASO Best Practices for App Revenue Boosting",
-    desc: "Key tactical steps to optimize app store conversions, streamline onboarding, retain active users, and boost subscriptions.",
+    title: "ASO Best Practices for App Revenue Boosting & Category Dominance",
+    desc: "Key tactical steps to optimize app store conversion velocity, streamline onboarding funnels, and boost organic store algorithms.",
   },
   {
     id: "programmatic-ads",
     tag: "Programmatic Bidding",
     date: "August 10, 2026",
     readTime: "7 min read",
-    title: "Why Programmatic Bidding is Outperforming Ad Networks",
-    desc: "Leveraging algorithmic audience segmentation and real-time bids adjustments to maximize returns and lower acquisition costs.",
+    title: "Why Programmatic Bidding is Outperforming Generic Ad Networks",
+    desc: "Leveraging algorithmic audience segmentation and real-time bid adjustments to eliminate budget leakage and slash acquisition costs.",
   },
 ];
 
@@ -44,10 +56,10 @@ export default function BlogIndexPage() {
         <div className="container">
           {/* Header */}
           <div className={styles.header}>
-            <span className="section-subtitle">Insights &amp; Analysis</span>
-            <h1 className={styles.title}>News &amp; Blogs</h1>
+            <span className="section-subtitle">Strategic Intelligence &amp; Analysis</span>
+            <h1 className={styles.title}>Insights &amp; Articles</h1>
             <p className={styles.desc}>
-              Discover tactical breakdowns and industry intelligence from our digital marketing and search growth specialists.
+              Discover tactical breakdowns and industry intelligence from our digital search and programmatic growth specialists.
             </p>
           </div>
 
@@ -67,10 +79,10 @@ export default function BlogIndexPage() {
                 <div className={styles.cardFooter}>
                   <span className={styles.readTime}>{article.readTime}</span>
                   <Link href={`/blog/${article.id}`} className={styles.readLink}>
-                    Read Article
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
+                    Read Intelligence Brief
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
                     </svg>
                   </Link>
                 </div>

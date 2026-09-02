@@ -7,6 +7,7 @@ import FeaturedWork from "@/components/FeaturedWork";
 import Approach from "@/components/Approach";
 import GrowthOpportunityTool from "@/components/GrowthOpportunityTool";
 import AboutSection from "@/components/AboutSection";
+import Testimonials from "@/components/Testimonials";
 import Blog from "@/components/Blog";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
@@ -44,13 +45,16 @@ export default function Home() {
         {/* Section 08: Operating Principles & Narrative (Built For Ambitious Growth) */}
         <AboutSection />
 
-        {/* Section 09: Strategic Intelligence & Editorial Articles */}
+        {/* Section 09: Verified Client Endorsements & Editorial Trust */}
+        <Testimonials />
+
+        {/* Section 10: Strategic Intelligence & Editorial Articles */}
         <Blog />
 
-        {/* Section 10: Frequently Asked Questions Accordion */}
+        {/* Section 11: Frequently Asked Questions Accordion */}
         <FAQ />
 
-        {/* Section 11: Final Cinematic Call to Action */}
+        {/* Section 12: Final Cinematic Call to Action */}
         <FinalCTA />
       </main>
 

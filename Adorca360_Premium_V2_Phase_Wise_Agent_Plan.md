@@ -140,6 +140,7 @@ https://playwright.dev/docs/screenshots
 
 # 2. Overall Page Architecture
 
+
 The target homepage architecture is:
 
 ```text

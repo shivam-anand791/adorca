@@ -49,6 +49,9 @@ export default function GrowthOpportunityTool() {
   const [revealRef, isVisible] = useIntersection({ threshold: 0.08 });
 
   const [step, setStep] = useState<1 | 2>(1);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [serverError, setServerError] = useState<string>("");
+
   const [params, setParams] = useState<PlanParams>({
     website: "",
     industry: INDUSTRIES[0],
@@ -60,8 +63,6 @@ export default function GrowthOpportunityTool() {
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const selectedObjective = OBJECTIVES.find((o) => o.id === params.objective) || OBJECTIVES[0];
 
@@ -102,14 +103,31 @@ export default function GrowthOpportunityTool() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (status === "loading") return;
+
     if (validateStep2()) {
-      setIsSubmitting(true);
-      setTimeout(() => {
-        setIsSubmitting(false);
-        setIsSubmitted(true);
-      }, 1000);
+      setStatus("loading");
+      setServerError("");
+
+      try {
+        const res = await fetch("/api/opportunity", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(params),
+        });
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => ({}));
+          throw new Error(errData.error || "Unable to submit growth diagnostic brief. Please try again.");
+        }
+
+        setStatus("success");
+      } catch (err: unknown) {
+        setStatus("error");
+        setServerError(err instanceof Error ? err.message : "A network error occurred. Please try again.");
+      }
     }
   };
 
@@ -125,7 +143,7 @@ export default function GrowthOpportunityTool() {
       </div>
 
       <div className={`${styles.toolContainer} ${isVisible ? styles.visible : ""}`}>
-        {!isSubmitted ? (
+        {status !== "success" ? (
           <div className={styles.toolGrid}>
             {/* Left: Interactive Form */}
             <div className={styles.formCol}>
@@ -138,6 +156,29 @@ export default function GrowthOpportunityTool() {
                   Step 2: Consultation Details
                 </span>
               </div>
+
+              {status === "error" && (
+                <div className={styles.serverErrorBox} role="alert" aria-live="polite">
+                  <div className={styles.errorTextRow}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                    <div>
+                      <strong className={styles.errorTitle}>Unable to submit brief.</strong>
+                      <p className={styles.errorMessage}>{serverError || "Please check your connection and try again."}</p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    className={styles.retryBtn}
+                    onClick={(e) => handleSubmit(e)}
+                  >
+                    Retry
+                  </button>
+                </div>
+              )}
 
               {step === 1 ? (
                 <form className={styles.form} onSubmit={handleNextStep} noValidate>
@@ -189,12 +230,14 @@ export default function GrowthOpportunityTool() {
 
                   {/* Objective Radios */}
                   <div className={styles.formGroup}>
-                    <label className={styles.label}>Primary Growth Goal</label>
-                    <div className={styles.objectiveGrid}>
+                    <label className={styles.label} id="growth-goal-label">Primary Growth Goal</label>
+                    <div className={styles.objectiveGrid} role="radiogroup" aria-labelledby="growth-goal-label">
                       {OBJECTIVES.map((obj) => (
                         <button
                           key={obj.id}
                           type="button"
+                          role="radio"
+                          aria-checked={params.objective === obj.id}
                           className={`${styles.objectiveCard} ${params.objective === obj.id ? styles.objectiveCardActive : ""}`}
                           onClick={() => handleParamChange("objective", obj.id)}
                         >
@@ -263,8 +306,8 @@ export default function GrowthOpportunityTool() {
                     <button type="button" className="btn btn-secondary" onClick={() => setStep(1)}>
                       &larr; Back to Parameters
                     </button>
-                    <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-                      {isSubmitting ? "Generating Brief..." : "Submit for Strategy Audit"}
+                    <button type="submit" className="btn btn-primary" disabled={status === "loading"}>
+                      {status === "loading" ? "Submitting Brief..." : "Submit for Strategy Audit"}
                     </button>
                   </div>
                 </form>
@@ -326,14 +369,14 @@ export default function GrowthOpportunityTool() {
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
-            <h3 className={styles.successTitle}>Growth Brief Generated!</h3>
+            <h3 className={styles.successTitle}>Growth Brief Received!</h3>
             <p className={styles.successDesc}>
-              Thank you, <strong>{params.name}</strong>. We have logged your parameters for <strong>{params.website}</strong> ({params.industry} / {params.market}). Our strategy director is reviewing your domain architecture and will reach out to <strong>{params.email}</strong> within one business day with your tailored growth plan.
+              Thank you, <strong>{params.name}</strong>. We have registered your parameters for <strong>{params.website}</strong> ({params.industry} &bull; {params.market}). Our strategy director is reviewing your domain architecture and will reach out to <strong>{params.email}</strong> within one business day with your tailored growth plan.
             </p>
             <button
               className="btn btn-secondary"
               onClick={() => {
-                setIsSubmitted(false);
+                setStatus("idle");
                 setStep(1);
               }}
             >

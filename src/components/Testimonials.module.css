@@ -1,228 +1,309 @@
-.carouselContainer {
-  position: relative;
+.container {
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 36px;
 }
 
-.cardsTrack {
-  position: relative;
-  width: 100%;
-  height: 380px;
+.editorialWrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (max-width: 768px) {
-  .cardsTrack {
-    height: 440px;
-  }
+.editorialWrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-@media (max-width: 480px) {
-  .cardsTrack {
-    height: 480px;
-  }
+/* ─────────────────────────────────────────────
+   Main Editorial Card
+   ───────────────────────────────────────────── */
+.editorialCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 48px 56px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  transition: var(--transition-smooth);
 }
 
-/* Card Base Styling */
-.card {
+.quoteWatermark {
   position: absolute;
-  width: 100%;
-  max-width: 580px;
-  background-color: var(--bg-page);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-lg);
-  padding: 40px;
+  top: -24px;
+  right: 40px;
+  font-size: 14rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--border-light);
+  opacity: 0.6;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ─────────────────────────────────────────────
+   Top Row: Company Mark & Verified Metric
+   ───────────────────────────────────────────── */
+.cardTopRow {
   display: flex;
-  flex-direction: column;
-  gap: 24px;
-  box-shadow: var(--shadow-sm);
-  /* Spec 3: Smooth ~400ms ease transition between testimonials */
-  transition:
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.4s ease,
-    filter 0.4s ease,
-    border-color 0.4s ease,
-    box-shadow 0.4s ease;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   z-index: 1;
 }
 
-[data-theme="dark"] .card {
-  background-color: rgba(255, 255, 255, 0.02);
-}
-
-@media (max-width: 768px) {
-  .card {
-    width: calc(100% - 40px);
-    padding: 30px 24px;
-  }
-}
-
-/* Spec 1: Active Centered Card */
-.activeCard {
-  opacity: 1;
-  transform: translateX(0) scale(1) rotate(0deg);
-  filter: blur(0px);
-  z-index: 5;
-  border-color: var(--accent-primary);
-  box-shadow: var(--shadow-lg);
-  background-color: var(--bg-card);
-}
-
-/* Spec 2: Left Faded & Blurred Peeker Silhouette at Slight Tilt */
-.leftCard {
-  opacity: 0.35;
-  transform: translateX(-160px) scale(0.88) rotate(-6deg);
-  filter: blur(3px);
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Spec 2: Right Faded & Blurred Peeker Silhouette at Slight Tilt */
-.rightCard {
-  opacity: 0.35;
-  transform: translateX(160px) scale(0.88) rotate(6deg);
-  filter: blur(3px);
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Hidden elements */
-.hiddenCard {
-  opacity: 0;
-  transform: scale(0.75);
-  filter: blur(6px);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Responsive Peeker Tweaks */
-@media (max-width: 992px) {
-  .leftCard {
-    transform: translateX(-110px) scale(0.88) rotate(-5deg);
-  }
-  .rightCard {
-    transform: translateX(110px) scale(0.88) rotate(5deg);
-  }
-}
-
-@media (max-width: 576px) {
-  .leftCard {
-    opacity: 0.15;
-    transform: translateX(-60px) scale(0.85) rotate(-3deg);
-    filter: blur(2px);
-  }
-  .rightCard {
-    opacity: 0.15;
-    transform: translateX(60px) scale(0.85) rotate(3deg);
-    filter: blur(2px);
-  }
-}
-
-/* Internal Details Styling */
-.starsRow {
-  display: flex;
-  gap: 4px;
-  color: #FFB800; /* gold star color */
-}
-
-.star {
-  fill: currentColor;
-}
-
-.quote {
-  font-size: 1.1rem;
-  color: var(--text-primary);
-  line-height: 1.6;
-  font-style: italic;
-}
-
-@media (max-width: 576px) {
-  .quote {
-    font-size: 0.95rem;
-  }
-}
-
-.clientBlock {
+.companyMark {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-top: 10px;
+  gap: 8px;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
 }
 
-.avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 0.95rem;
+.companyBadgeText {
   font-family: var(--font-display);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
 }
 
-.meta {
+.verifiedDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lime);
+  box-shadow: 0 0 6px var(--lime-glow);
+}
+
+.metricPill {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  background: var(--blue-light);
+  border: 1px solid rgba(22, 87, 255, 0.18);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+}
+
+.metricVal {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--blue);
+}
+
+.metricLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* ─────────────────────────────────────────────
+   Quote Body
+   ───────────────────────────────────────────── */
+.quoteBody {
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  z-index: 1;
+  max-width: 960px;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────
+   Bottom Meta & Attribution
+   ───────────────────────────────────────────── */
+.cardBottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-light);
+  z-index: 1;
+}
+
+.authorBlock {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
-.clientName {
-  font-size: 1rem;
+.authorName {
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-primary);
 }
 
-.clientRole {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  font-weight: 500;
+.authorRole {
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
-.company {
-  color: var(--accent-primary);
+.authorCompany {
   font-weight: 600;
+  color: var(--text-secondary);
 }
 
-/* Controls buttons */
-.controls {
+/* ─────────────────────────────────────────────
+   Controls & Counter
+   ───────────────────────────────────────────── */
+.controlsRow {
   display: flex;
-  gap: 16px;
-  margin-top: 40px;
-  z-index: 10;
+  align-items: center;
+  gap: 20px;
+}
+
+.counterText {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.counterDivider {
+  color: var(--text-muted);
+  margin: 0 2px;
+}
+
+.btnGroup {
+  display: flex;
+  gap: 8px;
 }
 
 .controlBtn {
+  appearance: none;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid var(--border-color);
-  background-color: var(--bg-card);
   color: var(--text-primary);
   cursor: pointer;
-  box-shadow: var(--shadow-sm);
   transition: var(--transition-smooth);
 }
 
 .controlBtn:hover {
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
-  transform: scale(1.06);
-  box-shadow: var(--shadow-md);
+  background: var(--blue);
+  color: #FFFFFF;
+  border-color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
-.controlBtn:active {
-  transform: scale(0.96);
+/* ─────────────────────────────────────────────
+   Quick Selector Tab Bar
+   ───────────────────────────────────────────── */
+.selectorBar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.tabBtn {
+  appearance: none;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-family: inherit;
+}
+
+.tabBtn:hover {
+  background: var(--bg-card);
+  border-color: var(--border-hover);
+}
+
+.tabBtnActive {
+  background: var(--bg-card);
+  border-color: var(--blue);
+  box-shadow: 0 4px 14px rgba(22, 87, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.tabName {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.tabCompany {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.tabBtnActive .tabCompany {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────
+   Responsive Breakpoints
+   ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .editorialCard {
+    padding: 32px 24px;
+    gap: 24px;
+  }
+
+  .selectorBar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quoteWatermark {
+    font-size: 10rem;
+    right: 20px;
+    top: -10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cardTopRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cardBottomRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .selectorBar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .editorialWrapper {
+    transition: none !important;
+  }
+  .controlBtn {
+    transition: none !important;
+  }
 }

@@ -8,6 +8,7 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
+  preload: true,
 });
 
 const spaceGrotesk = Space_Grotesk({
@@ -15,19 +16,37 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://adorca360.com"),
   title: {
-    default: "Adorca360 | Global Growth, Digital & Affiliate Marketing Agency",
-    template: "%s | Adorca360",
+    default: "Adorca 360 | Performance Growth Studio & Technical Search Marketing",
+    template: "%s | Adorca 360",
   },
-  description: "Adorca360 is a leading global digital and affiliate marketing agency. We deliver organic SEO, programmatic advertising, lead generation, social media growth, and premium web design across 50+ international markets.",
-  keywords: ["digital marketing agency", "affiliate marketing", "organic SEO services", "global growth marketing", "social media marketing", "programmatic advertising", "lead generation", "ASO optimization"],
-  authors: [{ name: "Adorca360 Team", url: "https://adorca360.com" }],
-  creator: "Adorca360",
-  publisher: "Adorca360",
+  description:
+    "Adorca 360 combines technical SEO, programmatic media, content architecture, and international market intelligence to help ambitious brands acquire high-value customers across 50+ markets.",
+  keywords: [
+    "Adorca 360",
+    "technical SEO agency",
+    "international SEO studio",
+    "programmatic advertising agency",
+    "global search marketing",
+    "multilingual hreflang architecture",
+    "conversion rate optimization",
+    "App Store Optimization ASO",
+  ],
+  authors: [{ name: "Adorca 360 Strategy Team", url: "https://adorca360.com" }],
+  creator: "Adorca 360",
+  publisher: "Adorca 360",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/logo.svg", type: "image/svg+xml" },
+    ],
+    apple: "/logo.svg",
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -48,22 +67,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://adorca360.com",
-    siteName: "Adorca360",
-    title: "Adorca360 | Global Growth, Digital & Affiliate Marketing Agency",
-    description: "Expand your global digital footprint. Direct response, performance-focused SEO, affiliate marketing, programmatic advertising, and conversion-optimized websites.",
+    siteName: "Adorca 360",
+    title: "Adorca 360 | Performance Growth Studio & Technical Search Marketing",
+    description:
+      "Expand your global digital footprint. Performance-focused SEO, programmatic distribution, and conversion-engineered systems across 50+ markets.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Adorca360 - Global Growth & Digital Marketing Agency",
+        alt: "Adorca 360 - Performance Growth Studio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Adorca360 | Global Growth, Digital & Affiliate Marketing Agency",
-    description: "Expand your global digital footprint. Direct response, performance-focused SEO, affiliate marketing, programmatic advertising, and conversion-optimized websites.",
+    title: "Adorca 360 | Performance Growth Studio & Technical Search Marketing",
+    description:
+      "Expand your global digital footprint. Performance-focused SEO, programmatic distribution, and conversion-engineered systems across 50+ markets.",
     images: ["/og-image.png"],
     creator: "@adorca360",
   },
