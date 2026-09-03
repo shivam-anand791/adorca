@@ -5,7 +5,7 @@ import styles from "./BlogIndex.module.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Strategic Intelligence & Insights | Adorca 360",
+  title: "Strategic Intelligence & Insights",
   description:
     "Explore tactical breakdowns and performance engineering analysis on global SEO, App Store Optimization, and programmatic advertising.",
   alternates: {

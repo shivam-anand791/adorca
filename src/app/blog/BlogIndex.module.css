@@ -1,15 +1,15 @@
 .mainWrapper {
-  padding: 60px 0 100px;
+  padding: calc(var(--nav-height) + 28px) 0 64px;
   flex: 1;
 }
 
 .header {
   max-width: 650px;
-  margin-bottom: 50px;
+  margin-bottom: var(--section-header-margin-b);
 }
 
 .title {
-  font-size: 2.8rem;
+  font-size: clamp(2.2rem, 4vw + 0.5rem, 3rem);
   font-weight: 700;
   margin-bottom: 16px;
   letter-spacing: -0.03em;
@@ -42,8 +42,8 @@
 
 .card {
   background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   padding: 36px 30px;
   box-shadow: var(--shadow-sm);
   display: flex;
@@ -54,7 +54,7 @@
 .card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-  border-color: var(--accent-primary);
+  border-color: var(--blue);
 }
 
 .metaRow {
@@ -67,7 +67,7 @@
 .tag {
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--accent-primary);
+  color: var(--blue);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -95,7 +95,7 @@
 }
 
 .cardTitle a:hover {
-  color: var(--accent-primary);
+  color: var(--blue);
 }
 
 .cardDesc {
@@ -110,7 +110,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--border);
   padding-top: 18px;
 }
 
@@ -122,7 +122,7 @@
 .readLink {
   font-size: 0.88rem;
   font-weight: 700;
-  color: var(--accent-primary);
+  color: var(--blue);
   display: inline-flex;
   align-items: center;
   gap: 6px;

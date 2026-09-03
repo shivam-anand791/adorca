@@ -5,46 +5,28 @@
 }
 
 .floating {
-  background-color: var(--bg-card);
-  border-radius: var(--radius-card);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-md);
-  margin: 0 auto;
-  padding: 80px 56px;
+  width: 100%;
   max-width: var(--container-max-width);
-  width: calc(100% - 48px);
+  margin: 0 auto;
+  padding: var(--section-padding-y) var(--container-padding-x);
 }
 
 .dark {
   background-color: var(--navy);
   color: var(--navy-text);
-  border-radius: var(--radius-card);
-  border: 1px solid var(--navy-border);
-  box-shadow: var(--shadow-lg);
-  margin: 0 auto;
-  padding: 88px 56px;
+  width: 100%;
+  padding: var(--section-padding-y) 0;
+}
+
+.dark > *:not([aria-hidden="true"]) {
   max-width: var(--container-max-width);
-  width: calc(100% - 48px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding-x);
+  padding-right: var(--container-padding-x);
 }
 
 .plain {
-  padding: 60px 0;
+  padding: var(--section-padding-y) 0;
   width: 100%;
-}
-
-@media (max-width: 992px) {
-  .floating,
-  .dark {
-    padding: 60px 32px;
-    width: calc(100% - 32px);
-  }
-}
-
-@media (max-width: 576px) {
-  .floating,
-  .dark {
-    padding: 44px 18px;
-    border-radius: 18px;
-    width: calc(100% - 24px);
-  }
 }

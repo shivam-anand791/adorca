@@ -1,4 +1,5 @@
 # Adorca 360 Premium V2
+
 ## Phase-Wise Coding Agent Implementation Plan
 
 Repository:
@@ -61,60 +62,74 @@ These references are for inspiration only. Do not copy their layouts, assets, br
 ## Primary References
 
 ### Upstatement
+
 https://upstatement.com/
 
 Use for:
+
 - editorial typography
 - asymmetrical layouts
 - case-study storytelling
 - project-led presentation
 
 ### Obys
+
 https://obys.agency/
 
 Use for:
+
 - typography
 - grid systems
 - motion
 - strong visual identity
 
 ### Instrument
+
 https://www.instrument.com/
 
 Use for:
+
 - premium agency positioning
 - brand + technology
 - project presentation
 
 ### Fantasy
+
 https://fantasy.co/
 
 Use for:
+
 - dramatic typography
 - visual storytelling
 - premium creative direction
 
 ### Linear
+
 https://linear.app/
 
 Use for:
+
 - hierarchy
 - data visualization
 - product-like clarity
 - restrained animation
 
 ### Stripe
+
 https://stripe.com/
 
 Use for:
+
 - conversion hierarchy
 - structured content
 - polished visual explanations
 
 ### Awwwards
+
 https://www.awwwards.com/
 
 Use for:
+
 - interaction references
 - motion patterns
 - premium agency examples
@@ -139,7 +154,6 @@ https://playwright.dev/docs/screenshots
 ---
 
 # 2. Overall Page Architecture
-
 
 The target homepage architecture is:
 
@@ -180,6 +194,7 @@ Every section must have a clear UX purpose.
 ---
 
 # PHASE 1
+
 ## Repository Audit + Baseline
 
 ### Objective
@@ -281,6 +296,7 @@ Existing functionality:
 ---
 
 # PHASE 2
+
 ## Premium Design System
 
 ### Objective
@@ -372,6 +388,7 @@ font-size: clamp(3rem, 7vw, 7rem);
 ---
 
 # PHASE 3
+
 ## Responsive Foundation
 
 ### Objective
@@ -447,6 +464,7 @@ At all required viewport sizes:
 ---
 
 # PHASE 4
+
 ## Navigation Redesign
 
 ### Desktop
@@ -503,6 +521,7 @@ No layout jump.
 ---
 
 # PHASE 5
+
 ## Hero Redesign
 
 ### Objective
@@ -609,6 +628,7 @@ Test:
 ---
 
 # PHASE 6
+
 ## Proof / Credibility Strip
 
 ### Objective
@@ -639,6 +659,7 @@ It should feel like a credibility layer, not another service section.
 ---
 
 # PHASE 7
+
 ## Growth System
 
 ### Objective
@@ -710,6 +731,7 @@ next node activates
 ---
 
 # PHASE 8
+
 ## Services Redesign
 
 Preserve:
@@ -774,6 +796,7 @@ Interaction enhances the content rather than hiding it.
 ---
 
 # PHASE 9
+
 ## Featured Work Redesign
 
 ### Objective
@@ -821,6 +844,7 @@ Work feels like actual agency work, not generic cards.
 ---
 
 # PHASE 10
+
 ## Case Study Pages
 
 Each case-study route should use:
@@ -850,6 +874,7 @@ Never fabricate results.
 ---
 
 # PHASE 11
+
 ## Approach / Process
 
 ### Heading
@@ -887,6 +912,7 @@ The process remains understandable with animation disabled.
 ---
 
 # PHASE 12
+
 ## Growth Opportunity Tool
 
 Make this a real conversion feature.
@@ -954,6 +980,7 @@ Handle:
 ---
 
 # PHASE 13
+
 ## About Section
 
 ### Heading
@@ -979,6 +1006,7 @@ Do not add fake geographic claims.
 ---
 
 # PHASE 14
+
 ## Testimonials + Trust
 
 Use only verified testimonials.
@@ -1015,6 +1043,7 @@ Testimonials are:
 ---
 
 # PHASE 15
+
 ## Insights / Blog
 
 ### Homepage
@@ -1050,6 +1079,7 @@ Support:
 ---
 
 # PHASE 16
+
 ## FAQ
 
 Keep the FAQ content.
@@ -1075,6 +1105,7 @@ Reduced Motion
 ---
 
 # PHASE 17
+
 ## Final CTA
 
 Create a visually strong closing section.
@@ -1113,6 +1144,7 @@ The CTA should feel like the culmination of the page.
 ---
 
 # PHASE 18
+
 ## Footer
 
 Keep it clean.
@@ -1138,6 +1170,7 @@ Test every link.
 ---
 
 # PHASE 19
+
 ## Motion Polish
 
 Only after all static sections are complete and responsive.
@@ -1145,24 +1178,30 @@ Only after all static sections are complete and responsive.
 ### Add
 
 Hero:
+
 - text reveal
 - graph drawing
 - orbit animation
 
 Growth System:
+
 - scroll progression
 
 Services:
+
 - state transitions
 
 Case Studies:
+
 - image reveal
 - metric animation
 
 Buttons:
+
 - subtle arrow movement
 
 Sections:
+
 - controlled reveal
 
 ### Avoid
@@ -1181,6 +1220,7 @@ Motion should communicate hierarchy and interaction.
 ---
 
 # PHASE 20
+
 ## Accessibility
 
 Audit:
@@ -1210,6 +1250,7 @@ Ensure:
 ---
 
 # PHASE 21
+
 ## SEO
 
 Implement:
@@ -1250,6 +1291,7 @@ Important marketing text must remain real HTML.
 ---
 
 # PHASE 22
+
 ## Performance
 
 Target excellent Core Web Vitals.
@@ -1288,6 +1330,7 @@ Do not sacrifice performance for decorative effects.
 ---
 
 # PHASE 23
+
 ## Functional QA
 
 Test every interaction.
@@ -1316,6 +1359,7 @@ No silent failures.
 ---
 
 # PHASE 24
+
 ## Error Handling
 
 All dynamic functionality must support:
@@ -1349,6 +1393,7 @@ Please try again.
 ---
 
 # PHASE 25
+
 ## Content Verification
 
 Create or update:
@@ -1386,6 +1431,7 @@ Do not use unverified numbers.
 ---
 
 # PHASE 26
+
 ## Cross-Device Responsive QA
 
 Required viewport matrix:
@@ -1432,6 +1478,7 @@ animation collision
 ---
 
 # PHASE 27
+
 ## Cross-Browser QA
 
 Test:
@@ -1466,6 +1513,7 @@ Use modern viewport units such as `svh`, `lvh`, and `dvh` where appropriate inst
 ---
 
 # PHASE 28
+
 ## Visual Regression
 
 Use Playwright screenshot testing.
@@ -1498,6 +1546,7 @@ Footer
 ---
 
 # PHASE 29
+
 ## Production Validation
 
 Run:
@@ -1528,6 +1577,7 @@ animations
 ---
 
 # PHASE 30
+
 ## Final Visual Audit
 
 Evaluate the website as one experience.

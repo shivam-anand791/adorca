@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Adorca 360",
+  title: "Privacy Policy",
   description: "Adorca 360 Privacy Policy and Data Ownership Standards.",
   alternates: {
     canonical: "https://adorca360.com/privacy",
@@ -14,9 +14,9 @@ export default function PrivacyPage() {
   return (
     <>
       <Navbar />
-      <main style={{ minHeight: "80vh", padding: "calc(var(--nav-height) + 40px) 0 80px 0", backgroundColor: "var(--bg-page)" }}>
+      <main style={{ minHeight: "80vh", padding: "calc(var(--nav-height) + 28px) 0 64px 0", backgroundColor: "var(--bg-page)" }}>
         <div className="container" style={{ maxWidth: "860px" }}>
-          <div style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "var(--radius-card)", padding: "48px 40px", display: "flex", flexDirection: "column", gap: "24px", boxShadow: "var(--shadow-md)" }}>
+          <div style={{ backgroundColor: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: "var(--radius-card)", padding: "clamp(28px, 4vw, 44px) clamp(20px, 3.5vw, 36px)", display: "flex", flexDirection: "column", gap: "20px", boxShadow: "var(--shadow-sm)" }}>
             <span className="section-subtitle">Legal &amp; Compliance</span>
             <h1 style={{ fontSize: "2.4rem", fontWeight: "800", color: "var(--text-primary)", letterSpacing: "-0.03em" }}>
               Privacy Policy

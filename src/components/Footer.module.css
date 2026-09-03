@@ -1,7 +1,7 @@
 .footer {
   background-color: var(--navy);
   border-top: 1px solid var(--navy-border);
-  padding: 64px 0 32px 0;
+  padding: clamp(40px, 4vw + 12px, 56px) 0 32px 0;
   color: var(--navy-text);
   position: relative;
   overflow: hidden;

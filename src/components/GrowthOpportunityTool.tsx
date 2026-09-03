@@ -198,34 +198,35 @@ export default function GrowthOpportunityTool() {
                     {errors.website && <span className={styles.errorText}>{errors.website}</span>}
                   </div>
 
-                  {/* Industry Select */}
-                  <div className={styles.formGroup}>
-                    <label htmlFor="tool-industry" className={styles.label}>Industry Vertical</label>
-                    <select
-                      id="tool-industry"
-                      className={styles.select}
-                      value={params.industry}
-                      onChange={(e) => handleParamChange("industry", e.target.value)}
-                    >
-                      {INDUSTRIES.map((ind) => (
-                        <option key={ind} value={ind}>{ind}</option>
-                      ))}
-                    </select>
-                  </div>
+                  {/* Industry & Market Row */}
+                  <div className={styles.formRow}>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="tool-industry" className={styles.label}>Industry Vertical</label>
+                      <select
+                        id="tool-industry"
+                        className={styles.select}
+                        value={params.industry}
+                        onChange={(e) => handleParamChange("industry", e.target.value)}
+                      >
+                        {INDUSTRIES.map((ind) => (
+                          <option key={ind} value={ind}>{ind}</option>
+                        ))}
+                      </select>
+                    </div>
 
-                  {/* Market Select */}
-                  <div className={styles.formGroup}>
-                    <label htmlFor="tool-market" className={styles.label}>Primary Target Region</label>
-                    <select
-                      id="tool-market"
-                      className={styles.select}
-                      value={params.market}
-                      onChange={(e) => handleParamChange("market", e.target.value)}
-                    >
-                      {MARKETS.map((m) => (
-                        <option key={m} value={m}>{m}</option>
-                      ))}
-                    </select>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="tool-market" className={styles.label}>Primary Target Region</label>
+                      <select
+                        id="tool-market"
+                        className={styles.select}
+                        value={params.market}
+                        onChange={(e) => handleParamChange("market", e.target.value)}
+                      >
+                        {MARKETS.map((m) => (
+                          <option key={m} value={m}>{m}</option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
 
                   {/* Objective Radios */}
@@ -253,41 +254,43 @@ export default function GrowthOpportunityTool() {
                     </div>
                   </div>
 
-                  <button type="submit" className="btn btn-primary" style={{ width: "100%", marginTop: "10px" }}>
+                  <button type="submit" className="btn btn-primary" style={{ width: "100%", marginTop: "4px" }}>
                     Configure Strategy Preview &rarr;
                   </button>
                 </form>
               ) : (
                 /* Step 2: Contact Details */
                 <form className={styles.form} onSubmit={handleSubmit} noValidate>
-                  <div className={styles.formGroup}>
-                    <label htmlFor="tool-name" className={styles.label}>
-                      Full Name <span className={styles.required}>*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="tool-name"
-                      className={`${styles.input} ${errors.name ? styles.inputError : ""}`}
-                      placeholder="e.g. Alex Morgan"
-                      value={params.name}
-                      onChange={(e) => handleParamChange("name", e.target.value)}
-                    />
-                    {errors.name && <span className={styles.errorText}>{errors.name}</span>}
-                  </div>
+                  <div className={styles.formRow}>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="tool-name" className={styles.label}>
+                        Full Name <span className={styles.required}>*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="tool-name"
+                        className={`${styles.input} ${errors.name ? styles.inputError : ""}`}
+                        placeholder="e.g. Alex Morgan"
+                        value={params.name}
+                        onChange={(e) => handleParamChange("name", e.target.value)}
+                      />
+                      {errors.name && <span className={styles.errorText}>{errors.name}</span>}
+                    </div>
 
-                  <div className={styles.formGroup}>
-                    <label htmlFor="tool-email" className={styles.label}>
-                      Work Email <span className={styles.required}>*</span>
-                    </label>
-                    <input
-                      type="email"
-                      id="tool-email"
-                      className={`${styles.input} ${errors.email ? styles.inputError : ""}`}
-                      placeholder="e.g. alex@company.com"
-                      value={params.email}
-                      onChange={(e) => handleParamChange("email", e.target.value)}
-                    />
-                    {errors.email && <span className={styles.errorText}>{errors.email}</span>}
+                    <div className={styles.formGroup}>
+                      <label htmlFor="tool-email" className={styles.label}>
+                        Work Email <span className={styles.required}>*</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="tool-email"
+                        className={`${styles.input} ${errors.email ? styles.inputError : ""}`}
+                        placeholder="e.g. alex@company.com"
+                        value={params.email}
+                        onChange={(e) => handleParamChange("email", e.target.value)}
+                      />
+                      {errors.email && <span className={styles.errorText}>{errors.email}</span>}
+                    </div>
                   </div>
 
                   <div className={styles.formGroup}>

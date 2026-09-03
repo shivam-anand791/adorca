@@ -1,7 +1,21 @@
 .heroSection {
-  padding-top: 100px;
-  padding-bottom: 70px;
-  margin-top: 20px;
+  padding-top: calc(var(--nav-height) + 24px);
+  padding-bottom: clamp(20px, 2.5vw + 6px, 32px);
+  margin-top: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--growth-ambient-glow);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .grid {
@@ -9,6 +23,8 @@
   grid-template-columns: 1.15fr 1fr;
   gap: 48px;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .contentCol {
@@ -45,19 +61,51 @@
   flex-wrap: wrap;
 }
 
-.regionPill {
+.studioBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-display);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--growth-badge-text);
+  background: var(--growth-badge-bg);
+  border: 1px solid var(--growth-badge-border);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+}
+
+.studioDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--growth-badge-dot);
+  box-shadow: 0 0 8px var(--growth-badge-dot);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+
+.regionPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
   font-weight: 600;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   background-color: var(--bg-subtle);
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: var(--radius-pill);
   border: 1px solid var(--border);
 }
 
+.regionPill svg {
+  color: var(--text-muted);
+}
+
 .heroTitle {
-  font-size: clamp(2.5rem, 4.2vw + 0.5rem, 4rem);
+  font-size: clamp(2.5rem, 4.3vw + 0.5rem, 4.1rem);
   font-weight: 800;
   line-height: 1.12;
   letter-spacing: -0.04em;
@@ -65,13 +113,16 @@
 }
 
 .highlightText {
-  color: var(--blue);
-  display: inline-block;
+  background: var(--growth-text-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
   position: relative;
+  font-weight: 800;
 }
 
 .heroDesc {
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   line-height: 1.65;
   color: var(--text-secondary);
   max-width: 540px;
@@ -83,6 +134,34 @@
   gap: 14px;
   flex-wrap: wrap;
   margin-top: 6px;
+}
+
+.growthPrimaryBtn {
+  background: var(--growth-btn-bg) !important;
+  color: var(--growth-btn-text) !important;
+  border: 1px solid var(--growth-btn-border) !important;
+  box-shadow: var(--growth-btn-shadow) !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.growthPrimaryBtn:hover {
+  background: var(--growth-btn-hover-bg) !important;
+  box-shadow: var(--growth-btn-hover-shadow) !important;
+  transform: translateY(-2px);
+}
+
+.growthSecondaryBtn {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1.5px solid var(--border);
+  font-weight: 600;
+}
+
+.growthSecondaryBtn:hover {
+  background: var(--bg-subtle);
+  border-color: var(--text-primary);
+  transform: translateY(-2px);
 }
 
 .trustRow {
@@ -121,21 +200,57 @@
 }
 
 /* ─────────────────────────────────────────────
-   Growth Orbit Dashboard
+   Growth Intelligence Dashboard Card
    ───────────────────────────────────────────── */
 .visualCol {
   position: relative;
   width: 100%;
 }
 
+.dashboardCardWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.aiFloatingBadge {
+  position: absolute;
+  top: -14px;
+  right: 24px;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ai-badge-text);
+  background: var(--ai-badge-bg);
+  border: 1px solid var(--ai-badge-border);
+  box-shadow: var(--ai-badge-shadow);
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.aiPulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--growth-accent);
+  box-shadow: 0 0 6px var(--growth-accent);
+}
+
 .dashboardCard {
-  background-color: var(--navy);
-  border: 1px solid var(--navy-border);
+  background: var(--growth-card-bg);
+  border: 1px solid var(--growth-card-border);
   border-radius: var(--radius-lg);
-  padding: 20px;
-  box-shadow: var(--shadow-lg);
+  padding: 22px;
+  box-shadow: var(--growth-card-shadow);
   position: relative;
   overflow: hidden;
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .dashboardHeader {
@@ -143,30 +258,54 @@
   align-items: center;
   justify-content: space-between;
   padding-bottom: 14px;
-  border-bottom: 1px solid var(--navy-border);
+  border-bottom: 1px solid var(--growth-card-header-border);
   margin-bottom: 10px;
 }
 
 .headerDots {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dotRed {
+  background-color: #FF5F56;
+}
+
+.dotYellow {
+  background-color: #FFBD2E;
+}
+
+.dotGreen {
+  background-color: #27C93F;
+}
+
+.dashboardTitleWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.radarIconDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--growth-accent);
+  box-shadow: 0 0 8px var(--growth-accent);
 }
 
 .dashboardTitle {
   font-family: var(--font-display);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--navy-text-secondary);
+  letter-spacing: 0.04em;
+  color: var(--growth-card-title);
 }
 
 .liveIndicator {
@@ -175,10 +314,12 @@
   gap: 5px;
   font-size: 0.72rem;
   font-weight: 700;
-  color: var(--lime);
+  letter-spacing: 0.06em;
+  color: var(--growth-accent);
   font-family: var(--font-display);
-  background-color: rgba(152, 242, 42, 0.1);
-  padding: 2px 8px;
+  background: var(--growth-badge-bg);
+  border: 1px solid var(--growth-badge-border);
+  padding: 2px 9px;
   border-radius: var(--radius-pill);
 }
 
@@ -186,8 +327,8 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: var(--lime);
-  box-shadow: 0 0 6px var(--lime);
+  background-color: var(--growth-badge-dot);
+  box-shadow: 0 0 6px var(--growth-badge-dot);
   animation: pulse-dot 2s infinite ease-in-out;
 }
 
@@ -227,46 +368,56 @@
   pointer-events: none;
 }
 
+.hubCircle {
+  transition: all 0.35s ease;
+}
+
 .channelChip {
   position: absolute;
   transform: translate(-50%, -50%);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background-color: var(--navy-card);
-  border: 1px solid var(--navy-border);
-  color: var(--navy-text);
-  padding: 6px 12px;
+  gap: 7px;
+  background: var(--growth-chip-bg);
+  border: 1px solid var(--growth-chip-border);
+  color: var(--growth-chip-text);
+  box-shadow: var(--growth-chip-shadow);
+  padding: 6px 14px;
   border-radius: var(--radius-pill);
   font-family: var(--font-display);
   font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
-  transition: var(--transition-smooth);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 3;
   white-space: nowrap;
 }
 
 .channelChip:hover,
 .channelChipActive {
-  background-color: var(--navy-surface);
-  border-color: var(--lime);
-  color: #FFFFFF;
-  box-shadow: 0 0 16px var(--lime-glow);
+  background: var(--growth-chip-active-bg);
+  border-color: var(--growth-chip-active-border);
+  color: var(--growth-chip-active-text);
+  box-shadow: var(--growth-chip-active-glow);
   transform: translate(-50%, -50%) scale(1.05);
 }
 
 .chipIcon {
-  color: var(--lime);
+  color: var(--growth-chip-icon);
   display: flex;
   align-items: center;
+  transition: color 0.25s ease;
+}
+
+.channelChipActive .chipIcon {
+  color: var(--growth-chip-active-text);
 }
 
 .activeKpiBox {
-  background-color: var(--navy-surface);
-  border: 1px solid var(--navy-border);
+  background: var(--growth-kpi-bg);
+  border: 1px solid var(--growth-kpi-border);
   border-radius: var(--radius-md);
-  padding: 16px;
+  padding: 16px 18px;
   margin-top: 10px;
   transition: var(--transition-smooth);
 }
@@ -280,18 +431,18 @@
 
 .kpiTag {
   font-family: var(--font-display);
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--lime);
+  color: var(--growth-kpi-tag);
 }
 
 .kpiMetric {
   font-family: var(--font-display);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 800;
-  color: #FFFFFF;
+  color: var(--growth-kpi-metric);
   letter-spacing: -0.02em;
 }
 
@@ -310,15 +461,21 @@
 }
 
 .kpiLabel {
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--navy-text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--growth-kpi-label);
 }
 
 .kpiDesc {
-  font-size: 0.78rem;
-  color: var(--navy-text-muted);
-  line-height: 1.4;
+  font-size: 0.8rem;
+  color: var(--growth-kpi-desc);
+  line-height: 1.45;
+}
+
+.kpiSparklineBox {
+  width: 95px;
+  height: 36px;
+  flex-shrink: 0;
 }
 
 .sparklineSvg {
@@ -376,8 +533,8 @@
   }
 
   .heroSection {
-    padding-top: 80px;
-    padding-bottom: 50px;
+    padding-top: calc(var(--nav-height) + 16px);
+    padding-bottom: 24px;
   }
 
   .orbitCanvas {

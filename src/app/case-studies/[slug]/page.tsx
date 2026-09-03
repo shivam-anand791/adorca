@@ -188,7 +188,7 @@ export async function generateMetadata({
   const url = `${siteUrl}/case-studies/${study.slug}`;
 
   return {
-    title: `${study.headline} | Adorca 360 Case Study`,
+    title: `${study.headline} - Case Study`,
     description: study.summary,
     alternates: {
       canonical: url,
@@ -286,7 +286,7 @@ export default async function CaseStudyDetailPage({
 
       <Navbar />
 
-      <main className="pageCanvas" style={{ flex: 1, padding: "40px 0 80px" }}>
+      <main className="pageCanvas" style={{ flex: 1, padding: "calc(var(--nav-height) + 28px) 0 64px 0" }}>
         <div className={styles.container}>
           {/* Breadcrumb & Navigation */}
           <div className={styles.topNav}>

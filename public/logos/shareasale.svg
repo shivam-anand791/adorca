@@ -1,4 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" width="160" height="40" fill="none">
+  <style>
+    .wm { fill: #101114; }
+    @media (prefers-color-scheme: dark) {
+      .wm { fill: #F8FAFC; }
+    }
+  </style>
   <g transform="translate(6, 6)">
     <!-- ShareASale Node Cluster -->
     <circle cx="8" cy="14" r="5" fill="#6C4CF1"/>
@@ -7,6 +13,6 @@
     <line x1="8" y1="14" x2="22" y2="6" stroke="#6C4CF1" stroke-width="1.5"/>
     <line x1="8" y1="14" x2="22" y2="22" stroke="#22C55E" stroke-width="1.5"/>
     <!-- Wordmark -->
-    <text x="32" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="currentColor" letter-spacing="-0.3">share<tspan fill="#6C4CF1">a</tspan>sale</text>
+    <text x="32" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" class="wm" letter-spacing="-0.3">share<tspan fill="#6C4CF1">a</tspan>sale</text>
   </g>
 </svg>

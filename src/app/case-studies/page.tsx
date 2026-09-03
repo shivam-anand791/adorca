@@ -4,7 +4,7 @@ import FeaturedWork from "@/components/FeaturedWork";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Case Studies & Verified Client Results | Adorca 360",
+  title: "Case Studies & Verified Client Results",
   description:
     "Explore how Adorca 360 delivers measurable organic traffic growth, lower CPA, and top app store category rankings across global markets.",
   alternates: {
@@ -30,7 +30,7 @@ export default function CaseStudiesPage() {
   return (
     <>
       <Navbar />
-      <main className="pageCanvas" style={{ flex: 1, paddingTop: "40px" }}>
+      <main className="pageCanvas" style={{ flex: 1, paddingTop: "calc(var(--nav-height) + 16px)", paddingBottom: "var(--section-padding-y)" }}>
         <FeaturedWork />
       </main>
       <Footer />

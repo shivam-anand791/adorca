@@ -74,7 +74,11 @@
   padding: 16px 18px;
   text-align: left;
   cursor: pointer;
-  transition: var(--transition-smooth);
+  /* Scope to layout props only — prevents text/bg color animation lag */
+  transition:
+    transform var(--duration-300) var(--ease-out),
+    border-color var(--duration-300) var(--ease-out),
+    box-shadow var(--duration-300) var(--ease-out);
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -89,6 +93,14 @@
 }
 
 .pillarTabActive {
+  background: var(--bg-card);
+  border-color: var(--blue);
+  box-shadow: 0 4px 20px rgba(22, 87, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Prevent hover state from overriding active indicator */
+.pillarTabActive:hover {
   background: var(--bg-card);
   border-color: var(--blue);
   box-shadow: 0 4px 20px rgba(22, 87, 255, 0.12);

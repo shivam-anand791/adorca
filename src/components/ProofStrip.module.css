@@ -1,6 +1,6 @@
 .section {
   width: 100%;
-  padding: 10px 0 20px 0;
+  padding: 0 0 clamp(24px, 3vw, 36px) 0;
 }
 
 .kpiGrid {
@@ -81,6 +81,14 @@
   border-radius: var(--radius-md);
   padding: 16px 24px;
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+[data-theme="dark"] .partnerRow {
+  background-color: rgba(15, 23, 42, 0.75);
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .partnerIntro {
@@ -89,53 +97,100 @@
   font-weight: 700;
   color: var(--text-secondary);
   white-space: nowrap;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.partnerIntro::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--growth-accent);
+  box-shadow: 0 0 6px var(--growth-accent);
+}
+
+[data-theme="dark"] .partnerIntro {
+  color: #F1F5F9;
 }
 
 .logoMarquee {
   flex: 1;
+  width: 100%;
+  min-width: 0;
   overflow: hidden;
   position: relative;
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .logoTrack {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 48px;
   width: max-content;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
   animation: scrollMarquee 28s linear infinite;
 }
 
-.logoTrack:hover {
-  animation-play-state: paused;
+/* Pause on hover ONLY on devices with real mouse hover capability.
+   On mobile and touch devices, tapping or dragging will NEVER freeze the animation! */
+@media (hover: hover) and (pointer: fine) {
+  .logoTrack:hover {
+    animation-play-state: paused;
+  }
+
+  .logoItem:hover {
+    opacity: 1;
+    transform: scale(1.05);
+  }
 }
 
 .logoItem {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.75;
-  transition: opacity 0.2s ease, filter 0.2s ease;
-  filter: grayscale(80%);
+  color: var(--text-primary);
+  opacity: 0.88;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
-.logoItem:hover {
-  opacity: 1;
-  filter: grayscale(0%);
+[data-theme="dark"] .logoItem {
+  color: #F8FAFC;
+  opacity: 0.95;
 }
 
-.logoImg {
-  object-fit: contain;
+.logoItem svg {
+  display: block;
   height: 28px;
   width: auto;
 }
 
+/* Hardware accelerated translation */
 @keyframes scrollMarquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* On systems with reduced motion preference, provide a smooth, gentle slow crawl
+   instead of an abrupt cut or completely frozen broken state */
+@media (prefers-reduced-motion: reduce) {
+  .logoTrack {
+    animation-duration: 60s;
+  }
 }
 
 /* ─────────────────────────────────────────────
@@ -149,11 +204,21 @@
   .partnerRow {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 14px;
+    width: 100%;
   }
 
   .partnerIntro {
     font-size: 0.75rem;
+  }
+
+  .logoMarquee {
+    width: 100%;
+  }
+
+  .logoTrack {
+    gap: 36px;
+    animation-duration: 22s;
   }
 }
 
@@ -170,11 +235,18 @@
   .kpiVal {
     font-size: 1.8rem;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
+  .partnerRow {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
   .logoTrack {
-    animation: none;
-    overflow-x: auto;
+    gap: 28px;
+    animation-duration: 18s;
+  }
+
+  .logoItem svg {
+    height: 24px;
   }
 }
